@@ -6,7 +6,7 @@
     <persistence-unit name="jpa" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/db_example?useUnicode=true&amp;useLegacyDatetimeCode=false" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/5100final?useUnicode=true&amp;useLegacyDatetimeCode=false" />
             <property name="jakarta.persistence.jdbc.user" value="springuser" />
             <property name="jakarta.persistence.jdbc.password" value="huanlin2022" />
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />            

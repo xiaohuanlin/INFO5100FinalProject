@@ -4,32 +4,24 @@
  */
 package com.finalproject.ui;
 
-import org.hibernate.Session;
-import com.finalproject.model.Role;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import com.finalproject.model.User;
+import com.finalproject.model.Configuration;
 
 /**
  *
  * @author Administrator
  */
 public class MainJFrame extends javax.swing.JFrame {
-    Session session;
+    User user;
+    LoginJPanel loginJPanel;
+    
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
-//        EntityManager entityManager =emf.createEntityManager();
-//        entityManager.getTransaction().begin();
-//        Role r = new Role();
-//        r.setId(1);
-//        r.setName("aaa");
-//        entityManager.persist(r);
-//        entityManager.getTransaction().commit();
+        new Configuration().config();
+        loginJPanel = new LoginJPanel(this);
     }
 
     /**
@@ -41,21 +33,70 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane = new javax.swing.JSplitPane();
+        leftjPanel = new javax.swing.JPanel();
+        rightjPanel = new javax.swing.JPanel();
+        testjButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout leftjPanelLayout = new javax.swing.GroupLayout(leftjPanel);
+        leftjPanel.setLayout(leftjPanelLayout);
+        leftjPanelLayout.setHorizontalGroup(
+            leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        leftjPanelLayout.setVerticalGroup(
+            leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        jSplitPane.setLeftComponent(leftjPanel);
+
+        testjButton.setText("test");
+        testjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
+        rightjPanel.setLayout(rightjPanelLayout);
+        rightjPanelLayout.setHorizontalGroup(
+            rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightjPanelLayout.createSequentialGroup()
+                .addContainerGap(323, Short.MAX_VALUE)
+                .addComponent(testjButton)
+                .addGap(317, 317, 317))
+        );
+        rightjPanelLayout.setVerticalGroup(
+            rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rightjPanelLayout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(testjButton)
+                .addContainerGap(305, Short.MAX_VALUE))
+        );
+
+        jSplitPane.setRightComponent(rightjPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void testjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testjButtonActionPerformed
+        // TODO add your handling code here:
+        jSplitPane.setRightComponent(loginJPanel);
+    }//GEN-LAST:event_testjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,6 +133,18 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JPanel leftjPanel;
+    private javax.swing.JPanel rightjPanel;
+    private javax.swing.JButton testjButton;
     // End of variables declaration//GEN-END:variables
 }
