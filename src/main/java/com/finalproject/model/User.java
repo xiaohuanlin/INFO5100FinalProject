@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class User extends ORMObject {
     private String password;
 
     @ManyToMany(targetEntity=Role.class)
-    public Set<Role> roles = new HashSet();
+    private Set<Role> roles = new HashSet();
     
     public String getUsername() {
         return username;
@@ -56,38 +57,24 @@ public class User extends ORMObject {
         this.password = password;
     }
     
-    public boolean hasPermission(String className, PermissionType ptype) {
-        for (Role r: roles) {
-            for (Permission p: r.permissions) {
-                if (p.getClassName().equals(className)) {
-                    switch (ptype) {
-                        case VIEW:
-                            if (p.isViewAbility()) {
-                                return true;
-                            }
-                            break;
-                        case EDIT:
-                            if (p.isEditAbility()) {
-                                return true;
-                            }
-                            break;
-                        case DELETE:
-                            if (p.isDeleteAbility()) {
-                                return true;
-                            }
-                            break;
-                        case CREATE:
-                            if (p.isCreateAbility()) {
-                                return true;
-                            }
-                            break;
-                        default:
-                            throw new AssertionError();
-                    }
-                }
-            }
-        }
-        return false;
+    public boolean hasPermission(String name, PermissionType ptype) {
+        EntityManager entityManager =emf.createEntityManager();
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Permission> criteria = builder.createQuery(Permission.class);
+        Root<Permission> root = criteria.from(Permission.class);
+        Root<User> userRoot = criteria.from(User.class);
+        Join<User, Role> roleJoin = root.join(User_.ROLES);
+        Join<Permission, Role> permissionJoin = roleJoin.join(Role_.PERMISSIONS);
+        
+        criteria.select(root);
+        criteria.where(
+            builder.and(
+                builder.equal(root.get(Permission_.NAME), name),
+                builder.equal(root.get(Permission_.PERMISSION_TYPE), ptype),
+                builder.equal(userRoot.get(User_.USERNAME), this.getUsername())
+            )
+        );
+        return !entityManager.createQuery(criteria).getResultList().isEmpty();
     }
         
     public static User findByUsernameAndPassword(String username, String password) {
@@ -103,5 +90,13 @@ public class User extends ORMObject {
             )
         );
         return entityManager.createQuery(criteria).getSingleResult();
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

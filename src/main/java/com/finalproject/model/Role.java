@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,18 +21,21 @@ import java.util.Set;
  */
 @Entity
 public class Role extends ORMObject {
-    @Column(nullable = false)
-    private String name;
-    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToMany(targetEntity=Permission.class)
-    public Set<Permission> permissions = new HashSet();
+    @Column(nullable = false)
+    private String name;
     
+    @ManyToOne
+    private Organization organization;
+        
+    @ManyToMany(targetEntity=Permission.class)
+    private Set<Permission> permissions = new HashSet();
+
     @ManyToMany(targetEntity=User.class, mappedBy="roles")
-    public Set<User> users = new HashSet();
+    private Set<User> users = new HashSet();
     
     public String getName() {
         return name;

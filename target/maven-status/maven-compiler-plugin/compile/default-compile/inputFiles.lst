@@ -1,5 +1,7 @@
+D:\Class\FinalProject\src\main\java\com\finalproject\ui\AdminJPanel.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\Role.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\Permission.java
+D:\Class\FinalProject\src\main\java\com\finalproject\ui\OperationsPanel.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\PermissionType.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\Enterprise.java
 D:\Class\FinalProject\src\main\java\com\finalproject\ui\LoginJPanel.java
@@ -7,3 +9,4 @@ D:\Class\FinalProject\src\main\java\com\finalproject\model\Organization.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\User.java
 D:\Class\FinalProject\src\main\java\com\finalproject\ui\MainJFrame.java
 D:\Class\FinalProject\src\main\java\com\finalproject\model\ORMObject.java
+D:\Class\FinalProject\src\main\java\com\finalproject\model\Configuration.java

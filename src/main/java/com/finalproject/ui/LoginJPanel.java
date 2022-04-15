@@ -5,7 +5,6 @@
 package com.finalproject.ui;
 
 import com.finalproject.model.User;
-import com.finalproject.model.PermissionType;
 import javax.swing.JOptionPane;
 import jakarta.persistence.NoResultException;
 
@@ -128,7 +127,9 @@ public class LoginJPanel extends javax.swing.JPanel {
             return;
         }
         User user = jFrame.getUser();
-        JOptionPane.showMessageDialog(this, "login success: " + jFrame.getUser().getUsername() + " view: " + user.hasPermission("Role", PermissionType.VIEW)  + " create: " + user.hasPermission("Role", PermissionType.CREATE));
+        
+        // redirect operations panel
+        jFrame.getjSplitPane().setRightComponent(new OperationsPanel(jFrame));
     }//GEN-LAST:event_loginjButtonActionPerformed
 
 

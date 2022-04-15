@@ -6,6 +6,7 @@ package com.finalproject.ui;
 
 import com.finalproject.model.User;
 import com.finalproject.model.Configuration;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -139,6 +140,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public JSplitPane getjSplitPane() {
+        return jSplitPane;
+    }
+
+    public void setjSplitPane(JSplitPane jSplitPane) {
+        this.jSplitPane = jSplitPane;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

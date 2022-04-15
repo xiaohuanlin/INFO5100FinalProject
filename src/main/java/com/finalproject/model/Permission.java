@@ -25,59 +25,29 @@ public class Permission extends ORMObject {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
+    @Column(unique = true, nullable = false)
+    private String name;
+    
     @Column(nullable = false)
-    private String className;
-    
-    private boolean viewAbility = false;
-    
-    private boolean editAbility = false;
-    
-    private boolean createAbility = false;
-    
-    private boolean deleteAbility = false;
+    private PermissionType permissionType;
     
     @ManyToMany(targetEntity=Role.class, mappedBy="permissions")
     public Set<Role> roles = new HashSet();
 
-    public String getClassName() {
-        return className;
+    public String getName() {
+        return name;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public boolean isViewAbility() {
-        return viewAbility;
+    public PermissionType getPermissionType() {
+        return permissionType;
     }
 
-    public void setViewAbility(boolean viewAbility) {
-        this.viewAbility = viewAbility;
+    public void setPermissionType(PermissionType permissionType) {
+        this.permissionType = permissionType;
     }
-
-    public boolean isEditAbility() {
-        return editAbility;
-    }
-
-    public void setEditAbility(boolean editAbility) {
-        this.editAbility = editAbility;
-    }
-
-    public boolean isCreateAbility() {
-        return createAbility;
-    }
-
-    public void setCreateAbility(boolean createAbility) {
-        this.createAbility = createAbility;
-    }
-
-    public boolean isDeleteAbility() {
-        return deleteAbility;
-    }
-
-    public void setDeleteAbility(boolean deleteAbility) {
-        this.deleteAbility = deleteAbility;
-    }
-
     
 }
