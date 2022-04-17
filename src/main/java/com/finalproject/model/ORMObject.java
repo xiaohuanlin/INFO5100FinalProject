@@ -16,29 +16,35 @@ import java.util.List;
  * @author Administrator
  */
 public class ORMObject {
-    protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+//    protected static EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa");
+    protected static EntityManager entityManager = Persistence.createEntityManagerFactory("jpa").createEntityManager();
     
     public void save() {
-        EntityManager entityManager =emf.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(this);
         entityManager.getTransaction().commit();
-        entityManager.close();
+    }
+    
+    public void flush() {
+        entityManager.getTransaction().begin();
+        entityManager.flush();
+        entityManager.getTransaction().commit();
     }
     
     public void delete() {
-        EntityManager entityManager =emf.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.remove(this);
         entityManager.getTransaction().commit();
-        entityManager.close();
     }
     
     public static <T> List<T> find(Class<T> type) {
-        EntityManager entityManager =emf.createEntityManager();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(type);
         criteria.from(type);
         return entityManager.createQuery(criteria).getResultList();
+    }
+    
+    public static <T> T findById(Class<T> type, int id) {
+        return entityManager.find(type, id);
     }
 }

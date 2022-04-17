@@ -32,7 +32,11 @@ public class Permission extends ORMObject {
     private PermissionType permissionType;
     
     @ManyToMany(targetEntity=Role.class, mappedBy="permissions")
-    public Set<Role> roles = new HashSet();
+    private Set<Role> roles = new HashSet();
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -48,6 +52,14 @@ public class Permission extends ORMObject {
 
     public void setPermissionType(PermissionType permissionType) {
         this.permissionType = permissionType;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
     
 }

@@ -9,8 +9,20 @@ package com.finalproject.model;
  * @author Administrator
  */
 public enum PermissionType {
-    VIEW,
-    EDIT,
-    DELETE,
-    CREATE
+    VIEW("view"),
+    EDIT("edit"),
+    DELETE("delete"),
+    CREATE("create")
+    ;
+    
+    private final String text;
+
+    PermissionType(final String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return text;
+    }
 }

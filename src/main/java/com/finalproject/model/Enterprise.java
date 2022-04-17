@@ -53,4 +53,9 @@ public class Enterprise extends ORMObject {
     public void setOrganizations(List<Organization> organizations) {
         this.organizations = organizations;
     }
+    
+    @Override
+    public String toString() {
+        return name;
+    }
 }

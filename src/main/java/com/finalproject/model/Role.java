@@ -52,4 +52,9 @@ public class Role extends ORMObject {
     public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
     }
+    
+    @Override
+    public String toString() {
+        return name + "(" + organization + ")";
+    }
 }

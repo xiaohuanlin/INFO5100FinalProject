@@ -58,7 +58,6 @@ public class User extends ORMObject {
     }
     
     public boolean hasPermission(String name, PermissionType ptype) {
-        EntityManager entityManager =emf.createEntityManager();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Permission> criteria = builder.createQuery(Permission.class);
         Root<Permission> root = criteria.from(Permission.class);
@@ -78,7 +77,6 @@ public class User extends ORMObject {
     }
         
     public static User findByUsernameAndPassword(String username, String password) {
-        EntityManager entityManager =emf.createEntityManager();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> root = criteria.from(User.class);

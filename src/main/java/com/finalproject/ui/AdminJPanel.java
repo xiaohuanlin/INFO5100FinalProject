@@ -4,17 +4,78 @@
  */
 package com.finalproject.ui;
 
+import com.finalproject.model.Permission;
+import com.finalproject.model.PermissionType;
+import com.finalproject.model.Role;
+import com.finalproject.model.User;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrator
  */
 public class AdminJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
+    Permission permission;
+    Role role;
+    User user;
     /**
      * Creates new form adminJPanel
      */
     public AdminJPanel(MainJFrame jFrame) {
         initComponents();
+        otherjList.setModel(new DefaultListModel<>());
+        currentjList.setModel(new DefaultListModel<>());
+        displayPermission();
+        displayPermissionList();
+    }
+    
+    public void displayPermission() {
+        if (permission == null) {
+            namejTextField.setText("");
+            permissionTypejComboBox.removeAllItems();
+            ((DefaultListModel<Role>)otherjList.getModel()).removeAllElements();
+            ((DefaultListModel<Role>)currentjList.getModel()).removeAllElements();
+            for (PermissionType pt: PermissionType.values()) {
+                permissionTypejComboBox.addItem(pt);
+            }
+            for (Role r: Role.find(Role.class)) {
+                ((DefaultListModel<Role>)otherjList.getModel()).addElement(r);
+            }
+        } else {
+            namejTextField.setText(permission.getName());
+            permissionTypejComboBox.setSelectedItem(permission.getPermissionType());
+            ((DefaultListModel<Role>)otherjList.getModel()).removeAllElements();
+            ((DefaultListModel<Role>)currentjList.getModel()).removeAllElements();
+            Set<Role> roles = permission.getRoles();
+            for (Role r: roles) {
+                ((DefaultListModel<Role>)currentjList.getModel()).addElement(r);
+            }
+            for (Role r: Role.find(Role.class)) {
+                if (!roles.contains(r)) {
+                    ((DefaultListModel<Role>)otherjList.getModel()).addElement(r);
+                }
+            }
+        }
+    }
+    
+    public void displayPermissionList() {
+        DefaultTableModel model = (DefaultTableModel) pmjTable.getModel();
+        model.setRowCount(0);
+        
+        for (Permission current: Permission.find(Permission.class)) {
+            Object[] row = new Object[3];
+            row[0] = current.getId();
+            row[1] = current.getName();
+            row[2] = current.getPermissionType();
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -33,7 +94,6 @@ public class AdminJPanel extends javax.swing.JPanel {
         namejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
         permissionTypejLabel = new javax.swing.JLabel();
-        permissionjTextField = new javax.swing.JTextField();
         rolesjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         otherjList = new javax.swing.JList<>();
@@ -42,18 +102,19 @@ public class AdminJPanel extends javax.swing.JPanel {
         toRightjButton = new javax.swing.JButton();
         toLeftjButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        pmjTable = new javax.swing.JTable();
         buttonjPanel = new javax.swing.JPanel();
-        modifyjButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        viewjButton = new javax.swing.JButton();
+        pmModifyjButton = new javax.swing.JButton();
+        pmDeletejButton = new javax.swing.JButton();
+        pmCreatejButton = new javax.swing.JButton();
+        pmViewjButton = new javax.swing.JButton();
+        permissionTypejComboBox = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout userjPanelLayout = new javax.swing.GroupLayout(userjPanel);
         userjPanel.setLayout(userjPanelLayout);
         userjPanelLayout.setHorizontalGroup(
             userjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 796, Short.MAX_VALUE)
         );
         userjPanelLayout.setVerticalGroup(
             userjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,7 +127,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         rolejPanel.setLayout(rolejPanelLayout);
         rolejPanelLayout.setHorizontalGroup(
             rolejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 796, Short.MAX_VALUE)
         );
         rolejPanelLayout.setVerticalGroup(
             rolejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,57 +146,71 @@ public class AdminJPanel extends javax.swing.JPanel {
 
         permissionTypejLabel.setText("permission type");
 
-        permissionjTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                permissionjTextFieldActionPerformed(evt);
-            }
-        });
-
         rolesjLabel.setText("roles");
 
-        otherjList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(otherjList);
 
-        currentjList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(currentjList);
 
         toRightjButton.setText(">>");
-
-        toLeftjButton.setText("<<");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
-        modifyjButton.setText("modify");
-
-        jButton2.setText("delete");
-
-        jButton3.setText("create");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        toRightjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                toRightjButtonActionPerformed(evt);
             }
         });
 
-        viewjButton.setText("view");
+        toLeftjButton.setText("<<");
+        toLeftjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toLeftjButtonActionPerformed(evt);
+            }
+        });
+
+        pmjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "name", "permission type"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(pmjTable);
+
+        pmModifyjButton.setText("modify");
+        pmModifyjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmModifyjButtonActionPerformed(evt);
+            }
+        });
+
+        pmDeletejButton.setText("delete");
+        pmDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmDeletejButtonActionPerformed(evt);
+            }
+        });
+
+        pmCreatejButton.setText("create");
+        pmCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmCreatejButtonActionPerformed(evt);
+            }
+        });
+
+        pmViewjButton.setText("view");
+        pmViewjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pmViewjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonjPanelLayout = new javax.swing.GroupLayout(buttonjPanel);
         buttonjPanel.setLayout(buttonjPanelLayout);
@@ -144,23 +219,23 @@ public class AdminJPanel extends javax.swing.JPanel {
             .addGroup(buttonjPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pmModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pmViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pmCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pmDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonjPanelLayout.setVerticalGroup(
             buttonjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonjPanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(modifyjButton)
+                .addComponent(pmModifyjButton)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pmDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pmCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(viewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pmViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -169,11 +244,11 @@ public class AdminJPanel extends javax.swing.JPanel {
         permissionjPanelLayout.setHorizontalGroup(
             permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(permissionjPanelLayout.createSequentialGroup()
-                .addGap(178, 178, 178)
+                .addGap(119, 119, 119)
                 .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(permissionjPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(permissionjPanelLayout.createSequentialGroup()
                         .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(namejLabel)
@@ -182,54 +257,59 @@ public class AdminJPanel extends javax.swing.JPanel {
                         .addGap(126, 126, 126)
                         .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(permissionjPanelLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(toRightjButton, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(toLeftjButton, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(permissionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(90, 90, 90)
-                        .addComponent(buttonjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))
+                            .addGroup(permissionjPanelLayout.createSequentialGroup()
+                                .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(permissionTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(buttonjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(88, 88, 88))
         );
         permissionjPanelLayout.setVerticalGroup(
             permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(permissionjPanelLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(60, 60, 60)
                 .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(permissionjPanelLayout.createSequentialGroup()
-                        .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(permissionjPanelLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(namejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(permissionTypejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(permissionjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
+                        .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(permissionjPanelLayout.createSequentialGroup()
+                                .addComponent(permissionTypejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(19, 19, 19))
+                            .addGroup(permissionjPanelLayout.createSequentialGroup()
+                                .addComponent(permissionTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(permissionjPanelLayout.createSequentialGroup()
                                 .addComponent(rolesjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(134, 134, 134))
-                            .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(191, 191, 191))
+                            .addGroup(permissionjPanelLayout.createSequentialGroup()
                                 .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(permissionjPanelLayout.createSequentialGroup()
                                         .addComponent(toRightjButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(toLeftjButton))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(57, 57, 57))
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(57, 57, 57))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, permissionjPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(306, 306, 306))
+                .addGap(300, 300, 300))
         );
 
         jTabbedPane.addTab("Permisson", permissionjPanel);
@@ -250,37 +330,171 @@ public class AdminJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_namejTextFieldActionPerformed
 
-    private void permissionjTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permissionjTextFieldActionPerformed
+    private void pmCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmCreatejButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_permissionjTextFieldActionPerformed
+        Permission pm = new Permission();
+        try {
+            pm.setName(namejTextField.getText());
+            pm.setPermissionType((PermissionType)permissionTypejComboBox.getSelectedItem());
+            Set<Role> previousRoles = permission.getRoles();
+            Set<Role> afterRoles = new HashSet<>();
+            for (Object roleObject: ((DefaultListModel<Role>)currentjList.getModel()).toArray()) {
+                afterRoles.add((Role)roleObject);
+            }
+            // add new
+            Set<Role> new_set = new HashSet<Role>(afterRoles);
+            new_set.removeAll(previousRoles);
+            for (Role r: new_set) {
+                r.getPermissions().add(permission);
+            }
+            pm.setRoles(afterRoles);
+            pm.save();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Save done");
+        permission = null;
+        displayPermission();
+        permission = pm;
+        displayPermissionList();
+    }//GEN-LAST:event_pmCreatejButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void pmViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmViewjButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        int selectedIndex = pmjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) pmjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        permission = Permission.findById(Permission.class, id);
+        displayPermission();
+    }//GEN-LAST:event_pmViewjButtonActionPerformed
+
+    private void pmDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmDeletejButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = pmjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) pmjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        permission = Permission.findById(Permission.class, id);
+        permission.delete();
+        model.removeRow(selectedIndex);
+        displayPermissionList();
+        permission = null;
+        displayPermission();
+        displayPermissionList();
+    }//GEN-LAST:event_pmDeletejButtonActionPerformed
+
+    private void pmModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pmModifyjButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = pmjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to modify");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) pmjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        permission = Permission.findById(Permission.class, id);
+        
+        try {
+            permission.setName(namejTextField.getText());
+            permission.setPermissionType((PermissionType)permissionTypejComboBox.getSelectedItem());
+            Set<Role> previousRoles = permission.getRoles();
+            Set<Role> afterRoles = new HashSet<>();
+            for (Object roleObject: ((DefaultListModel<Role>)currentjList.getModel()).toArray()) {
+                afterRoles.add((Role)roleObject);
+            }
+            
+            // remove old
+            Set<Role> old = new HashSet<Role>(previousRoles);
+            old.removeAll(afterRoles);
+            for (Role r: old) {
+                r.getPermissions().remove(permission);
+            }
+            // add new
+            Set<Role> new_set = new HashSet<Role>(afterRoles);
+            new_set.removeAll(previousRoles);
+            for (Role r: new_set) {
+                r.getPermissions().add(permission);
+            }
+            
+            permission.setRoles(afterRoles);
+            permission.flush();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Modify done");
+        permission = null;
+        displayPermission();
+        displayPermissionList();
+    }//GEN-LAST:event_pmModifyjButtonActionPerformed
+
+    private void toRightjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toRightjButtonActionPerformed
+        // TODO add your handling code here:
+        List<Role> roles = otherjList.getSelectedValuesList();
+        
+        if (roles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a role to add");
+            return;
+        }
+        
+        for (Role r: roles) {
+            ((DefaultListModel<Role>)otherjList.getModel()).removeElement(r);
+            ((DefaultListModel<Role>)currentjList.getModel()).addElement(r);
+        }
+    }//GEN-LAST:event_toRightjButtonActionPerformed
+
+    private void toLeftjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toLeftjButtonActionPerformed
+        // TODO add your handling code here:
+        List<Role> roles = currentjList.getSelectedValuesList();
+        
+        if (roles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select a role to remove");
+            return;
+        }
+        
+        for (Role r: roles) {
+            ((DefaultListModel<Role>)currentjList.getModel()).removeElement(r);
+            ((DefaultListModel<Role>)otherjList.getModel()).addElement(r);
+        }
+    }//GEN-LAST:event_toLeftjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonjPanel;
-    private javax.swing.JList<String> currentjList;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JList<Role> currentjList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton modifyjButton;
     private javax.swing.JLabel namejLabel;
     private javax.swing.JTextField namejTextField;
-    private javax.swing.JList<String> otherjList;
+    private javax.swing.JList<Role> otherjList;
+    private javax.swing.JComboBox<PermissionType> permissionTypejComboBox;
     private javax.swing.JLabel permissionTypejLabel;
     private javax.swing.JPanel permissionjPanel;
-    private javax.swing.JTextField permissionjTextField;
+    private javax.swing.JButton pmCreatejButton;
+    private javax.swing.JButton pmDeletejButton;
+    private javax.swing.JButton pmModifyjButton;
+    private javax.swing.JButton pmViewjButton;
+    private javax.swing.JTable pmjTable;
     private javax.swing.JPanel rolejPanel;
     private javax.swing.JLabel rolesjLabel;
     private javax.swing.JButton toLeftjButton;
     private javax.swing.JButton toRightjButton;
     private javax.swing.JPanel userjPanel;
-    private javax.swing.JButton viewjButton;
     // End of variables declaration//GEN-END:variables
 }
