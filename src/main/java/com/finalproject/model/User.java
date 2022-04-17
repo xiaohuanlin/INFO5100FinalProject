@@ -6,7 +6,6 @@ package com.finalproject.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -90,11 +89,24 @@ public class User extends ORMObject {
         return entityManager.createQuery(criteria).getSingleResult();
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    
+    @Override
+    public String toString() {
+        return username;
     }
 }

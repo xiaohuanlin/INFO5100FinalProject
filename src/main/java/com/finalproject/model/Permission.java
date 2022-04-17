@@ -10,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import java.util.BitSet;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +22,16 @@ import java.util.Set;
  * @author Administrator
  */
 @Entity
+@Table(
+        uniqueConstraints=
+            @UniqueConstraint(columnNames={"name", "permissionType"})
+)
 public class Permission extends ORMObject {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String name;
     
     @Column(nullable = false)
@@ -62,4 +68,8 @@ public class Permission extends ORMObject {
         this.roles = roles;
     }
     
+    @Override
+    public String toString() {
+        return name + "(" + permissionType + ")";
+    }
 }

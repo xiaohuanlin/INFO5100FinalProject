@@ -31,6 +31,12 @@ public class ORMObject {
         entityManager.getTransaction().commit();
     }
     
+    public void refresh() {
+        entityManager.getTransaction().begin();
+        entityManager.refresh(this);
+        entityManager.getTransaction().commit();
+    }
+    
     public void delete() {
         entityManager.getTransaction().begin();
         entityManager.remove(this);

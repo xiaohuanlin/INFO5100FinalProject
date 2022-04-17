@@ -52,6 +52,26 @@ public class Role extends ORMObject {
     public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
     
     @Override
     public String toString() {
