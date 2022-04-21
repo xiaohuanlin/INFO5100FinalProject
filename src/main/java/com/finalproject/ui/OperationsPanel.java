@@ -20,7 +20,8 @@ import javax.swing.JPanel;
 public class OperationsPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
     Map<String, Class<? extends JPanel>> panels = Map.ofEntries(
-            entry("Admin", AdminJPanel.class)
+            entry("Admin", AdminJPanel.class),
+            entry("CustomerService", CustomerServiceManagerJPanel.class)
     );
 
     /**
