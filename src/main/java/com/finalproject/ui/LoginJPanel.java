@@ -129,7 +129,7 @@ public class LoginJPanel extends javax.swing.JPanel {
         User user = jFrame.getUser();
         
         // redirect operations panel
-        jFrame.getjSplitPane().setRightComponent(new OperationsPanel(jFrame));
+        jFrame.getjSplitPane().setRightComponent(new OperationsJPanel(jFrame));
     }//GEN-LAST:event_loginjButtonActionPerformed
 
 

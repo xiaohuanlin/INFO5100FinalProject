@@ -4,10 +4,8 @@
  */
 package com.finalproject.ui;
 import com.finalproject.model.Role;
-import java.awt.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
-import java.util.HashMap;
 import static java.util.Map.entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,35 +15,27 @@ import javax.swing.JPanel;
  *
  * @author Administrator
  */
-public class OperationsPanel extends javax.swing.JPanel {
+public class OperationsJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
     Map<String, Class<? extends JPanel>> panels = Map.ofEntries(
             entry("Admin", AdminJPanel.class),
-            entry("CustomerService", CustomerServiceManagerJPanel.class)
+            entry("CustomerServiceManager", CustomerServiceManagerJPanel.class),
+            entry("Accountant", AccountantJPanel.class),
+            entry("Auditor", AuditorJPanel.class)
     );
 
     /**
      * Creates new form operationsPanel
      */
-    public OperationsPanel(MainJFrame jFrame) {
+    public OperationsJPanel(MainJFrame jFrame) {
         initComponents();
 
         for (Role role: jFrame.getUser().getRoles()) {
             if (panels.containsKey(role.getName())) {
                 try {
                     jTabbedPane.addTab(role.getName(), panels.get(role.getName()).getConstructor(MainJFrame.class).newInstance(jFrame));
-                } catch (NoSuchMethodException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SecurityException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalArgumentException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InvocationTargetException ex) {
-                    Logger.getLogger(OperationsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                    Logger.getLogger(OperationsJPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
