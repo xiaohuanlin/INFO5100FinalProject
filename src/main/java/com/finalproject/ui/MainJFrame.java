@@ -6,6 +6,7 @@ package com.finalproject.ui;
 
 import com.finalproject.model.User;
 import com.finalproject.model.Configuration;
+import com.finalproject.model.Role;
 import javax.swing.JSplitPane;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.JSplitPane;
  */
 public class MainJFrame extends javax.swing.JFrame {
     User user;
-    LoginJPanel loginJPanel;
+    Role role;
     
     /**
      * Creates new form MainJFrame
@@ -22,7 +23,8 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         new Configuration().config();
-        loginJPanel = new LoginJPanel(this);
+        jSplitPane.setLeftComponent(new InfoJPanel(this));
+        jSplitPane.setRightComponent(new LoginJPanel(this));
     }
 
     /**
@@ -37,7 +39,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane = new javax.swing.JSplitPane();
         leftjPanel = new javax.swing.JPanel();
         rightjPanel = new javax.swing.JPanel();
-        testjButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,28 +55,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setLeftComponent(leftjPanel);
 
-        testjButton.setText("test");
-        testjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testjButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
         rightjPanel.setLayout(rightjPanelLayout);
         rightjPanelLayout.setHorizontalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightjPanelLayout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
-                .addComponent(testjButton)
-                .addGap(317, 317, 317))
+            .addGap(0, 888, Short.MAX_VALUE)
         );
         rightjPanelLayout.setVerticalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rightjPanelLayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(testjButton)
-                .addContainerGap(305, Short.MAX_VALUE))
+            .addGap(0, 625, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(rightjPanel);
@@ -84,20 +72,15 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jSplitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void testjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testjButtonActionPerformed
-        // TODO add your handling code here:
-        jSplitPane.setRightComponent(loginJPanel);
-    }//GEN-LAST:event_testjButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +125,14 @@ public class MainJFrame extends javax.swing.JFrame {
         this.user = user;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public JSplitPane getjSplitPane() {
         return jSplitPane;
     }
@@ -154,6 +145,5 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JPanel leftjPanel;
     private javax.swing.JPanel rightjPanel;
-    private javax.swing.JButton testjButton;
     // End of variables declaration//GEN-END:variables
 }

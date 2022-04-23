@@ -25,6 +25,7 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
      */
     public CustomerServiceManagerJPanel(MainJFrame jFrame) {
         initComponents();
+        this.jFrame = jFrame;
         displayTicket();
         displayTicketList();
         jTabbedPane.addChangeListener(new ChangeListener() {
