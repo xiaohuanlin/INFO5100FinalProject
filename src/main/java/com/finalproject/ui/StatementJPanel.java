@@ -5,10 +5,12 @@
 package com.finalproject.ui;
 
 import com.finalproject.model.BusinessOrder;
+import com.finalproject.model.BusinessPurchaseOrder;
 import com.finalproject.model.BusinessRefundOrder;
 import com.finalproject.model.BusinessSourceType;
-import com.finalproject.model.BusinessStatement;
-import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,66 +19,55 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StatementJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
-    BusinessStatement statement;
     /**
      * Creates new form orderJPanel
      */
     public StatementJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
-    }
-
-    public final void displayStatement() {
-        if (statement == null) {
-            sourceTypejComboBox.removeAllItems();
-            for (BusinessSourceType ts: BusinessSourceType.values()) {
-                sourceTypejComboBox.addItem(ts);
-            }
-		    createDatePicker.clear();
-            sourceIdjTextField.setText("");
-            amountjTextField.setText("");
-        } else {
-            statement.refresh();
-            sourceTypejComboBox.setSelectedItem(statement.getSource());
-            createDatePicker.setDateTimeStrict(statement.getCreateDate());
-            sourceIdjTextField.setText(String.valueOf(statement.getSourceId()));
-            amountjTextField.setText(String.valueOf(statement.getAmount() / 100.0));
-        }
+        displayStatementList();
     }
     
     public final void displayStatementList() {
         DefaultTableModel model = (DefaultTableModel) statementjTable.getModel();
         model.setRowCount(0);
-        
-        for (BusinessStatement current: BusinessStatement.find(BusinessStatement.class)) {
-            Object[] row = new Object[5];
-            row[0] = current.getId();
-            row[1] = current.getSource();
-            row[2] = current.getSourceId();
-            row[3] = current.getCreateDate();
-            row[4] = current.getAmount() / 100.0;
-            
-            model.addRow(row);
-        }
-    }
+        List<Object[]> objects = new ArrayList<>();
 
-    private int getAmountFromSource() throws Exception {
-        int id = Integer.parseInt(sourceIdjTextField.getText());
-        switch ((BusinessSourceType)sourceTypejComboBox.getSelectedItem()) {
-            case ORDER:
-                BusinessOrder order = BusinessOrder.findById(BusinessOrder.class, id);
-                if (order == null) {
-                    throw new Exception("Source id is not valid");
-                }
-                return order.getTotalAmount();
-            case REFUND_ORDER:
-                BusinessRefundOrder refundOrder = BusinessRefundOrder.findById(BusinessRefundOrder.class, id);
-                if (refundOrder == null) {
-                    throw new Exception("Source id is not valid");
-                }
-                return -refundOrder.getAmount();
-            default:
-                throw new Exception("Source type error");
+        LocalDateTime start = startDateTimePicker.getDateTimeStrict() == null ? LocalDateTime.of(1980, 1, 1, 0, 0): startDateTimePicker.getDateTimeStrict();
+        LocalDateTime end = endDateTimePicker.getDateTimeStrict() == null ? LocalDateTime.of(2100, 1, 1, 0, 0): endDateTimePicker.getDateTimeStrict();
+
+        for (BusinessOrder current: BusinessOrder.findByDate(start, end)) {
+            Object[] row = new Object[4];
+            row[0] = BusinessSourceType.ORDER;
+            row[1] = current.getId();
+            row[2] = current.getCreateDate();
+            row[3] = current.getTotalAmount()/ 100.0;
+
+            objects.add(row);
+        }
+
+        for (BusinessRefundOrder current: BusinessRefundOrder.findByDate(start, end)) {
+            Object[] row = new Object[4];
+            row[0] = BusinessSourceType.REFUND_ORDER;
+            row[1] = current.getId();
+            row[2] = current.getCreateDate();
+            row[3] = -current.getAmount()/ 100.0;
+
+            objects.add(row);
+        }
+        
+        for (BusinessPurchaseOrder current: BusinessPurchaseOrder.findByDate(start, end)) {
+            Object[] row = new Object[4];
+            row[0] = BusinessSourceType.PURCHASE_ORDER;
+            row[1] = current.getId();
+            row[2] = current.getCreateDate();
+            row[3] = -current.getTotalAmount()/ 100.0;
+
+            objects.add(row);
+        }
+
+        for (Object[] current: objects) {
+            model.addRow(current);
         }
     }
 
@@ -89,94 +80,27 @@ public class StatementJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sourceTypejComboBox = new javax.swing.JComboBox<>();
-        buttonjPanel2 = new javax.swing.JPanel();
-        statementModifyjButton = new javax.swing.JButton();
-        statementDeletejButton = new javax.swing.JButton();
-        statementCreatejButton = new javax.swing.JButton();
-        statementViewjButton = new javax.swing.JButton();
-        createDatejLabel = new javax.swing.JLabel();
-        createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         jScrollPane11 = new javax.swing.JScrollPane();
         statementjTable = new javax.swing.JTable();
-        sourceTypetjLabel = new javax.swing.JLabel();
-        sourceIdjLabel = new javax.swing.JLabel();
-        amountjLabel = new javax.swing.JLabel();
-        sourceIdjTextField = new javax.swing.JTextField();
-        amountjTextField = new javax.swing.JTextField();
-
-        statementModifyjButton.setText("modify");
-        statementModifyjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statementModifyjButtonActionPerformed(evt);
-            }
-        });
-
-        statementDeletejButton.setText("delete");
-        statementDeletejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statementDeletejButtonActionPerformed(evt);
-            }
-        });
-
-        statementCreatejButton.setText("create");
-        statementCreatejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statementCreatejButtonActionPerformed(evt);
-            }
-        });
-
-        statementViewjButton.setText("view");
-        statementViewjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statementViewjButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
-        buttonjPanel2.setLayout(buttonjPanel2Layout);
-        buttonjPanel2Layout.setHorizontalGroup(
-            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(statementModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statementViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statementCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statementDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        buttonjPanel2Layout.setVerticalGroup(
-            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(statementModifyjButton)
-                .addGap(18, 18, 18)
-                .addComponent(statementDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(statementCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(statementViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        createDatejLabel.setText("create_date");
-
-        createDatePicker.setEnabled(false);
+        startDatejLabel = new javax.swing.JLabel();
+        endDatejLabel = new javax.swing.JLabel();
+        startDateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
+        endDateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
+        searchjButton = new javax.swing.JButton();
 
         statementjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "source type", "source id", "create_date", "amount"
+                "source type", "source id", "create_date", "amount"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -189,14 +113,16 @@ public class StatementJPanel extends javax.swing.JPanel {
         });
         jScrollPane11.setViewportView(statementjTable);
 
-        sourceTypetjLabel.setText("source type");
+        startDatejLabel.setText("start date");
 
-        sourceIdjLabel.setText("source id");
+        endDatejLabel.setText("end date");
 
-        amountjLabel.setText("amount");
-
-        amountjTextField.setEditable(false);
-        amountjTextField.setEnabled(false);
+        searchjButton.setText("Search");
+        searchjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -205,159 +131,57 @@ public class StatementJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(createDatejLabel)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sourceTypetjLabel)
-                                    .addComponent(amountjLabel)
-                                    .addComponent(sourceIdjLabel))
-                                .addGap(103, 103, 103)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sourceIdjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sourceTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(amountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))))
+                                .addComponent(endDatejLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(endDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(startDatejLabel)
+                                .addGap(66, 66, 66)
+                                .addComponent(startDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(63, 63, 63)
+                        .addComponent(searchjButton)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sourceTypetjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sourceTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sourceIdjLabel)
-                            .addComponent(sourceIdjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(startDatejLabel)
+                            .addComponent(startDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(createDatejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(amountjLabel)
-                            .addComponent(amountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(141, 141, 141))
+                            .addComponent(endDatejLabel)
+                            .addComponent(endDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                        .addContainerGap()
+                        .addComponent(searchjButton)
+                        .addGap(53, 53, 53)))
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void statementModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statementModifyjButtonActionPerformed
+    private void searchjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchjButtonActionPerformed
         // TODO add your handling code here:
-        int selectedIndex = statementjTable.getSelectedRow();
-
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) statementjTable.getModel();
-        int id = (Integer) model.getValueAt(selectedIndex, 0);
-        statement = BusinessStatement.findById(BusinessStatement.class, id);
-
-        try {
-            statement.setSource((BusinessSourceType)sourceTypejComboBox.getSelectedItem());
-            statement.setSourceId(Integer.parseInt(sourceIdjTextField.getText()));
-            statement.setCreateDate(createDatePicker.getDateTimeStrict());
-            statement.setAmount(getAmountFromSource());
-
-            statement.flush();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "Modify done");
-        statement = null;
-        displayStatement();
         displayStatementList();
-    }//GEN-LAST:event_statementModifyjButtonActionPerformed
-
-    private void statementDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statementDeletejButtonActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = statementjTable.getSelectedRow();
-
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) statementjTable.getModel();
-        int id = (Integer) model.getValueAt(selectedIndex, 0);
-        statement = BusinessStatement.findById(BusinessStatement.class, id);
-        statement.delete();
-        model.removeRow(selectedIndex);
-        statement = null;
-        displayStatement();
-        displayStatementList();
-    }//GEN-LAST:event_statementDeletejButtonActionPerformed
-
-    private void statementCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statementCreatejButtonActionPerformed
-        // TODO add your handling code here:
-        BusinessStatement bs = new BusinessStatement();
-        try {
-            bs.setSource((BusinessSourceType)sourceTypejComboBox.getSelectedItem());
-            bs.setSourceId(Integer.parseInt(sourceIdjTextField.getText()));
-            bs.setCreateDate(createDatePicker.getDateTimeStrict());
-            bs.setAmount(getAmountFromSource());
-
-            bs.save();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "Save done");
-        bs = null;
-        displayStatement();
-        statement = bs;
-        displayStatementList();
-    }//GEN-LAST:event_statementCreatejButtonActionPerformed
-
-    private void statementViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statementViewjButtonActionPerformed
-        // TODO add your handling code here:
-        int selectedIndex = statementjTable.getSelectedRow();
-
-        if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) statementjTable.getModel();
-        int id = (Integer) model.getValueAt(selectedIndex, 0);
-        statement = BusinessStatement.findById(BusinessStatement.class, id);
-        displayStatement();
-    }//GEN-LAST:event_statementViewjButtonActionPerformed
+    }//GEN-LAST:event_searchjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel amountjLabel;
-    private javax.swing.JTextField amountjTextField;
-    private javax.swing.JPanel buttonjPanel2;
-    private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
-    private javax.swing.JLabel createDatejLabel;
+    private com.github.lgooddatepicker.components.DateTimePicker endDateTimePicker;
+    private javax.swing.JLabel endDatejLabel;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JLabel sourceIdjLabel;
-    private javax.swing.JTextField sourceIdjTextField;
-    private javax.swing.JComboBox<BusinessSourceType> sourceTypejComboBox;
-    private javax.swing.JLabel sourceTypetjLabel;
-    private javax.swing.JButton statementCreatejButton;
-    private javax.swing.JButton statementDeletejButton;
-    private javax.swing.JButton statementModifyjButton;
-    private javax.swing.JButton statementViewjButton;
+    private javax.swing.JButton searchjButton;
+    private com.github.lgooddatepicker.components.DateTimePicker startDateTimePicker;
+    private javax.swing.JLabel startDatejLabel;
     private javax.swing.JTable statementjTable;
     // End of variables declaration//GEN-END:variables
 }

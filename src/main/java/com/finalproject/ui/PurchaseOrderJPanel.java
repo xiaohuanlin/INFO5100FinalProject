@@ -4,10 +4,11 @@
  */
 package com.finalproject.ui;
 
-import com.finalproject.model.BusinessOrder;
-import com.finalproject.model.BusinessOrderStatusType;
 import com.finalproject.model.BusinessProduct;
+import com.finalproject.model.BusinessPurchaseOrder;
+import com.finalproject.model.BusinessPurchaseOrderStatusType;
 import com.finalproject.model.PermissionType;
+import com.finalproject.model.User;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,28 +16,28 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class OrderJPanel extends javax.swing.JPanel {
+public class PurchaseOrderJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
-    BusinessOrder order;
+    BusinessPurchaseOrder order;
     /**
      * Creates new form orderJPanel
      */
-    public OrderJPanel(MainJFrame jFrame) {
+    public PurchaseOrderJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
 
-        String className = "Order";
+        String className = "PurchaseOrder";
         if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
-            orderModifyjButton.setEnabled(false);
+            purchaseOrderModifyjButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
-            orderCreatejButton.setEnabled(false);
+            purchaseOrderCreatejButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
-            orderViewjButton.setEnabled(false);
+            purchaseOrderViewjButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
-            orderDeletejButton.setEnabled(false);
+            purchaseOrderDeletejButton.setEnabled(false);
         }
     }
 
@@ -44,17 +45,20 @@ public class OrderJPanel extends javax.swing.JPanel {
         if (order == null) {
             productjComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findAvailableProduct()) {
+            qijComboBox.removeAllItems();
+		    for (BusinessProduct product: BusinessProduct.find(BusinessProduct.class)) {
 				productjComboBox.addItem(product);
 		    }
-            for (BusinessOrderStatusType ts: BusinessOrderStatusType.values()) {
+            for (BusinessPurchaseOrderStatusType ts: BusinessPurchaseOrderStatusType.values()) {
                 statusjComboBox.addItem(ts);
             }
+		    for (User u: User.find(User.class)) {
+				qijComboBox.addItem(u);
+		    }
 		    createDatePicker.clear();
 		    updateDatePicker.clear();
             totalAmountjTextField.setText("");
             quantityjTextField.setText("");
-            customerjTextField.setText("");
         } else {
             order.refresh();
             productjComboBox.setSelectedItem(order.getProduct());
@@ -63,7 +67,7 @@ public class OrderJPanel extends javax.swing.JPanel {
             statusjComboBox.setSelectedItem(order.getOrderStatusType());
             totalAmountjTextField.setText(String.valueOf(order.getTotalAmount() / 100.0));
             quantityjTextField.setText(String.valueOf(order.getQuantity()));
-            customerjTextField.setText(order.getCustomerName());
+            productjComboBox.setSelectedItem(order.getUser());
         }
     }
     
@@ -71,8 +75,8 @@ public class OrderJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         model.setRowCount(0);
         
-        for (BusinessOrder current: BusinessOrder.find(BusinessOrder.class)) {
-            Object[] row = new Object[8];
+        for (BusinessPurchaseOrder current: BusinessPurchaseOrder.find(BusinessPurchaseOrder.class)) {
+            Object[] row = new Object[7];
             row[0] = current.getId();
             row[1] = current.getProduct();
             row[2] = current.getCreateDate();
@@ -80,7 +84,7 @@ public class OrderJPanel extends javax.swing.JPanel {
             row[4] = current.getOrderStatusType();
             row[5] = current.getTotalAmount() / 100.0;
             row[6] = current.getQuantity();
-            row[7] = current.getCustomerName();
+            row[7] = current.getUser();
             
             model.addRow(row);
         }
@@ -97,10 +101,10 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         productjComboBox = new javax.swing.JComboBox<>();
         buttonjPanel2 = new javax.swing.JPanel();
-        orderModifyjButton = new javax.swing.JButton();
-        orderDeletejButton = new javax.swing.JButton();
-        orderCreatejButton = new javax.swing.JButton();
-        orderViewjButton = new javax.swing.JButton();
+        purchaseOrderModifyjButton = new javax.swing.JButton();
+        purchaseOrderDeletejButton = new javax.swing.JButton();
+        purchaseOrderCreatejButton = new javax.swing.JButton();
+        purchaseOrderViewjButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -114,34 +118,34 @@ public class OrderJPanel extends javax.swing.JPanel {
         quantityjLabel = new javax.swing.JLabel();
         totalAmountjTextField = new javax.swing.JTextField();
         quantityjTextField = new javax.swing.JTextField();
-        customerjLabel = new javax.swing.JLabel();
-        customerjTextField = new javax.swing.JTextField();
+        quantityInspectorjLabel = new javax.swing.JLabel();
+        qijComboBox = new javax.swing.JComboBox<>();
 
-        orderModifyjButton.setText("modify");
-        orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
+        purchaseOrderModifyjButton.setText("modify");
+        purchaseOrderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderModifyjButtonActionPerformed(evt);
+                purchaseOrderModifyjButtonActionPerformed(evt);
             }
         });
 
-        orderDeletejButton.setText("delete");
-        orderDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+        purchaseOrderDeletejButton.setText("delete");
+        purchaseOrderDeletejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderDeletejButtonActionPerformed(evt);
+                purchaseOrderDeletejButtonActionPerformed(evt);
             }
         });
 
-        orderCreatejButton.setText("create");
-        orderCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+        purchaseOrderCreatejButton.setText("create");
+        purchaseOrderCreatejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderCreatejButtonActionPerformed(evt);
+                purchaseOrderCreatejButtonActionPerformed(evt);
             }
         });
 
-        orderViewjButton.setText("view");
-        orderViewjButton.addActionListener(new java.awt.event.ActionListener() {
+        purchaseOrderViewjButton.setText("view");
+        purchaseOrderViewjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderViewjButtonActionPerformed(evt);
+                purchaseOrderViewjButtonActionPerformed(evt);
             }
         });
 
@@ -152,23 +156,23 @@ public class OrderJPanel extends javax.swing.JPanel {
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(orderModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(purchaseOrderModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purchaseOrderViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purchaseOrderCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(purchaseOrderDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonjPanel2Layout.setVerticalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(orderModifyjButton)
+                .addComponent(purchaseOrderModifyjButton)
                 .addGap(18, 18, 18)
-                .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(purchaseOrderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(orderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(purchaseOrderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(purchaseOrderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -187,14 +191,14 @@ public class OrderJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "product", "create_date", "update_date", "status", "total amount", "quantity", "customer"
+                "id", "product", "create_date", "update_date", "status", "total amount", "quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -213,9 +217,9 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         quantityjLabel.setText("quantity");
 
-        totalAmountjTextField.setEnabled(false);
+        quantityInspectorjLabel.setText("quantity inspector");
 
-        customerjLabel.setText("customer");
+        qijComboBox.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -224,6 +228,9 @@ public class OrderJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(quantityInspectorjLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -236,8 +243,7 @@ public class OrderJPanel extends javax.swing.JPanel {
                                     .addComponent(userRolesjLabel)
                                     .addComponent(productjLabel)
                                     .addComponent(totalAmountjLabel)
-                                    .addComponent(quantityjLabel)
-                                    .addComponent(customerjLabel))
+                                    .addComponent(quantityjLabel))
                                 .addGap(101, 101, 101)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,8 +252,8 @@ public class OrderJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(quantityjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(totalAmountjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE)
-                                        .addComponent(customerjTextField)))))
+                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
+                                    .addComponent(qijComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
@@ -277,25 +283,25 @@ public class OrderJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(totalAmountjLabel)
                             .addComponent(totalAmountjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(quantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(quantityjLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(quantityjLabel)
+                            .addComponent(quantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(customerjLabel)
-                            .addComponent(customerjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))
+                            .addComponent(quantityInspectorjLabel)
+                            .addComponent(qijComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
+                        .addGap(70, 70, 70)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(105, 105, 105))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void orderModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderModifyjButtonActionPerformed
+    private void purchaseOrderModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrderModifyjButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = orderjTable.getSelectedRow();
 
@@ -306,16 +312,16 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        order = BusinessOrder.findById(BusinessOrder.class, id);
+        order = BusinessPurchaseOrder.findById(BusinessPurchaseOrder.class, id);
 
         try {
             order.setProduct((BusinessProduct)productjComboBox.getSelectedItem());
             order.setCreateDate(createDatePicker.getDateTimeStrict());
             order.setUpdateDate(updateDatePicker.getDateTimeStrict());
-            order.setOrderStatusType((BusinessOrderStatusType)statusjComboBox.getSelectedItem());
+            order.setOrderStatusType((BusinessPurchaseOrderStatusType)statusjComboBox.getSelectedItem());
             order.setQuantity(Integer.parseInt(quantityjTextField.getText()));
-            order.setTotalAmount(order.getQuantity() * order.getProduct().getSellPrice());
-            order.setCustomerName(customerjTextField.getText());
+            order.setTotalAmount((int)(Double.parseDouble(totalAmountjTextField.getText()) * 100));
+            order.setUser(jFrame.getUser());
 
             order.flush();
         } catch (Exception e) {
@@ -326,9 +332,9 @@ public class OrderJPanel extends javax.swing.JPanel {
         order = null;
         displayOrder();
         displayOrderList();
-    }//GEN-LAST:event_orderModifyjButtonActionPerformed
+    }//GEN-LAST:event_purchaseOrderModifyjButtonActionPerformed
 
-    private void orderDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderDeletejButtonActionPerformed
+    private void purchaseOrderDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrderDeletejButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = orderjTable.getSelectedRow();
 
@@ -339,25 +345,25 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        order = BusinessOrder.findById(BusinessOrder.class, id);
+        order = BusinessPurchaseOrder.findById(BusinessPurchaseOrder.class, id);
         order.delete();
         model.removeRow(selectedIndex);
         order = null;
         displayOrder();
         displayOrderList();
-    }//GEN-LAST:event_orderDeletejButtonActionPerformed
+    }//GEN-LAST:event_purchaseOrderDeletejButtonActionPerformed
 
-    private void orderCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderCreatejButtonActionPerformed
+    private void purchaseOrderCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrderCreatejButtonActionPerformed
         // TODO add your handling code here:
-        BusinessOrder bo = new BusinessOrder();
+        BusinessPurchaseOrder bo = new BusinessPurchaseOrder();
         try {
             bo.setProduct((BusinessProduct)productjComboBox.getSelectedItem());
             bo.setCreateDate(createDatePicker.getDateTimeStrict());
             bo.setUpdateDate(updateDatePicker.getDateTimeStrict());
-            bo.setOrderStatusType((BusinessOrderStatusType)statusjComboBox.getSelectedItem());
+            bo.setOrderStatusType((BusinessPurchaseOrderStatusType)statusjComboBox.getSelectedItem());
             bo.setQuantity(Integer.parseInt(quantityjTextField.getText()));
-            bo.setTotalAmount(order.getQuantity() * order.getProduct().getSellPrice());
-            bo.setCustomerName(customerjTextField.getText());
+            bo.setTotalAmount((int)(Double.parseDouble(totalAmountjTextField.getText()) * 100));
+            bo.setUser(jFrame.getUser());
             bo.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
@@ -368,9 +374,9 @@ public class OrderJPanel extends javax.swing.JPanel {
         displayOrder();
         order = bo;
         displayOrderList();
-    }//GEN-LAST:event_orderCreatejButtonActionPerformed
+    }//GEN-LAST:event_purchaseOrderCreatejButtonActionPerformed
 
-    private void orderViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderViewjButtonActionPerformed
+    private void purchaseOrderViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseOrderViewjButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = orderjTable.getSelectedRow();
 
@@ -381,29 +387,29 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        order = BusinessOrder.findById(BusinessOrder.class, id);
+        order = BusinessPurchaseOrder.findById(BusinessPurchaseOrder.class, id);
         displayOrder();
-    }//GEN-LAST:event_orderViewjButtonActionPerformed
+    }//GEN-LAST:event_purchaseOrderViewjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonjPanel2;
     private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
-    private javax.swing.JLabel customerjLabel;
-    private javax.swing.JTextField customerjTextField;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JButton orderCreatejButton;
-    private javax.swing.JButton orderDeletejButton;
-    private javax.swing.JButton orderModifyjButton;
-    private javax.swing.JButton orderViewjButton;
     private javax.swing.JTable orderjTable;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel passwordjLabel1;
     private javax.swing.JComboBox<com.finalproject.model.BusinessProduct> productjComboBox;
     private javax.swing.JLabel productjLabel;
+    private javax.swing.JButton purchaseOrderCreatejButton;
+    private javax.swing.JButton purchaseOrderDeletejButton;
+    private javax.swing.JButton purchaseOrderModifyjButton;
+    private javax.swing.JButton purchaseOrderViewjButton;
+    private javax.swing.JComboBox<User> qijComboBox;
+    private javax.swing.JLabel quantityInspectorjLabel;
     private javax.swing.JLabel quantityjLabel;
     private javax.swing.JTextField quantityjTextField;
-    private javax.swing.JComboBox<BusinessOrderStatusType> statusjComboBox;
+    private javax.swing.JComboBox<BusinessPurchaseOrderStatusType> statusjComboBox;
     private javax.swing.JLabel totalAmountjLabel;
     private javax.swing.JTextField totalAmountjTextField;
     private com.github.lgooddatepicker.components.DateTimePicker updateDatePicker;

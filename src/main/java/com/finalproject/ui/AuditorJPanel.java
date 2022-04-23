@@ -35,7 +35,6 @@ public class AuditorJPanel extends javax.swing.JPanel {
         orderJPanel.displayOrderList();
         refundJPanel.displayRefundOrder();
         refundJPanel.displayRefundOrderList();
-        statementJPanel.displayStatement();
         statementJPanel.displayStatementList();
 
         jTabbedPane.addChangeListener(new ChangeListener() {
@@ -55,7 +54,6 @@ public class AuditorJPanel extends javax.swing.JPanel {
                         refundJPanel.displayRefundOrderList();
                         break;
                     case 3:
-                        statementJPanel.displayStatement();
                         statementJPanel.displayStatementList();
                         break;
                     default:
