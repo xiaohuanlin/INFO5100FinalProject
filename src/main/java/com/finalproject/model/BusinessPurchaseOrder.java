@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -23,22 +24,25 @@ import java.util.List;
  * @author Administrator
  */
 @Entity
-public class BusinessProduct extends ORMObject {
+public class BusinessPurchaseOrder extends ORMObject {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
     @Column(nullable = false)
-    private String name;
+    private Integer quantity;
+
+    @ManyToOne
+    private BusinessProduct product;
 
     @Column(nullable = false)
-    private Integer purchasePrice;
-
+    private Integer totalAmount;
+    
     @Column(nullable = false)
-    private Integer sellPrice;
+    private BusinessPurchaseOrderStatusType orderStatusType = BusinessPurchaseOrderStatusType.INITIAL;
 
-    @Column(nullable = false)
-    private BusinessProductStatusType productStatusType = BusinessProductStatusType.AVAILABLE;
+    @ManyToOne
+    private User user;
 
     @Column(nullable = false)
     private LocalDateTime createDate;
@@ -50,42 +54,50 @@ public class BusinessProduct extends ORMObject {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public void setPurchasePrice(Integer purchasePrice) throws Exception {
-        if (purchasePrice < 0) {
-            throw new Exception("Price less than 0");
+    public void setQuantity(Integer quantity) throws Exception {
+        if (quantity < 0) {
+            throw new Exception("Quantity less than 0");
         }
-        this.purchasePrice = purchasePrice;
+        this.quantity = quantity;
     }
 
-    public Integer getSellPrice() {
-        return sellPrice;
+    public BusinessProduct getProduct() {
+        return product;
     }
 
-    public void setSellPrice(Integer sellPrice) throws Exception {
-        if (sellPrice < 0) {
-            throw new Exception("Price less than 0");
+    public void setProduct(BusinessProduct product) {
+        this.product = product;
+    }
+
+    public Integer getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Integer totalAmount) throws Exception {
+        if (totalAmount < 0) {
+            throw new Exception("TotalAmount less than 0");
         }
-        this.sellPrice = sellPrice;
+        this.totalAmount = totalAmount;
     }
 
-    public BusinessProductStatusType getProductStatusType() {
-        return productStatusType;
+    public User getUser() {
+        return user;
     }
 
-    public void setProductStatusType(BusinessProductStatusType productStatusType) {
-        this.productStatusType = productStatusType;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public BusinessPurchaseOrderStatusType getOrderStatusType() {
+        return orderStatusType;
+    }
+
+    public void setOrderStatusType(BusinessPurchaseOrderStatusType orderStatusType) {
+        this.orderStatusType = orderStatusType;
     }
 
     public LocalDateTime getCreateDate() {
@@ -115,19 +127,22 @@ public class BusinessProduct extends ORMObject {
         updateDate = LocalDateTime.now();
     }
 
-    public static List<BusinessProduct> findAvailableProduct() {
+    public static List<BusinessPurchaseOrder> findByDate(LocalDateTime start, LocalDateTime end) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<BusinessProduct> criteria = builder.createQuery(BusinessProduct.class);
-        Root<BusinessProduct> root = criteria.from(BusinessProduct.class);
+        CriteriaQuery<BusinessPurchaseOrder> criteria = builder.createQuery(BusinessPurchaseOrder.class);
+        Root<BusinessPurchaseOrder> root = criteria.from(BusinessPurchaseOrder.class);
         criteria.select(root);
         criteria.where(
-            builder.equal(root.get(BusinessProduct_.PRODUCT_STATUS_TYPE), BusinessProductStatusType.AVAILABLE)
+            builder.and(
+                builder.greaterThan(root.get(BusinessPurchaseOrder_.CREATE_DATE), start),
+                builder.lessThan(root.get(BusinessPurchaseOrder_.CREATE_DATE), end)
+            )
         );
         return entityManager.createQuery(criteria).getResultList();
     }
 
     @Override
     public String toString() {
-        return id + "(" + productStatusType + ")";
+        return id + "(" + orderStatusType + ")";
     }
 }

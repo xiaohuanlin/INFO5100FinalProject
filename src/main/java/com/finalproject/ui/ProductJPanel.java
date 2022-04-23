@@ -6,6 +6,7 @@ package com.finalproject.ui;
 
 import com.finalproject.model.BusinessProduct;
 import com.finalproject.model.BusinessProductStatusType;
+import com.finalproject.model.PermissionType;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +23,29 @@ public class ProductJPanel extends javax.swing.JPanel {
     public ProductJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
+
+        String className = "Product";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            productModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            productCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            productViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            productDeletejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission("Product.status", PermissionType.EDIT)) {
+            statusjComboBox.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission("Product.purchasePrice", PermissionType.EDIT)) {
+            purchasePricejTextField.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission("Product.sellPrice", PermissionType.EDIT)) {
+            sellPricejTextField.setEnabled(false);
+        }
     }
 
     public final void displayProduct() {
@@ -33,14 +57,16 @@ public class ProductJPanel extends javax.swing.JPanel {
 		    createDatePicker.clear();
 		    updateDatePicker.clear();
             namejTextField.setText("");
-            pricejTextField.setText("");
+            purchasePricejTextField.setText("");
+            sellPricejTextField.setText("");
         } else {
             product.refresh();
             createDatePicker.setDateTimeStrict(product.getCreateDate());
             updateDatePicker.setDateTimeStrict(product.getUpdateDate());
             statusjComboBox.setSelectedItem(product.getProductStatusType());
             namejTextField.setText(product.getName());
-            pricejTextField.setText(String.valueOf(product.getPrice() / 100.0));
+            purchasePricejTextField.setText(String.valueOf(product.getPurchasePrice() / 100.0));
+            sellPricejTextField.setText(String.valueOf(product.getSellPrice() / 100.0));
         }
     }
     
@@ -49,13 +75,14 @@ public class ProductJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (BusinessProduct current: BusinessProduct.find(BusinessProduct.class)) {
-            Object[] row = new Object[6];
+            Object[] row = new Object[7];
             row[0] = current.getId();
             row[1] = current.getName();
             row[2] = current.getCreateDate();
             row[3] = current.getUpdateDate();
             row[4] = current.getProductStatusType();
-            row[5] = current.getPrice() / 100.0;
+            row[5] = current.getPurchasePrice() / 100.0;
+            row[6] = current.getSellPrice() / 100.0;
             
             model.addRow(row);
         }
@@ -85,8 +112,10 @@ public class ProductJPanel extends javax.swing.JPanel {
         productjTable = new javax.swing.JTable();
         namejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
-        pricejLabel1 = new javax.swing.JLabel();
-        pricejTextField = new javax.swing.JTextField();
+        purchasePricejLabel = new javax.swing.JLabel();
+        purchasePricejTextField = new javax.swing.JTextField();
+        sellPricejLabel = new javax.swing.JLabel();
+        sellPricejTextField = new javax.swing.JTextField();
 
         productModifyjButton.setText("modify");
         productModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,14 +187,14 @@ public class ProductJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "id", "product", "create_date", "update_date", "status", "price"
+                "id", "product", "create_date", "update_date", "status", "purchase price", "sell price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -180,7 +209,9 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         namejLabel.setText("name");
 
-        pricejLabel1.setText("price");
+        purchasePricejLabel.setText("purchase price");
+
+        sellPricejLabel.setText("sell price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -200,23 +231,25 @@ public class ProductJPanel extends javax.swing.JPanel {
                                     .addComponent(passwordjLabel)
                                     .addComponent(userRolesjLabel)
                                     .addComponent(namejLabel)
-                                    .addComponent(pricejLabel1))
+                                    .addComponent(purchasePricejLabel)
+                                    .addComponent(sellPricejLabel))
                                 .addGap(101, 101, 101)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(sellPricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(pricejTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(purchasePricejTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(namejTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 106, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,13 +269,16 @@ public class ProductJPanel extends javax.swing.JPanel {
                             .addComponent(statusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pricejLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(purchasePricejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(purchasePricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sellPricejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sellPricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(126, 126, 126))
         );
@@ -266,7 +302,8 @@ public class ProductJPanel extends javax.swing.JPanel {
             product.setUpdateDate(updateDatePicker.getDateTimeStrict());
             product.setProductStatusType((BusinessProductStatusType)statusjComboBox.getSelectedItem());
             product.setName(namejTextField.getText());
-            product.setPrice((int)(Double.parseDouble(pricejTextField.getText()) * 100));
+            product.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
+            product.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
 
             product.flush();
         } catch (Exception e) {
@@ -306,7 +343,8 @@ public class ProductJPanel extends javax.swing.JPanel {
             bp.setUpdateDate(updateDatePicker.getDateTimeStrict());
             bp.setProductStatusType((BusinessProductStatusType)statusjComboBox.getSelectedItem());
             bp.setName(namejTextField.getText());
-            bp.setPrice((int)(Double.parseDouble(pricejTextField.getText()) * 100));
+            bp.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
+            bp.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
             bp.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
@@ -343,13 +381,15 @@ public class ProductJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField namejTextField;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel passwordjLabel1;
-    private javax.swing.JLabel pricejLabel1;
-    private javax.swing.JTextField pricejTextField;
     private javax.swing.JButton productCreatejButton;
     private javax.swing.JButton productDeletejButton;
     private javax.swing.JButton productModifyjButton;
     private javax.swing.JButton productViewjButton;
     private javax.swing.JTable productjTable;
+    private javax.swing.JLabel purchasePricejLabel;
+    private javax.swing.JTextField purchasePricejTextField;
+    private javax.swing.JLabel sellPricejLabel;
+    private javax.swing.JTextField sellPricejTextField;
     private javax.swing.JComboBox<BusinessProductStatusType> statusjComboBox;
     private com.github.lgooddatepicker.components.DateTimePicker updateDatePicker;
     private javax.swing.JLabel userRolesjLabel;

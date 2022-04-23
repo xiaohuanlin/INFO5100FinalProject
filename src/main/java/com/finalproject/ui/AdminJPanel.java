@@ -32,6 +32,7 @@ public class AdminJPanel extends javax.swing.JPanel {
      */
     public AdminJPanel(MainJFrame jFrame) {
         initComponents();
+        this.jFrame = jFrame;
         jTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 int index = jTabbedPane.getSelectedIndex();
@@ -61,6 +62,46 @@ public class AdminJPanel extends javax.swing.JPanel {
                 }
             }
         });
+
+        String className = "User";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            userModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            userCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            userViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            userDeletejButton.setEnabled(false);
+        }
+        className = "Role";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            roleModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            roleCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            roleViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            roleDeletejButton.setEnabled(false);
+        }
+        className = "Permission";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            pmModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            pmCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            pmViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            pmDeletejButton.setEnabled(false);
+        }
 
     }
     
@@ -1202,7 +1243,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         int selectedIndex = userjTable.getSelectedRow();
         
         if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            JOptionPane.showMessageDialog(this, "Please select a row to modify");
             return;
         }
         
@@ -1225,12 +1266,6 @@ public class AdminJPanel extends javax.swing.JPanel {
             for (Role r: old) {
                 user.getRoles().remove(r);
             }
-            // add new
-//            Set<Role> new_set = new HashSet<>(afterRoles);
-//            new_set.removeAll(previousRoles);
-//            for (Role r: new_set) {
-//                user.getRoles().add(r);
-//            }
             
             user.setRoles(afterRoles);
             user.flush();
@@ -1249,7 +1284,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         int selectedIndex = userjTable.getSelectedRow();
         
         if (selectedIndex < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
             return;
         }
         

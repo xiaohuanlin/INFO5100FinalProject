@@ -12,7 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 /**
@@ -101,6 +105,20 @@ public class BusinessRefundOrder extends ORMObject {
     @PreUpdate
     protected void onUpdate() {
         updateDate = LocalDateTime.now();
+    }
+
+    public static List<BusinessRefundOrder> findByDate(LocalDateTime start, LocalDateTime end) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<BusinessRefundOrder> criteria = builder.createQuery(BusinessRefundOrder.class);
+        Root<BusinessRefundOrder> root = criteria.from(BusinessRefundOrder.class);
+        criteria.select(root);
+        criteria.where(
+            builder.and(
+                builder.greaterThan(root.get(BusinessRefundOrder_.CREATE_DATE), start),
+                builder.lessThan(root.get(BusinessRefundOrder_.CREATE_DATE), end)
+            )
+        );
+        return entityManager.createQuery(criteria).getResultList();
     }
 
     @Override

@@ -8,15 +8,15 @@ package com.finalproject.model;
  *
  * @author Administrator
  */
-public enum BusinessSourceType {
-    ORDER("order"),
-    REFUND_ORDER("refund order"),
-    PURCHASE_ORDER("purchase order"),
+public enum BusinessPurchaseOrderStatusType {
+    INITIAL("initial"),
+    PASS("pass"),
+    RETURN("return"),
     ;
     
     private final String text;
 
-    BusinessSourceType(final String text) {
+    BusinessPurchaseOrderStatusType(final String text) {
         this.text = text;
     }
 

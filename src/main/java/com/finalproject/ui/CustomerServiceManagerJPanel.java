@@ -6,6 +6,7 @@ package com.finalproject.ui;
 
 import com.finalproject.model.Ticket;
 import com.finalproject.model.BusinessOrder;
+import com.finalproject.model.PermissionType;
 import com.finalproject.model.TicketStatusType;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
@@ -42,6 +43,19 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
             }
         });
 
+        String className = "Ticket";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            ticketModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            ticketCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            ticketViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            ticketDeletejButton.setEnabled(false);
+        }
     }
     
     public final void displayTicket() {

@@ -7,6 +7,7 @@ package com.finalproject.ui;
 import com.finalproject.model.BusinessOrder;
 import com.finalproject.model.BusinessRefundOrder;
 import com.finalproject.model.BusinessRefundOrderStatusType;
+import com.finalproject.model.PermissionType;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,6 +24,20 @@ public class RefundJPanel extends javax.swing.JPanel {
     public RefundJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
+
+        String className = "RefundOrder";
+        if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
+            refundModifyjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
+            refundCreatejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
+            refundViewjButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
+            refundDeletejButton.setEnabled(false);
+        }
     }
 
     public final void displayRefundOrder() {
