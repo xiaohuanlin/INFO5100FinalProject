@@ -75,6 +75,6 @@ public class Role extends ORMObject {
     
     @Override
     public String toString() {
-        return name + "(" + organization + ")";
+        return name;
     }
 }

@@ -49,9 +49,25 @@ public class Organization extends ORMObject {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
     
     @Override
     public String toString() {
-        return enterprise + ":" + name;
+        return name;
     }
 }

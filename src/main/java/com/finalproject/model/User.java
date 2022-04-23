@@ -14,7 +14,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -35,7 +36,7 @@ public class User extends ORMObject {
     private String password;
 
     @ManyToMany(targetEntity=Role.class)
-    private Set<Role> roles = new HashSet();
+    private List<Role> roles = new ArrayList<>();
     
     public String getUsername() {
         return username;
@@ -89,6 +90,15 @@ public class User extends ORMObject {
         return entityManager.createQuery(criteria).getSingleResult();
     }
 
+    public Role findRole(String roleName) {
+        for (Role r: roles) {
+            if (r.getName().equals(roleName)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -97,14 +107,14 @@ public class User extends ORMObject {
         this.id = id;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-    
+
     @Override
     public String toString() {
         return username;

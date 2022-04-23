@@ -5,11 +5,14 @@
 package com.finalproject.ui;
 import com.finalproject.model.Role;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 import static java.util.Map.entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -32,15 +35,30 @@ public class OperationsJPanel extends javax.swing.JPanel {
     public OperationsJPanel(MainJFrame jFrame) {
         initComponents();
 
-        for (Role role: jFrame.getUser().getRoles()) {
-            if (panels.containsKey(role.getName())) {
-                try {
-                    jTabbedPane.addTab(role.getName(), panels.get(role.getName()).getConstructor(MainJFrame.class).newInstance(jFrame));
-                } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-                    Logger.getLogger(OperationsJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        List<Role> roles = jFrame.getUser().getRoles().stream().filter((role) -> panels.containsKey(role.getName())).toList();
+        for (Role role: roles) {
+            try {
+                jTabbedPane.addTab(role.getName(), panels.get(role.getName()).getConstructor(MainJFrame.class).newInstance(jFrame));
+            } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(OperationsJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+        if (roles.isEmpty()) {
+            return;
+        }
+        String name = jTabbedPane.getTitleAt(0);
+        jFrame.setRole(jFrame.getUser().findRole(name));
+        ((InfoJPanel)jFrame.getjSplitPane().getLeftComponent()).displayUser();
+
+        jTabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                String name = jTabbedPane.getTitleAt(jTabbedPane.getSelectedIndex());
+                jFrame.setRole(jFrame.getUser().findRole(name));
+                ((InfoJPanel)jFrame.getjSplitPane().getLeftComponent()).displayUser();
+            }
+        });
     }
 
     /**

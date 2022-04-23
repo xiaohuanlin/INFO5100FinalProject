@@ -9,6 +9,7 @@ import com.finalproject.model.Permission;
 import com.finalproject.model.PermissionType;
 import com.finalproject.model.Role;
 import com.finalproject.model.User;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -103,6 +104,10 @@ public class AdminJPanel extends javax.swing.JPanel {
             pmDeletejButton.setEnabled(false);
         }
 
+        otherRolesjList.setModel(new DefaultListModel<>());
+        currentRolesjList.setModel(new DefaultListModel<>());
+        displayUser();
+        displayUserList();
     }
     
     public void displayPermission() {
@@ -225,7 +230,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             passwordjTextField.setText(user.getPassword());
             ((DefaultListModel<Role>)otherRolesjList.getModel()).removeAllElements();
             ((DefaultListModel<Role>)currentRolesjList.getModel()).removeAllElements();
-            Set<Role> roles = user.getRoles();
+            List<Role> roles = user.getRoles();
             for (Role r: roles) {
                 ((DefaultListModel<Role>)currentRolesjList.getModel()).addElement(r);
             }
@@ -1254,8 +1259,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             user.setUsername(userNamejTextField.getText());
             user.setPassword(passwordjTextField.getText());
-            Set<Role> previousRoles = user.getRoles();
-            Set<Role> afterRoles = new HashSet<>();
+            List<Role> previousRoles = user.getRoles();
+            List<Role> afterRoles = new ArrayList<>();
             for (Object roleObject: ((DefaultListModel<Role>)currentRolesjList.getModel()).toArray()) {
                 afterRoles.add((Role)roleObject);
             }
@@ -1304,7 +1309,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             u.setUsername(userNamejTextField.getText());
             u.setPassword(passwordjTextField.getText());
-            Set<Role> afterRoles = new HashSet<>();
+            List<Role> afterRoles = new ArrayList<>();
             for (Object roleObject: ((DefaultListModel<Role>)currentRolesjList.getModel()).toArray()) {
                 afterRoles.add((Role)roleObject);
             }
