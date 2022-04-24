@@ -197,7 +197,7 @@
             </Container>
             <Component class="javax.swing.JLabel" name="passwordjLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="pickup_date"/>
+                <Property name="text" type="java.lang.String" value="inStorage_date"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="userRolesjLabel">
@@ -281,7 +281,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="passwordjLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="delivery_date"/>
+                <Property name="text" type="java.lang.String" value="outStorage_date"/>
               </Properties>
             </Component>
             <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="updateDatePicker">

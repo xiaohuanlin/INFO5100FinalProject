@@ -168,7 +168,7 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        passwordjLabel.setText("pickup_date");
+        passwordjLabel.setText("inStorage_date");
 
         userRolesjLabel.setText("status");
 
@@ -194,7 +194,7 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
 
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("delivery_date");
+        passwordjLabel1.setText("outStorage_date");
 
         updateDatePicker.setEnabled(false);
 
