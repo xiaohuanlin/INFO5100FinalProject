@@ -4,9 +4,13 @@
  */
 package com.finalproject.ui;
 
-import com.finalproject.model.User;
+import com.finalproject.model.Ticket;
+import com.finalproject.model.BusinessOrder;
+import com.finalproject.model.TicketStatusType;
 import javax.swing.JOptionPane;
-import jakarta.persistence.NoResultException;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,14 +18,71 @@ import jakarta.persistence.NoResultException;
  */
 public class StorageManagerJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
+    Ticket ticket;
     /**
-     * Creates new form LoginJPanel
+     * Creates new form adminJPanel
      */
     public StorageManagerJPanel(MainJFrame jFrame) {
         initComponents();
-        this.jFrame = jFrame;
-    }
+        displayTicket();
+        displayTicketList();
+        jTabbedPane.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                int index = jTabbedPane.getSelectedIndex();
+                switch (index) {
+                    case 0:
+						displayTicket();
+                        displayTicketList();
+                        break;
+                    case 1:
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+            }
+        });
 
+    }
+    
+    public final void displayTicket() {
+        if (ticket == null) {
+            orderjComboBox.removeAllItems();
+            statusjComboBox.removeAllItems();
+		    for (BusinessOrder order: BusinessOrder.find(BusinessOrder.class)) {
+				orderjComboBox.addItem(order);
+		    }
+            for (TicketStatusType ts: TicketStatusType.values()) {
+                statusjComboBox.addItem(ts);
+            }
+		    createDatePicker.clear();
+		    updateDatePicker.clear();
+            descriptionjTextArea.setText("");
+        } else {
+            ticket.refresh();
+            orderjComboBox.setSelectedItem(ticket.getOrder());
+            createDatePicker.setDateTimeStrict(ticket.getCreateDate());
+            updateDatePicker.setDateTimeStrict(ticket.getUpdateDate());
+            statusjComboBox.setSelectedItem(ticket.getTicketStatusType());
+            descriptionjTextArea.setText(ticket.getProblemDescription());
+        }
+    }
+    
+    public final void displayTicketList() {
+        DefaultTableModel model = (DefaultTableModel) ticketjTable.getModel();
+        model.setRowCount(0);
+        
+        for (Ticket current: Ticket.find(Ticket.class)) {
+            Object[] row = new Object[5];
+            row[0] = current.getId();
+            row[1] = current.getOrder();
+            row[2] = current.getCreateDate();
+            row[3] = current.getUpdateDate();
+            row[4] = current.getTicketStatusType();
+            
+            model.addRow(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,114 +92,306 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        usernamejLabel = new javax.swing.JLabel();
-        usernamejTextField = new javax.swing.JTextField();
+        jTabbedPane = new javax.swing.JTabbedPane();
+        ticketjPanel = new javax.swing.JPanel();
+        buttonjPanel2 = new javax.swing.JPanel();
+        ticketModifyjButton = new javax.swing.JButton();
+        ticketDeletejButton = new javax.swing.JButton();
+        ticketCreatejButton = new javax.swing.JButton();
+        ticketViewjButton = new javax.swing.JButton();
         passwordjLabel = new javax.swing.JLabel();
-        loginjButton = new javax.swing.JButton();
-        jPasswordField = new javax.swing.JPasswordField();
+        userRolesjLabel = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        ticketjTable = new javax.swing.JTable();
+        orderjLabel = new javax.swing.JLabel();
+        orderjComboBox = new javax.swing.JComboBox<>();
+        createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
+        passwordjLabel1 = new javax.swing.JLabel();
+        updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
+        statusjComboBox = new javax.swing.JComboBox<>();
+        descriptionjLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionjTextArea = new javax.swing.JTextArea();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei UI", 0, 24))); // NOI18N
-
-        usernamejLabel.setText("Username");
-
-        usernamejTextField.addActionListener(new java.awt.event.ActionListener() {
+        ticketModifyjButton.setText("modify");
+        ticketModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernamejTextFieldActionPerformed(evt);
+                ticketModifyjButtonActionPerformed(evt);
             }
         });
 
-        passwordjLabel.setText("Password");
-
-        loginjButton.setText("Login");
-        loginjButton.addActionListener(new java.awt.event.ActionListener() {
+        ticketDeletejButton.setText("delete");
+        ticketDeletejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginjButtonActionPerformed(evt);
+                ticketDeletejButtonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(usernamejLabel)
-                                .addGap(64, 64, 64))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(passwordjLabel)
-                                .addGap(67, 67, 67)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernamejTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                            .addComponent(jPasswordField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(loginjButton)))
-                .addContainerGap(146, Short.MAX_VALUE))
+        ticketCreatejButton.setText("create");
+        ticketCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ticketCreatejButtonActionPerformed(evt);
+            }
+        });
+
+        ticketViewjButton.setText("view");
+        ticketViewjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ticketViewjButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
+        buttonjPanel2.setLayout(buttonjPanel2Layout);
+        buttonjPanel2Layout.setHorizontalGroup(
+            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonjPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ticketModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticketViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticketCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ticketDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernamejLabel)
-                    .addComponent(usernamejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordjLabel)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(100, 100, 100)
-                .addComponent(loginjButton)
-                .addContainerGap(176, Short.MAX_VALUE))
+        buttonjPanel2Layout.setVerticalGroup(
+            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buttonjPanel2Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(ticketModifyjButton)
+                .addGap(18, 18, 18)
+                .addComponent(ticketDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ticketCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ticketViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
+
+        passwordjLabel.setText("pickup_date");
+
+        userRolesjLabel.setText("status");
+
+        ticketjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "order", "create_date", "update_date", "status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(ticketjTable);
+
+        orderjLabel.setText("order");
+
+        createDatePicker.setEnabled(false);
+
+        passwordjLabel1.setText("delivery_date");
+
+        updateDatePicker.setEnabled(false);
+
+        descriptionjLabel.setText("description");
+
+        descriptionjTextArea.setColumns(20);
+        descriptionjTextArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionjTextArea);
+
+        javax.swing.GroupLayout ticketjPanelLayout = new javax.swing.GroupLayout(ticketjPanel);
+        ticketjPanel.setLayout(ticketjPanelLayout);
+        ticketjPanelLayout.setHorizontalGroup(
+            ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ticketjPanelLayout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ticketjPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ticketjPanelLayout.createSequentialGroup()
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ticketjPanelLayout.createSequentialGroup()
+                                .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordjLabel)
+                                    .addComponent(userRolesjLabel)
+                                    .addComponent(orderjLabel))
+                                .addGap(101, 101, 101)
+                                .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(statusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(orderjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(passwordjLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(descriptionjLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(88, 88, 88))
+        );
+        ticketjPanelLayout.setVerticalGroup(
+            ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ticketjPanelLayout.createSequentialGroup()
+                .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ticketjPanelLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(orderjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(orderjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(passwordjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(passwordjLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userRolesjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(statusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ticketjPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(descriptionjLabel))
+                            .addGroup(ticketjPanelLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ticketjPanelLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)))
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(300, 300, 300))
+        );
+
+        jTabbedPane.addTab("Ticket", ticketjPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernamejTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamejTextFieldActionPerformed
+    private void ticketModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketModifyjButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernamejTextFieldActionPerformed
-
-    private void loginjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginjButtonActionPerformed
-        // TODO add your handling code here:
-        try {
-            jFrame.setUser(User.findByUsernameAndPassword(usernamejTextField.getText(), String.valueOf(jPasswordField.getPassword())));
-        } catch (NoResultException e) {
-            JOptionPane.showMessageDialog(this, "login fail");
+        int selectedIndex = ticketjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
             return;
         }
-        User user = jFrame.getUser();
         
-        // redirect operations panel
-        jFrame.getjSplitPane().setRightComponent(new OperationsPanel(jFrame));
-    }//GEN-LAST:event_loginjButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) ticketjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        ticket = Ticket.findById(Ticket.class, id);
+        
+        try {
+            ticket.setOrder((BusinessOrder)orderjComboBox.getSelectedItem());
+            ticket.setCreateDate(createDatePicker.getDateTimeStrict());
+            ticket.setUpdateDate(updateDatePicker.getDateTimeStrict());
+            ticket.setProblemDescription(descriptionjTextArea.getText());
+            ticket.setTicketStatusType((TicketStatusType)statusjComboBox.getSelectedItem());
+            
+            ticket.flush();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Modify done");
+        ticket = null;
+        displayTicket();
+        displayTicketList();
+    }//GEN-LAST:event_ticketModifyjButtonActionPerformed
+
+    private void ticketDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketDeletejButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = ticketjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) ticketjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        ticket = Ticket.findById(Ticket.class, id);
+        ticket.delete();
+        model.removeRow(selectedIndex);
+        ticket = null;
+        displayTicket();
+        displayTicketList();
+    }//GEN-LAST:event_ticketDeletejButtonActionPerformed
+
+    private void ticketCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketCreatejButtonActionPerformed
+        // TODO add your handling code here:
+        Ticket t = new Ticket();
+        try {
+            t.setOrder((BusinessOrder)orderjComboBox.getSelectedItem());
+            t.setCreateDate(createDatePicker.getDateTimeStrict());
+            t.setUpdateDate(updateDatePicker.getDateTimeStrict());
+            t.setProblemDescription(descriptionjTextArea.getText());
+            t.setTicketStatusType((TicketStatusType)statusjComboBox.getSelectedItem());
+            t.save();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Save done");
+        t = null;
+        displayTicket();
+        ticket = t;
+        displayTicketList();
+    }//GEN-LAST:event_ticketCreatejButtonActionPerformed
+
+    private void ticketViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketViewjButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = ticketjTable.getSelectedRow();
+        
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) ticketjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        ticket = Ticket.findById(Ticket.class, id);
+        displayTicket();
+    }//GEN-LAST:event_ticketViewjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JButton loginjButton;
+    private javax.swing.JPanel buttonjPanel2;
+    private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
+    private javax.swing.JLabel descriptionjLabel;
+    private javax.swing.JTextArea descriptionjTextArea;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JComboBox<com.finalproject.model.BusinessOrder> orderjComboBox;
+    private javax.swing.JLabel orderjLabel;
     private javax.swing.JLabel passwordjLabel;
-    private javax.swing.JLabel usernamejLabel;
-    private javax.swing.JTextField usernamejTextField;
+    private javax.swing.JLabel passwordjLabel1;
+    private javax.swing.JComboBox<TicketStatusType> statusjComboBox;
+    private javax.swing.JButton ticketCreatejButton;
+    private javax.swing.JButton ticketDeletejButton;
+    private javax.swing.JButton ticketModifyjButton;
+    private javax.swing.JButton ticketViewjButton;
+    private javax.swing.JPanel ticketjPanel;
+    private javax.swing.JTable ticketjTable;
+    private com.github.lgooddatepicker.components.DateTimePicker updateDatePicker;
+    private javax.swing.JLabel userRolesjLabel;
     // End of variables declaration//GEN-END:variables
 }
