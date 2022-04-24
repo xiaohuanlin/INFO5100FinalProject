@@ -7,6 +7,7 @@ package com.finalproject.ui;
 import com.finalproject.model.Ticket;
 import com.finalproject.model.BusinessOrder;
 import com.finalproject.model.TicketStatusType;
+import com.finalproject.model.Warehouse;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -54,14 +55,14 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
             for (TicketStatusType ts: TicketStatusType.values()) {
                 statusjComboBox.addItem(ts);
             }
-		    createDatePicker.clear();
-		    updateDatePicker.clear();
+//		    createDatePicker.clear();
+//		    updateDatePicker.clear();
             descriptionjTextArea.setText("");
         } else {
             ticket.refresh();
             orderjComboBox.setSelectedItem(ticket.getOrder());
-            createDatePicker.setDateTimeStrict(ticket.getCreateDate());
-            updateDatePicker.setDateTimeStrict(ticket.getUpdateDate());
+//            createDatePicker.setDateTimeStrict(ticket.getCreateDate());
+//            updateDatePicker.setDateTimeStrict(ticket.getUpdateDate());
             statusjComboBox.setSelectedItem(ticket.getTicketStatusType());
             descriptionjTextArea.setText(ticket.getProblemDescription());
         }
@@ -99,19 +100,20 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
         ticketDeletejButton = new javax.swing.JButton();
         ticketCreatejButton = new javax.swing.JButton();
         ticketViewjButton = new javax.swing.JButton();
+        btnDisplay = new javax.swing.JButton();
         passwordjLabel = new javax.swing.JLabel();
         userRolesjLabel = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         ticketjTable = new javax.swing.JTable();
         orderjLabel = new javax.swing.JLabel();
         orderjComboBox = new javax.swing.JComboBox<>();
-        createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
-        updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         statusjComboBox = new javax.swing.JComboBox<>();
         descriptionjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionjTextArea = new javax.swing.JTextArea();
+        inStorageDate = new javax.swing.JTextField();
+        outStorageDate = new javax.swing.JTextField();
 
         ticketModifyjButton.setText("modify");
         ticketModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +143,13 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDisplay.setText("Display");
+        btnDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisplayActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
         buttonjPanel2.setLayout(buttonjPanel2Layout);
         buttonjPanel2Layout.setHorizontalGroup(
@@ -151,13 +160,17 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
                     .addComponent(ticketModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ticketViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ticketCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ticketDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ticketDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonjPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnDisplay)))
                 .addContainerGap())
         );
         buttonjPanel2Layout.setVerticalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addComponent(btnDisplay)
+                .addGap(15, 15, 15)
                 .addComponent(ticketModifyjButton)
                 .addGap(18, 18, 18)
                 .addComponent(ticketDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,17 +205,25 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
 
         orderjLabel.setText("order");
 
-        createDatePicker.setEnabled(false);
-
         passwordjLabel1.setText("outStorage_date");
-
-        updateDatePicker.setEnabled(false);
 
         descriptionjLabel.setText("description");
 
         descriptionjTextArea.setColumns(20);
         descriptionjTextArea.setRows(5);
         jScrollPane1.setViewportView(descriptionjTextArea);
+
+        inStorageDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inStorageDateActionPerformed(evt);
+            }
+        });
+
+        outStorageDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outStorageDateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ticketjPanelLayout = new javax.swing.GroupLayout(ticketjPanel);
         ticketjPanel.setLayout(ticketjPanelLayout);
@@ -213,26 +234,28 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
                 .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ticketjPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(225, 225, 225))
                     .addGroup(ticketjPanelLayout.createSequentialGroup()
                         .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(descriptionjLabel, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ticketjPanelLayout.createSequentialGroup()
                                 .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(passwordjLabel)
                                     .addComponent(userRolesjLabel)
-                                    .addComponent(orderjLabel))
-                                .addGap(101, 101, 101)
+                                    .addComponent(orderjLabel)
+                                    .addComponent(passwordjLabel1))
+                                .addGap(93, 93, 93)
                                 .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(statusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(orderjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(passwordjLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descriptionjLabel, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(outStorageDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 106, Short.MAX_VALUE))
+                                    .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(inStorageDate, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(orderjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 106, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(88, 88, 88))
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88))))
         );
         ticketjPanelLayout.setVerticalGroup(
             ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,11 +269,11 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
+                            .addComponent(inStorageDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordjLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(outStorageDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(ticketjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(userRolesjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -300,8 +323,8 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
         
         try {
             ticket.setOrder((BusinessOrder)orderjComboBox.getSelectedItem());
-            ticket.setCreateDate(createDatePicker.getDateTimeStrict());
-            ticket.setUpdateDate(updateDatePicker.getDateTimeStrict());
+//            ticket.setCreateDate(createDatePicker.getDateTimeStrict());
+//            ticket.setUpdateDate(updateDatePicker.getDateTimeStrict());
             ticket.setProblemDescription(descriptionjTextArea.getText());
             ticket.setTicketStatusType((TicketStatusType)statusjComboBox.getSelectedItem());
             
@@ -340,8 +363,8 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
         Ticket t = new Ticket();
         try {
             t.setOrder((BusinessOrder)orderjComboBox.getSelectedItem());
-            t.setCreateDate(createDatePicker.getDateTimeStrict());
-            t.setUpdateDate(updateDatePicker.getDateTimeStrict());
+//            t.setCreateDate(createDatePicker.getDateTimeStrict());
+//            t.setUpdateDate(updateDatePicker.getDateTimeStrict());
             t.setProblemDescription(descriptionjTextArea.getText());
             t.setTicketStatusType((TicketStatusType)statusjComboBox.getSelectedItem());
             t.save();
@@ -371,17 +394,34 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
         displayTicket();
     }//GEN-LAST:event_ticketViewjButtonActionPerformed
 
+    private void inStorageDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inStorageDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inStorageDateActionPerformed
+
+    private void outStorageDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outStorageDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_outStorageDateActionPerformed
+
+    private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
+        // TODO add your handling code here:
+        Warehouse w = new Warehouse();
+        w.setInStoreTime(inStorageDate.getText());
+        w.setOutStoreTime(outStorageDate.getText());
+    }//GEN-LAST:event_btnDisplayActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDisplay;
     private javax.swing.JPanel buttonjPanel2;
-    private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
     private javax.swing.JLabel descriptionjLabel;
     private javax.swing.JTextArea descriptionjTextArea;
+    private javax.swing.JTextField inStorageDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JTabbedPane jTabbedPane;
     private javax.swing.JComboBox<com.finalproject.model.BusinessOrder> orderjComboBox;
     private javax.swing.JLabel orderjLabel;
+    private javax.swing.JTextField outStorageDate;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel passwordjLabel1;
     private javax.swing.JComboBox<TicketStatusType> statusjComboBox;
@@ -391,7 +431,6 @@ public class StorageManagerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton ticketViewjButton;
     private javax.swing.JPanel ticketjPanel;
     private javax.swing.JTable ticketjTable;
-    private com.github.lgooddatepicker.components.DateTimePicker updateDatePicker;
     private javax.swing.JLabel userRolesjLabel;
     // End of variables declaration//GEN-END:variables
 }

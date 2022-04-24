@@ -12,8 +12,8 @@ public class Warehouse {
     
     private String location;
     private String name;
-    private int inStoreTime;
-    private int outStoreTime;
+    private String inStoreTime;
+    private String outStoreTime;
 
     public String getLocation() {
         return location;
@@ -31,19 +31,19 @@ public class Warehouse {
         this.name = name;
     }
 
-    public int getInStoreTime() {
+    public String getInStoreTime() {
         return inStoreTime;
     }
 
-    public void setInStoreTime(int inStoreTime) {
+    public void setInStoreTime(String inStoreTime) {
         this.inStoreTime = inStoreTime;
     }
 
-    public int getOutStoreTime() {
+    public String getOutStoreTime() {
         return outStoreTime;
     }
 
-    public void setOutStoreTime(int outStoreTime) {
+    public void setOutStoreTime(String outStoreTime) {
         this.outStoreTime = outStoreTime;
     }
     
