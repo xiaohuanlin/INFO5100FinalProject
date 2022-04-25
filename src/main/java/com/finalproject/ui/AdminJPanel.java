@@ -128,7 +128,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             permissionTypejComboBox.setSelectedItem(permission.getPermissionType());
             ((DefaultListModel<Role>)otherjList.getModel()).removeAllElements();
             ((DefaultListModel<Role>)currentjList.getModel()).removeAllElements();
-            Set<Role> roles = permission.getRoles();
+            List<Role> roles = permission.getRoles();
             for (Role r: roles) {
                 ((DefaultListModel<Role>)currentjList.getModel()).addElement(r);
             }
@@ -179,8 +179,8 @@ public class AdminJPanel extends javax.swing.JPanel {
             ((DefaultListModel<Permission>)otherPMjList.getModel()).removeAllElements();
             ((DefaultListModel<User>)currentUserjList.getModel()).removeAllElements();
             ((DefaultListModel<Permission>)currentPMjList.getModel()).removeAllElements();
-            Set<Permission> permissions = role.getPermissions();
-            Set<User> users = role.getUsers();
+            List<Permission> permissions = role.getPermissions();
+            List<User> users = role.getUsers();
             for (Permission r: permissions) {
                 ((DefaultListModel<Permission>)currentPMjList.getModel()).addElement(r);
             }
@@ -918,12 +918,12 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             pm.setName(namejTextField.getText());
             pm.setPermissionType((PermissionType)permissionTypejComboBox.getSelectedItem());
-            Set<Role> afterRoles = new HashSet<>();
+            List<Role> afterRoles = new ArrayList<>();
             for (Object roleObject: ((DefaultListModel<Role>)currentjList.getModel()).toArray()) {
                 afterRoles.add((Role)roleObject);
             }
             // add new
-            Set<Role> new_set = new HashSet<Role>(afterRoles);
+            List<Role> new_set = new ArrayList<>(afterRoles);
             for (Role r: new_set) {
                 r.getPermissions().add(permission);
             }
@@ -990,20 +990,20 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             permission.setName(namejTextField.getText());
             permission.setPermissionType((PermissionType)permissionTypejComboBox.getSelectedItem());
-            Set<Role> previousRoles = permission.getRoles();
-            Set<Role> afterRoles = new HashSet<>();
+            List<Role> previousRoles = permission.getRoles();
+            List<Role> afterRoles = new ArrayList<>();
             for (Object roleObject: ((DefaultListModel<Role>)currentjList.getModel()).toArray()) {
                 afterRoles.add((Role)roleObject);
             }
             
             // remove old
-            Set<Role> old = new HashSet<Role>(previousRoles);
+            List<Role> old = new ArrayList<>(previousRoles);
             old.removeAll(afterRoles);
             for (Role r: old) {
                 r.getPermissions().remove(permission);
             }
             // add new
-            Set<Role> new_set = new HashSet<Role>(afterRoles);
+            List<Role> new_set = new ArrayList<>(afterRoles);
             new_set.removeAll(previousRoles);
             for (Role r: new_set) {
                 r.getPermissions().add(permission);
@@ -1071,10 +1071,10 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             role.setName(roleNamejTextField.getText());
             role.setOrganization((Organization)organizationjComboBox.getSelectedItem());
-            Set<Permission> previousPermissions = role.getPermissions();
-            Set<Permission> afterPermissions = new HashSet<>();
-            Set<User> previousUsers = role.getUsers();
-            Set<User> afterUsers = new HashSet<>();
+            List<Permission> previousPermissions = role.getPermissions();
+            List<Permission> afterPermissions = new ArrayList<>();
+            List<User> previousUsers = role.getUsers();
+            List<User> afterUsers = new ArrayList<>();
             for (Object object: ((DefaultListModel<Permission>)currentPMjList.getModel()).toArray()) {
                 afterPermissions.add((Permission)object);
             }
@@ -1087,13 +1087,13 @@ public class AdminJPanel extends javax.swing.JPanel {
 //            for (Permission p: oldPermissions) {
 //                role.getPermissions().remove(permission);
 //            }
-            Set<User> oldUsers = new HashSet<User>(previousUsers);
+            List<User> oldUsers = new ArrayList<>(previousUsers);
             oldUsers.removeAll(afterUsers);
             for (User u: oldUsers) {
                 u.getRoles().remove(role);
             }
             // add new
-            Set<User> newUsers = new HashSet<User>(afterUsers);
+            List<User> newUsers = new ArrayList<>(afterUsers);
             newUsers.removeAll(previousUsers);
             for (User u: afterUsers) {
                 u.getRoles().add(role);
@@ -1139,8 +1139,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         try {
             r.setName(roleNamejTextField.getText());
             r.setOrganization((Organization)organizationjComboBox.getSelectedItem());
-            Set<Permission> afterPermissions = new HashSet<>();
-            Set<User> afterUsers = new HashSet<>();
+            List<Permission> afterPermissions = new ArrayList<>();
+            List<User> afterUsers = new ArrayList<>();
             for (Object object: ((DefaultListModel<Permission>)currentPMjList.getModel()).toArray()) {
                 afterPermissions.add((Permission)object);
             }

@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -24,19 +23,16 @@ import java.util.List;
  * @author Administrator
  */
 @Entity
-public class BusinessRefundOrder extends ORMObject {
+public class BusinessVehicle extends ORMObject {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToOne
-    private BusinessOrder order;
+    @Column(nullable = false)
+    private BusinessVehicleType vehicleType = BusinessVehicleType.TRUCK;
 
     @Column(nullable = false)
-    private Integer amount;
-    
-    @Column(nullable = false)
-    private BusinessRefundOrderStatusType businessRefundOrderStatusType = BusinessRefundOrderStatusType.CREATE;
+    private BusinessVehicleStatusType vehicleStatusType = BusinessVehicleStatusType.AVAILABLE;
 
     @Column(nullable = false)
     private LocalDateTime createDate;
@@ -48,36 +44,20 @@ public class BusinessRefundOrder extends ORMObject {
         return id;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public BusinessVehicleType getVehicleType() {
+        return vehicleType;
     }
 
-    public void setAmount(Integer amount) throws Exception {
-        int total = order.getRefundOrders().stream().mapToInt((value) -> {
-                return value.getAmount(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/LambdaBody
-            }
-        ).sum();
-        
-        if (total + (amount - (this.amount != null ? this.amount: 0)) > order.getTotalAmount()) {
-            throw new Exception("Refund amount exceed order amount");
-        }
-        this.amount = amount;
+    public void setVehicleType(BusinessVehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
-    public BusinessOrder getOrder() {
-        return order;
+    public BusinessVehicleStatusType getVehicleStatusType() {
+        return vehicleStatusType;
     }
 
-    public void setOrder(BusinessOrder order) {
-        this.order = order;
-    }
-
-    public BusinessRefundOrderStatusType getBusinessRefundOrderStatusType() {
-        return businessRefundOrderStatusType;
-    }
-
-    public void setBusinessRefundOrderStatusType(BusinessRefundOrderStatusType businessRefundOrderStatusType) {
-        this.businessRefundOrderStatusType = businessRefundOrderStatusType;
+    public void setVehicleStatusType(BusinessVehicleStatusType vehicleStatusType) {
+        this.vehicleStatusType = vehicleStatusType;
     }
 
     public LocalDateTime getCreateDate() {
@@ -107,22 +87,19 @@ public class BusinessRefundOrder extends ORMObject {
         updateDate = LocalDateTime.now();
     }
 
-    public static List<BusinessRefundOrder> findByDate(LocalDateTime start, LocalDateTime end) {
+    public static List<BusinessVehicle> findAvailableVehicle() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<BusinessRefundOrder> criteria = builder.createQuery(BusinessRefundOrder.class);
-        Root<BusinessRefundOrder> root = criteria.from(BusinessRefundOrder.class);
+        CriteriaQuery<BusinessVehicle> criteria = builder.createQuery(BusinessVehicle.class);
+        Root<BusinessVehicle> root = criteria.from(BusinessVehicle.class);
         criteria.select(root);
         criteria.where(
-            builder.and(
-                builder.greaterThan(root.get(BusinessRefundOrder_.CREATE_DATE), start),
-                builder.lessThan(root.get(BusinessRefundOrder_.CREATE_DATE), end)
-            )
+            builder.equal(root.get(BusinessVehicle_.VEHICLE_STATUS_TYPE), BusinessVehicleStatusType.AVAILABLE)
         );
         return entityManager.createQuery(criteria).getResultList();
     }
 
     @Override
     public String toString() {
-        return id + "(" + businessRefundOrderStatusType + ")";
+        return id + "(" + vehicleType + ")";
     }
 }

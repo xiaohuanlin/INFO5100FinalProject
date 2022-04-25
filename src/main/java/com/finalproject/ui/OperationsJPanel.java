@@ -26,7 +26,9 @@ public class OperationsJPanel extends javax.swing.JPanel {
             entry("Accountant", AccountantJPanel.class),
             entry("Auditor", AuditorJPanel.class),
             entry("QualityManager", QualityManagerJPanel.class),
-            entry("MarketingManager", MarketingManagerJPanel.class)
+            entry("MarketingManager", MarketingManagerJPanel.class),
+            entry("TransportationManager", TransportationManagerJPanel.class),
+            entry("Maintainer", MaintainerJPanel.class)
     );
 
     /**

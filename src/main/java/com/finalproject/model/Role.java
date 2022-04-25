@@ -11,8 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,10 +32,10 @@ public class Role extends ORMObject {
     private Organization organization;
         
     @ManyToMany(targetEntity=Permission.class)
-    private Set<Permission> permissions = new HashSet();
+    private List<Permission> permissions = new ArrayList<>();
 
     @ManyToMany(targetEntity=User.class, mappedBy="roles")
-    private Set<User> users = new HashSet();
+    private List<User> users = new ArrayList();
     
     public String getName() {
         return name;
@@ -45,11 +45,11 @@ public class Role extends ORMObject {
         this.name = name;
     }
 
-    public Set<Permission> getPermissions() {
+    public List<Permission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(Set<Permission> permissions) {
+    public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
 
@@ -57,11 +57,11 @@ public class Role extends ORMObject {
         return id;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
