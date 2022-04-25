@@ -12,8 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -37,7 +37,7 @@ public class Permission extends ORMObject {
     private PermissionType permissionType;
     
     @ManyToMany(targetEntity=Role.class, mappedBy="permissions")
-    private Set<Role> roles = new HashSet();
+    private List<Role> roles = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -59,11 +59,11 @@ public class Permission extends ORMObject {
         this.permissionType = permissionType;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
     

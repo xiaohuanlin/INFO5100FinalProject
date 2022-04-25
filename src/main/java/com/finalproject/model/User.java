@@ -4,6 +4,7 @@
  */
 package com.finalproject.model;
 
+import com.sun.source.util.TaskEvent;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +14,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
+import jakarta.persistence.criteria.ListJoin;
 import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.SetJoin;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -58,22 +61,14 @@ public class User extends ORMObject {
     }
     
     public boolean hasPermission(String name, PermissionType ptype) {
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Permission> criteria = builder.createQuery(Permission.class);
-        Root<Permission> root = criteria.from(Permission.class);
-        Root<User> userRoot = criteria.from(User.class);
-        Join<User, Role> roleJoin = root.join(User_.ROLES);
-        Join<Permission, Role> permissionJoin = roleJoin.join(Role_.PERMISSIONS);
-        
-        criteria.select(root);
-        criteria.where(
-            builder.and(
-                builder.equal(root.get(Permission_.NAME), name),
-                builder.equal(root.get(Permission_.PERMISSION_TYPE), ptype),
-                builder.equal(userRoot.get(User_.USERNAME), this.getUsername())
-            )
-        );
-        return !entityManager.createQuery(criteria).getResultList().isEmpty();
+        for (Role r: getRoles()) {
+            for (Permission p: r.getPermissions()) {
+                if (p.getName().equals(name) && p.getPermissionType() == ptype) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
         
     public static User findByUsernameAndPassword(String username, String password) {
