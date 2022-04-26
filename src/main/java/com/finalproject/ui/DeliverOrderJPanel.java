@@ -48,7 +48,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             vehiclejComboBox.removeAllItems();
             enterprisejComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findAvailableProduct()) {
+		    for (BusinessProduct product: BusinessProduct.findAvailableProduct("Transportation")) {
 				productjComboBox.addItem(product);
 		    }
 		    for (BusinessVehicle o: BusinessVehicle.findAvailableVehicle()) {

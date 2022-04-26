@@ -14,13 +14,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class ProductJPanel extends javax.swing.JPanel {
+public class PurchasingProductJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
     BusinessProduct product;
     /**
      * Creates new form orderJPanel
      */
-    public ProductJPanel(MainJFrame jFrame) {
+    public PurchasingProductJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
 
@@ -74,7 +74,7 @@ public class ProductJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         model.setRowCount(0);
         
-        for (BusinessProduct current: BusinessProduct.findProducts("Digital Platform")) {
+        for (BusinessProduct current: BusinessProduct.findProducts("Supplier")) {
             Object[] row = new Object[7];
             row[0] = current.getId();
             row[1] = current.getName();
@@ -304,6 +304,7 @@ public class ProductJPanel extends javax.swing.JPanel {
             product.setName(namejTextField.getText());
             product.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
             product.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            product.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
 
             product.flush();
         } catch (Exception e) {
@@ -345,6 +346,7 @@ public class ProductJPanel extends javax.swing.JPanel {
             bp.setName(namejTextField.getText());
             bp.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
             bp.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            bp.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
             bp.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());

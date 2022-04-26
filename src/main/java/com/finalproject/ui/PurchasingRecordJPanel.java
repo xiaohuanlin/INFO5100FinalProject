@@ -15,13 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class OrderJPanel extends javax.swing.JPanel {
+public class PurchasingRecordJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
     BusinessOrder order;
     /**
      * Creates new form orderJPanel
      */
-    public OrderJPanel(MainJFrame jFrame) {
+    public PurchasingRecordJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
 
@@ -44,7 +44,7 @@ public class OrderJPanel extends javax.swing.JPanel {
         if (order == null) {
             productjComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findAvailableProduct("Digital Platform")) {
+		    for (BusinessProduct product: BusinessProduct.findAvailableProduct("Supplier")) {
 				productjComboBox.addItem(product);
 		    }
             for (BusinessOrderStatusType ts: BusinessOrderStatusType.values()) {
@@ -71,7 +71,7 @@ public class OrderJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         model.setRowCount(0);
         
-        for (BusinessOrder current: BusinessOrder.find("Digital Platform")) {
+        for (BusinessOrder current: BusinessOrder.find("Supplier")) {
             Object[] row = new Object[8];
             row[0] = current.getId();
             row[1] = current.getProduct();
