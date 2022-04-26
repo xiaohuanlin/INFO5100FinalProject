@@ -7,6 +7,7 @@ package com.finalproject.ui;
 import com.finalproject.model.BusinessOrder;
 import com.finalproject.model.BusinessOrderStatusType;
 import com.finalproject.model.BusinessProduct;
+import com.finalproject.model.Email;
 import com.finalproject.model.PermissionType;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -359,6 +360,8 @@ public class OrderJPanel extends javax.swing.JPanel {
             bo.setTotalAmount(bo.getQuantity() * bo.getProduct().getSellPrice());
             bo.setCustomerName(customerjTextField.getText());
             bo.save();
+
+            Email.send(jFrame.getUser(), "New order", jFrame.getUser().getUsername() + " is adding a new order as a " + jFrame.getRole().getName());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
             return;
