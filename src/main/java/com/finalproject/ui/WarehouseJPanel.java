@@ -4,8 +4,7 @@
  */
 package com.finalproject.ui;
 
-import com.finalproject.model.BusinessProduct;
-import com.finalproject.model.BusinessProductStatusType;
+import com.finalproject.model.BusinessWarehouse;
 import com.finalproject.model.PermissionType;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,75 +13,60 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class ProductJPanel extends javax.swing.JPanel {
+public class WarehouseJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
-    BusinessProduct product;
+    BusinessWarehouse warehouse;
     /**
      * Creates new form orderJPanel
      */
-    public ProductJPanel(MainJFrame jFrame) {
+    public WarehouseJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
 
-        String className = "Product";
+        String className = "Warehouse";
         if (!jFrame.getUser().hasPermission(className, PermissionType.EDIT)) {
-            productModifyjButton.setEnabled(false);
+            warehouseModifyjButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
-            productCreatejButton.setEnabled(false);
+            warehouseCreatejButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
-            productViewjButton.setEnabled(false);
+            warehousejButton.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
-            productDeletejButton.setEnabled(false);
-        }
-        if (!jFrame.getUser().hasPermission("Product.status", PermissionType.EDIT)) {
-            statusjComboBox.setEnabled(false);
-        }
-        if (!jFrame.getUser().hasPermission("Product.purchasePrice", PermissionType.EDIT)) {
-            purchasePricejTextField.setEnabled(false);
-        }
-        if (!jFrame.getUser().hasPermission("Product.sellPrice", PermissionType.EDIT)) {
-            sellPricejTextField.setEnabled(false);
+            warehouseDeletejButton.setEnabled(false);
         }
     }
 
-    public final void displayProduct() {
-        if (product == null) {
-            statusjComboBox.removeAllItems();
-            for (BusinessProductStatusType ts: BusinessProductStatusType.values()) {
-                statusjComboBox.addItem(ts);
-            }
+    public final void displayWarehouse() {
+        if (warehouse == null) {
 		    createDatePicker.clear();
 		    updateDatePicker.clear();
-            namejTextField.setText("");
-            purchasePricejTextField.setText("");
-            sellPricejTextField.setText("");
+            locationjTextField.setText("");
+            availableQuantityjTextField.setText("");
+            totalQuantityjTextField.setText("");
         } else {
-            product.refresh();
-            createDatePicker.setDateTimeStrict(product.getCreateDate());
-            updateDatePicker.setDateTimeStrict(product.getUpdateDate());
-            statusjComboBox.setSelectedItem(product.getProductStatusType());
-            namejTextField.setText(product.getName());
-            purchasePricejTextField.setText(String.valueOf(product.getPurchasePrice() / 100.0));
-            sellPricejTextField.setText(String.valueOf(product.getSellPrice() / 100.0));
+            warehouse.refresh();
+            createDatePicker.setDateTimeStrict(warehouse.getCreateDate());
+            updateDatePicker.setDateTimeStrict(warehouse.getUpdateDate());
+            locationjTextField.setText(warehouse.getLocation());
+            availableQuantityjTextField.setText(String.valueOf(warehouse.getAvailableQuantity()));
+            totalQuantityjTextField.setText(String.valueOf(warehouse.getTotalQuantity()));
         }
     }
     
-    public final void displayProductList() {
+    public final void displayWarehouseList() {
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         model.setRowCount(0);
         
-        for (BusinessProduct current: BusinessProduct.findProducts("Digital Platform")) {
-            Object[] row = new Object[7];
+        for (BusinessWarehouse current: BusinessWarehouse.find(BusinessWarehouse.class)) {
+            Object[] row = new Object[6];
             row[0] = current.getId();
-            row[1] = current.getName();
+            row[1] = current.getLocation();
             row[2] = current.getCreateDate();
             row[3] = current.getUpdateDate();
-            row[4] = current.getProductStatusType();
-            row[5] = current.getPurchasePrice() / 100.0;
-            row[6] = current.getSellPrice() / 100.0;
+            row[4] = current.getAvailableQuantity();
+            row[5] = current.getTotalQuantity();
             
             model.addRow(row);
         }
@@ -98,50 +82,48 @@ public class ProductJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonjPanel2 = new javax.swing.JPanel();
-        productModifyjButton = new javax.swing.JButton();
-        productDeletejButton = new javax.swing.JButton();
-        productCreatejButton = new javax.swing.JButton();
-        productViewjButton = new javax.swing.JButton();
+        warehouseModifyjButton = new javax.swing.JButton();
+        warehouseDeletejButton = new javax.swing.JButton();
+        warehouseCreatejButton = new javax.swing.JButton();
+        warehousejButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
-        statusjComboBox = new javax.swing.JComboBox<>();
         passwordjLabel = new javax.swing.JLabel();
-        userRolesjLabel = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         productjTable = new javax.swing.JTable();
-        namejLabel = new javax.swing.JLabel();
-        namejTextField = new javax.swing.JTextField();
-        purchasePricejLabel = new javax.swing.JLabel();
-        purchasePricejTextField = new javax.swing.JTextField();
-        sellPricejLabel = new javax.swing.JLabel();
-        sellPricejTextField = new javax.swing.JTextField();
+        locationjLabel = new javax.swing.JLabel();
+        locationjTextField = new javax.swing.JTextField();
+        availableQuantityjLabel = new javax.swing.JLabel();
+        availableQuantityjTextField = new javax.swing.JTextField();
+        totalQuantityjLabel = new javax.swing.JLabel();
+        totalQuantityjTextField = new javax.swing.JTextField();
 
-        productModifyjButton.setText("modify");
-        productModifyjButton.addActionListener(new java.awt.event.ActionListener() {
+        warehouseModifyjButton.setText("modify");
+        warehouseModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productModifyjButtonActionPerformed(evt);
+                warehouseModifyjButtonActionPerformed(evt);
             }
         });
 
-        productDeletejButton.setText("delete");
-        productDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+        warehouseDeletejButton.setText("delete");
+        warehouseDeletejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productDeletejButtonActionPerformed(evt);
+                warehouseDeletejButtonActionPerformed(evt);
             }
         });
 
-        productCreatejButton.setText("create");
-        productCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+        warehouseCreatejButton.setText("create");
+        warehouseCreatejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productCreatejButtonActionPerformed(evt);
+                warehouseCreatejButtonActionPerformed(evt);
             }
         });
 
-        productViewjButton.setText("view");
-        productViewjButton.addActionListener(new java.awt.event.ActionListener() {
+        warehousejButton.setText("view");
+        warehousejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productViewjButtonActionPerformed(evt);
+                warehousejButtonActionPerformed(evt);
             }
         });
 
@@ -152,23 +134,23 @@ public class ProductJPanel extends javax.swing.JPanel {
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(productModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(productDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(warehouseModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(warehousejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(warehouseCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(warehouseDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         buttonjPanel2Layout.setVerticalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(productModifyjButton)
+                .addComponent(warehouseModifyjButton)
                 .addGap(18, 18, 18)
-                .addComponent(productDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warehouseDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(productCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warehouseCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(productViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(warehousejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -180,21 +162,19 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         passwordjLabel.setText("create_date");
 
-        userRolesjLabel.setText("status");
-
         productjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "product", "create_date", "update_date", "status", "purchase price", "sell price"
+                "id", "location", "create_date", "update_date", "available quantity", "total quantity"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -207,11 +187,11 @@ public class ProductJPanel extends javax.swing.JPanel {
         });
         jScrollPane11.setViewportView(productjTable);
 
-        namejLabel.setText("name");
+        locationjLabel.setText("location");
 
-        purchasePricejLabel.setText("purchase price");
+        availableQuantityjLabel.setText("available quantity");
 
-        sellPricejLabel.setText("sell price");
+        totalQuantityjLabel.setText("total quantity");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -229,20 +209,18 @@ public class ProductJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(passwordjLabel)
-                                    .addComponent(userRolesjLabel)
-                                    .addComponent(namejLabel)
-                                    .addComponent(purchasePricejLabel)
-                                    .addComponent(sellPricejLabel))
+                                    .addComponent(locationjLabel)
+                                    .addComponent(availableQuantityjLabel)
+                                    .addComponent(totalQuantityjLabel))
                                 .addGap(101, 101, 101)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(sellPricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(totalQuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(createDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(purchasePricejTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(namejTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 106, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                        .addComponent(availableQuantityjTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                        .addComponent(locationjTextField, javax.swing.GroupLayout.Alignment.LEADING)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
         );
@@ -253,8 +231,8 @@ public class ProductJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(namejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(namejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(locationjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(locationjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(passwordjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -265,16 +243,13 @@ public class ProductJPanel extends javax.swing.JPanel {
                             .addComponent(updateDatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userRolesjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(statusjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(purchasePricejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(purchasePricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(availableQuantityjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(availableQuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sellPricejLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sellPricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(totalQuantityjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalQuantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -284,7 +259,7 @@ public class ProductJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void productModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productModifyjButtonActionPerformed
+    private void warehouseModifyjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseModifyjButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = productjTable.getSelectedRow();
 
@@ -295,28 +270,27 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        product = BusinessProduct.findById(BusinessProduct.class, id);
+        warehouse = BusinessWarehouse.findById(BusinessWarehouse.class, id);
 
         try {
-            product.setCreateDate(createDatePicker.getDateTimeStrict());
-            product.setUpdateDate(updateDatePicker.getDateTimeStrict());
-            product.setProductStatusType((BusinessProductStatusType)statusjComboBox.getSelectedItem());
-            product.setName(namejTextField.getText());
-            product.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
-            product.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            warehouse.setCreateDate(createDatePicker.getDateTimeStrict());
+            warehouse.setUpdateDate(updateDatePicker.getDateTimeStrict());
+            warehouse.setLocation(locationjTextField.getText());
+            warehouse.setAvailableQuantity(Integer.parseInt(availableQuantityjTextField.getText()));
+            warehouse.setTotalQuantity(Integer.parseInt(totalQuantityjTextField.getText()));
 
-            product.flush();
+            warehouse.flush();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
-        product = null;
-        displayProduct();
-        displayProductList();
-    }//GEN-LAST:event_productModifyjButtonActionPerformed
+        warehouse = null;
+        displayWarehouse();
+        displayWarehouseList();
+    }//GEN-LAST:event_warehouseModifyjButtonActionPerformed
 
-    private void productDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productDeletejButtonActionPerformed
+    private void warehouseDeletejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseDeletejButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = productjTable.getSelectedRow();
 
@@ -327,24 +301,23 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        product = BusinessProduct.findById(BusinessProduct.class, id);
-        product.delete();
+        warehouse = BusinessWarehouse.findById(BusinessWarehouse.class, id);
+        warehouse.delete();
         model.removeRow(selectedIndex);
-        product = null;
-        displayProduct();
-        displayProductList();
-    }//GEN-LAST:event_productDeletejButtonActionPerformed
+        warehouse = null;
+        displayWarehouse();
+        displayWarehouseList();
+    }//GEN-LAST:event_warehouseDeletejButtonActionPerformed
 
-    private void productCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productCreatejButtonActionPerformed
+    private void warehouseCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehouseCreatejButtonActionPerformed
         // TODO add your handling code here:
-        BusinessProduct bp = new BusinessProduct();
+        BusinessWarehouse bp = new BusinessWarehouse();
         try {
             bp.setCreateDate(createDatePicker.getDateTimeStrict());
             bp.setUpdateDate(updateDatePicker.getDateTimeStrict());
-            bp.setProductStatusType((BusinessProductStatusType)statusjComboBox.getSelectedItem());
-            bp.setName(namejTextField.getText());
-            bp.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
-            bp.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            bp.setLocation(locationjTextField.getText());
+            bp.setAvailableQuantity(Integer.parseInt(availableQuantityjTextField.getText()));
+            bp.setTotalQuantity(Integer.parseInt(totalQuantityjTextField.getText()));
             bp.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
@@ -352,12 +325,12 @@ public class ProductJPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(this, "Save done");
         bp = null;
-        displayProduct();
-        product = bp;
-        displayProductList();
-    }//GEN-LAST:event_productCreatejButtonActionPerformed
+        displayWarehouse();
+        warehouse = bp;
+        displayWarehouseList();
+    }//GEN-LAST:event_warehouseCreatejButtonActionPerformed
 
-    private void productViewjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productViewjButtonActionPerformed
+    private void warehousejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warehousejButtonActionPerformed
         // TODO add your handling code here:
         int selectedIndex = productjTable.getSelectedRow();
 
@@ -368,30 +341,28 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) productjTable.getModel();
         int id = (Integer) model.getValueAt(selectedIndex, 0);
-        product = BusinessProduct.findById(BusinessProduct.class, id);
-        displayProduct();
-    }//GEN-LAST:event_productViewjButtonActionPerformed
+        warehouse = BusinessWarehouse.findById(BusinessWarehouse.class, id);
+        displayWarehouse();
+    }//GEN-LAST:event_warehousejButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel availableQuantityjLabel;
+    private javax.swing.JTextField availableQuantityjTextField;
     private javax.swing.JPanel buttonjPanel2;
     private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JLabel namejLabel;
-    private javax.swing.JTextField namejTextField;
+    private javax.swing.JLabel locationjLabel;
+    private javax.swing.JTextField locationjTextField;
     private javax.swing.JLabel passwordjLabel;
     private javax.swing.JLabel passwordjLabel1;
-    private javax.swing.JButton productCreatejButton;
-    private javax.swing.JButton productDeletejButton;
-    private javax.swing.JButton productModifyjButton;
-    private javax.swing.JButton productViewjButton;
     private javax.swing.JTable productjTable;
-    private javax.swing.JLabel purchasePricejLabel;
-    private javax.swing.JTextField purchasePricejTextField;
-    private javax.swing.JLabel sellPricejLabel;
-    private javax.swing.JTextField sellPricejTextField;
-    private javax.swing.JComboBox<BusinessProductStatusType> statusjComboBox;
+    private javax.swing.JLabel totalQuantityjLabel;
+    private javax.swing.JTextField totalQuantityjTextField;
     private com.github.lgooddatepicker.components.DateTimePicker updateDatePicker;
-    private javax.swing.JLabel userRolesjLabel;
+    private javax.swing.JButton warehouseCreatejButton;
+    private javax.swing.JButton warehouseDeletejButton;
+    private javax.swing.JButton warehouseModifyjButton;
+    private javax.swing.JButton warehousejButton;
     // End of variables declaration//GEN-END:variables
 }

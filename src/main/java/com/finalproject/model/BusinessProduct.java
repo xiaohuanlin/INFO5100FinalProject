@@ -9,10 +9,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,6 +41,9 @@ public class BusinessProduct extends ORMObject {
 
     @Column(nullable = false)
     private BusinessProductStatusType productStatusType = BusinessProductStatusType.AVAILABLE;
+
+    @ManyToOne
+    private Enterprise enterprise;
 
     @Column(nullable = false)
     private LocalDateTime createDate;
@@ -71,6 +76,14 @@ public class BusinessProduct extends ORMObject {
 
     public Integer getSellPrice() {
         return sellPrice;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     public void setSellPrice(Integer sellPrice) throws Exception {
@@ -115,13 +128,29 @@ public class BusinessProduct extends ORMObject {
         updateDate = LocalDateTime.now();
     }
 
-    public static List<BusinessProduct> findAvailableProduct() {
+    public static List<BusinessProduct> findAvailableProduct(String organizationName) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<BusinessProduct> criteria = builder.createQuery(BusinessProduct.class);
         Root<BusinessProduct> root = criteria.from(BusinessProduct.class);
+        Join<Enterprise, BusinessProduct> rootJoin = root.join(BusinessProduct_.ENTERPRISE);
         criteria.select(root);
         criteria.where(
-            builder.equal(root.get(BusinessProduct_.PRODUCT_STATUS_TYPE), BusinessProductStatusType.AVAILABLE)
+            builder.and(
+                builder.equal(root.get(BusinessProduct_.PRODUCT_STATUS_TYPE), BusinessProductStatusType.AVAILABLE),
+                builder.equal(rootJoin.get(Enterprise_.NAME), organizationName)
+            )
+        );
+        return entityManager.createQuery(criteria).getResultList();
+    }
+
+    public static List<BusinessProduct> findProducts(String organizationName) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<BusinessProduct> criteria = builder.createQuery(BusinessProduct.class);
+        Root<BusinessProduct> root = criteria.from(BusinessProduct.class);
+        Join<Enterprise, BusinessProduct> rootJoin = root.join(BusinessProduct_.ENTERPRISE);
+        criteria.select(root);
+        criteria.where(
+            builder.equal(rootJoin.get(Enterprise_.NAME), organizationName)
         );
         return entityManager.createQuery(criteria).getResultList();
     }

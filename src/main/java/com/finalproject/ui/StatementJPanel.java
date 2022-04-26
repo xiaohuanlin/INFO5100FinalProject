@@ -36,7 +36,7 @@ public class StatementJPanel extends javax.swing.JPanel {
         LocalDateTime start = startDateTimePicker.getDateTimeStrict() == null ? LocalDateTime.of(1980, 1, 1, 0, 0): startDateTimePicker.getDateTimeStrict();
         LocalDateTime end = endDateTimePicker.getDateTimeStrict() == null ? LocalDateTime.of(2100, 1, 1, 0, 0): endDateTimePicker.getDateTimeStrict();
 
-        for (BusinessOrder current: BusinessOrder.findByDate(start, end)) {
+        for (BusinessOrder current: BusinessOrder.findByDate("Digital Platform", start, end)) {
             Object[] row = new Object[4];
             row[0] = BusinessSourceType.ORDER;
             row[1] = current.getId();

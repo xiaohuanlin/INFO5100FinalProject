@@ -146,7 +146,12 @@ public class BusinessOrder extends ORMObject {
         updateDate = LocalDateTime.now();
     }
 
-    public static List<BusinessOrder> findByDate(LocalDateTime start, LocalDateTime end) {
+    public static List<BusinessOrder> find(String enterprise) {
+        List<BusinessOrder> res = find(BusinessOrder.class);
+        return res.stream().filter( x -> x.getProduct().getEnterprise().getName().equals(enterprise)).toList();
+    }
+
+    public static List<BusinessOrder> findByDate(String enterprise, LocalDateTime start, LocalDateTime end) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<BusinessOrder> criteria = builder.createQuery(BusinessOrder.class);
         Root<BusinessOrder> root = criteria.from(BusinessOrder.class);
@@ -157,12 +162,8 @@ public class BusinessOrder extends ORMObject {
                 builder.lessThan(root.get(BusinessOrder_.CREATE_DATE), end)
             )
         );
-        try {
-            System.out.println(entityManager.createQuery(criteria).getResultList());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return entityManager.createQuery(criteria).getResultList();
+        List<BusinessOrder> res = entityManager.createQuery(criteria).getResultList();
+        return res.stream().filter( x -> x.getProduct().getEnterprise().getName().equals(enterprise)).toList();
     }
 
     @Override
