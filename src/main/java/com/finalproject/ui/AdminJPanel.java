@@ -337,6 +337,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         userNamejLabel = new javax.swing.JLabel();
         passwordjTextField = new javax.swing.JTextField();
 
+        jTabbedPane.setBackground(new java.awt.Color(242, 237, 231));
+
         roleNamejTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleNamejTextFieldActionPerformed(evt);
