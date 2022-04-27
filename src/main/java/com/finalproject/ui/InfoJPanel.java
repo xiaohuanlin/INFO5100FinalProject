@@ -71,19 +71,23 @@ public class InfoJPanel extends javax.swing.JPanel {
         enterprisejTextField = new javax.swing.JTextField();
         logoutjButton = new javax.swing.JButton();
 
-        usernamejLabel.setText("username");
+        setBackground(new java.awt.Color(104, 173, 226));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(100, 600));
+
+        usernamejLabel.setText("Username");
 
         usernamejTextField.setEnabled(false);
 
-        organizationjLabel.setText("organization");
+        organizationjLabel.setText("Organization");
 
         organizationjTextField.setEnabled(false);
 
-        rolejLabel.setText("role");
+        rolejLabel.setText("Role");
 
         rolejTextField.setEnabled(false);
 
-        enterprisejLabel.setText("enterprise");
+        enterprisejLabel.setText("Enterprise");
 
         enterprisejTextField.setEnabled(false);
 
@@ -110,7 +114,7 @@ public class InfoJPanel extends javax.swing.JPanel {
                     .addComponent(usernamejLabel)
                     .addComponent(organizationjLabel)
                     .addComponent(enterprisejLabel))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +137,7 @@ public class InfoJPanel extends javax.swing.JPanel {
                 .addComponent(enterprisejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(logoutjButton)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
