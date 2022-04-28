@@ -6,6 +6,8 @@ package com.finalproject.ui;
 
 import com.finalproject.model.Role;
 import com.finalproject.model.User;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,6 +23,13 @@ public class InfoJPanel extends javax.swing.JPanel {
         initComponents();
         this.jFrame = jFrame;
         logoutjButton.setEnabled(false);
+        
+        ImageIcon i = new ImageIcon("src/main/resources/image/Logout.png");
+        int width = 50, height = 50;
+        Image image = i.getImage();
+        Image smallImage = image.getScaledInstance(width, height, Image.SCALE_FAST);
+        ImageIcon smallIcon = new ImageIcon(smallImage);
+        cartjLabel.setIcon(smallIcon);
     }
 
     public void displayUser() {
@@ -70,6 +79,7 @@ public class InfoJPanel extends javax.swing.JPanel {
         enterprisejLabel = new javax.swing.JLabel();
         enterprisejTextField = new javax.swing.JTextField();
         logoutjButton = new javax.swing.JButton();
+        cartjLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(104, 173, 226));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -96,7 +106,7 @@ public class InfoJPanel extends javax.swing.JPanel {
         enterprisejTextField.setEnabled(false);
 
         logoutjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-        logoutjButton.setText("Logout");
+        logoutjButton.setText("LOG OUT");
         logoutjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutjButtonActionPerformed(evt);
@@ -107,10 +117,14 @@ public class InfoJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(cartjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logoutjButton)
+                .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logoutjButton)
                     .addComponent(enterprisejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(organizationjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rolejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -119,7 +133,7 @@ public class InfoJPanel extends javax.swing.JPanel {
                     .addComponent(usernamejLabel)
                     .addComponent(organizationjLabel)
                     .addComponent(enterprisejLabel))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +154,11 @@ public class InfoJPanel extends javax.swing.JPanel {
                 .addComponent(enterprisejLabel)
                 .addGap(18, 18, 18)
                 .addComponent(enterprisejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(logoutjButton)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cartjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutjButton))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -157,6 +173,7 @@ public class InfoJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel cartjLabel;
     private javax.swing.JLabel enterprisejLabel;
     private javax.swing.JTextField enterprisejTextField;
     private javax.swing.JButton logoutjButton;
