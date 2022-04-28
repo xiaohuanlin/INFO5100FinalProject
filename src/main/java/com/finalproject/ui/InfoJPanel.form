@@ -40,7 +40,7 @@
                   <Component id="organizationjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="enterprisejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="87" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,7 +65,7 @@
               <Component id="enterprisejTextField" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               <Component id="logoutjButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace pref="140" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,6 +73,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="usernamejLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
     </Component>
@@ -83,6 +86,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="organizationjLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Organization"/>
       </Properties>
     </Component>
@@ -93,6 +99,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="rolejLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Role"/>
       </Properties>
     </Component>
@@ -103,6 +112,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="enterprisejLabel">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Enterprise"/>
       </Properties>
     </Component>
@@ -113,6 +125,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="logoutjButton">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Logout"/>
       </Properties>
       <Events>
