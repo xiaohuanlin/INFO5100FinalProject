@@ -128,6 +128,10 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
         descjLabel = new javax.swing.JLabel();
         descjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         purchaseOrderModifyjButton.setText("modify");
         purchaseOrderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

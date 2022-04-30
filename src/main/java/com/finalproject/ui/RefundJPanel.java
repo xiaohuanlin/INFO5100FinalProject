@@ -107,6 +107,10 @@ public class RefundJPanel extends javax.swing.JPanel {
         amountjLabel = new javax.swing.JLabel();
         amountjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         refundModifyjButton.setText("modify");
         refundModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

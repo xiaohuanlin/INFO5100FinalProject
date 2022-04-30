@@ -102,6 +102,10 @@ public class VehicleJPanel extends javax.swing.JPanel {
         orderjTable = new javax.swing.JTable();
         vehicleTypejLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         vehicleModifyjButton.setText("modify");
         vehicleModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

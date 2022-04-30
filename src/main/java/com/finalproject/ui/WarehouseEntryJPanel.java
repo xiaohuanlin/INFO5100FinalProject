@@ -107,6 +107,10 @@ public class WarehouseEntryJPanel extends javax.swing.JPanel {
         quantityjLabel = new javax.swing.JLabel();
         quantityjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         entryModifyjButton.setText("modify");
         entryModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

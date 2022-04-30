@@ -88,6 +88,8 @@ public class StatementJPanel extends javax.swing.JPanel {
         endDateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         searchjButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
         statementjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

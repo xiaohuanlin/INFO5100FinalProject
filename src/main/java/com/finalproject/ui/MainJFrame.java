@@ -25,6 +25,8 @@ public class MainJFrame extends javax.swing.JFrame {
         new Configuration().config();
         jSplitPane.setLeftComponent(new InfoJPanel(this));
         jSplitPane.setRightComponent(new LoginJPanel(this));
+        setSize(1300,700);
+        
     }
 
     /**

@@ -123,6 +123,10 @@ public class OrderJPanel extends javax.swing.JPanel {
         customerjTextField = new javax.swing.JTextField();
         shipjButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         orderModifyjButton.setText("Modify");
         orderModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {

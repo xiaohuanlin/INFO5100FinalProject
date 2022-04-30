@@ -98,6 +98,10 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
         descriptionjLabel = new javax.swing.JLabel();
         descriptionjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         MMModifyjButton.setText("Modify");
         MMModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         MMModifyjButton.addActionListener(new java.awt.event.ActionListener() {

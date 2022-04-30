@@ -117,6 +117,10 @@ public class ProductJPanel extends javax.swing.JPanel {
         sellPricejLabel = new javax.swing.JLabel();
         sellPricejTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         productModifyjButton.setText("Modify");
         productModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         productModifyjButton.addActionListener(new java.awt.event.ActionListener() {

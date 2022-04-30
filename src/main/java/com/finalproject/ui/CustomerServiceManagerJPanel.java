@@ -128,6 +128,12 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         descriptionjTextArea = new javax.swing.JTextArea();
 
+        jTabbedPane.setBackground(new java.awt.Color(242, 237, 231));
+
+        ticketjPanel.setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         ticketModifyjButton.setText("Modify");
         ticketModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         ticketModifyjButton.addActionListener(new java.awt.event.ActionListener() {
