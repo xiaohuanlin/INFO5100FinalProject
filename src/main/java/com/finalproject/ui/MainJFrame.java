@@ -57,8 +57,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setLeftComponent(leftjPanel);
 
-        rightjPanel.setPreferredSize(new java.awt.Dimension(900, 600));
-
         javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
         rightjPanel.setLayout(rightjPanelLayout);
         rightjPanelLayout.setHorizontalGroup(
