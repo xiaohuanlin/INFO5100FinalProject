@@ -410,6 +410,12 @@ public class AdminJPanel extends javax.swing.JPanel {
 
         jScrollPane5.setViewportView(currentPMjList);
 
+        organizationjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationjComboBoxActionPerformed(evt);
+            }
+        });
+
         pmToRightjButton.setText(">>");
         pmToRightjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,6 +557,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         );
 
         jTabbedPane.addTab("Role", rolejPanel);
+
+        permissionjPanel.setBackground(new java.awt.Color(242, 237, 231));
 
         namejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         namejLabel.setText("Name");
@@ -1382,6 +1390,10 @@ public class AdminJPanel extends javax.swing.JPanel {
             ((DefaultListModel<Role>)otherRolesjList.getModel()).addElement(r);
         }
     }//GEN-LAST:event_toRolesLeftjButtonActionPerformed
+
+    private void organizationjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationjComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationjComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
