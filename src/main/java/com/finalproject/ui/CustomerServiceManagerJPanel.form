@@ -42,15 +42,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="137" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="passwordjLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="descriptionjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="passwordjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -58,70 +56,67 @@
                                           <Component id="orderjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="statusjComboBox" min="-2" pref="106" max="-2" attributes="0"/>
-                                          <Component id="updateDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="createDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="orderjComboBox" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="updateDatePicker" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="createDatePicker" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                                          <Component id="statusjComboBox" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="orderjComboBox" alignment="0" min="-2" pref="359" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="passwordjLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="descriptionjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane11" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
                               <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace pref="301" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="orderjLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="orderjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="passwordjLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="createDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="passwordjLabel1" alignment="3" max="32767" attributes="0"/>
+                          <Component id="updateDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="userRolesjLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="statusjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="orderjLabel" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="orderjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="passwordjLabel" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="createDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="passwordjLabel1" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="updateDatePicker" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="userRolesjLabel" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="statusjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Component id="descriptionjLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="86" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="descriptionjLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                              <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jScrollPane11" min="-2" pref="110" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="300" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -134,13 +129,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ticketModifyjButton" alignment="2" max="32767" attributes="0"/>
-                              <Component id="ticketViewjButton" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ticketCreatejButton" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ticketDeletejButton" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="ticketModifyjButton" min="-2" pref="75" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ticketDeletejButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="ticketCreatejButton" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                          <Component id="ticketViewjButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="88" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -148,14 +144,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="ticketModifyjButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ticketDeletejButton" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ticketCreatejButton" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ticketViewjButton" min="-2" pref="25" max="-2" attributes="0"/>
-                          <EmptySpace pref="46" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="ticketModifyjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="ticketDeletejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="ticketCreatejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="ticketViewjButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -163,7 +158,10 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="ticketModifyjButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="modify"/>
+                    <Property name="text" type="java.lang.String" value="Modify"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ticketModifyjButtonActionPerformed"/>
@@ -171,7 +169,10 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="ticketDeletejButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="delete"/>
+                    <Property name="text" type="java.lang.String" value="Delete"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ticketDeletejButtonActionPerformed"/>
@@ -179,7 +180,10 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="ticketCreatejButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="create"/>
+                    <Property name="text" type="java.lang.String" value="Create"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ticketCreatejButtonActionPerformed"/>
@@ -187,7 +191,10 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="ticketViewjButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="view"/>
+                    <Property name="text" type="java.lang.String" value="View"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ticketViewjButtonActionPerformed"/>
@@ -197,12 +204,18 @@
             </Container>
             <Component class="javax.swing.JLabel" name="passwordjLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="create_date"/>
+                <Property name="text" type="java.lang.String" value="Create_date"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Chalkboard SE" size="14" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="userRolesjLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="status"/>
+                <Property name="text" type="java.lang.String" value="Status"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Chalkboard SE" size="14" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane11">
@@ -216,11 +229,11 @@
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="0">
-                        <Column editable="false" title="id" type="java.lang.Object"/>
-                        <Column editable="false" title="order" type="java.lang.Object"/>
-                        <Column editable="false" title="create_date" type="java.lang.Object"/>
-                        <Column editable="false" title="update_date" type="java.lang.Object"/>
-                        <Column editable="false" title="status" type="java.lang.Object"/>
+                        <Column editable="true" title="ID" type="java.lang.Object"/>
+                        <Column editable="true" title="Order" type="java.lang.Object"/>
+                        <Column editable="true" title="Create_date" type="java.lang.Object"/>
+                        <Column editable="true" title="Update_date" type="java.lang.Object"/>
+                        <Column editable="true" title="Status" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -261,7 +274,10 @@
             </Container>
             <Component class="javax.swing.JLabel" name="orderjLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="order"/>
+                <Property name="text" type="java.lang.String" value="Order"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Chalkboard SE" size="14" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="orderjComboBox">
@@ -281,7 +297,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="passwordjLabel1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="update_date"/>
+                <Property name="text" type="java.lang.String" value="Update_date"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Chalkboard SE" size="14" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="updateDatePicker">
@@ -301,7 +320,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="descriptionjLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="description"/>
+                <Property name="text" type="java.lang.String" value="Description"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Chalkboard SE" size="14" style="0"/>
+                </Property>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">

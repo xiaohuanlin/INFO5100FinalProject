@@ -42,28 +42,32 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        leftjPanel.setPreferredSize(new java.awt.Dimension(100, 600));
+
         javax.swing.GroupLayout leftjPanelLayout = new javax.swing.GroupLayout(leftjPanel);
         leftjPanel.setLayout(leftjPanelLayout);
         leftjPanelLayout.setHorizontalGroup(
             leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         leftjPanelLayout.setVerticalGroup(
             leftjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         jSplitPane.setLeftComponent(leftjPanel);
+
+        rightjPanel.setPreferredSize(new java.awt.Dimension(900, 600));
 
         javax.swing.GroupLayout rightjPanelLayout = new javax.swing.GroupLayout(rightjPanel);
         rightjPanel.setLayout(rightjPanelLayout);
         rightjPanelLayout.setHorizontalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 888, Short.MAX_VALUE)
+            .addGap(0, 795, Short.MAX_VALUE)
         );
         rightjPanelLayout.setVerticalGroup(
             rightjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         jSplitPane.setRightComponent(rightjPanel);
@@ -72,7 +76,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
