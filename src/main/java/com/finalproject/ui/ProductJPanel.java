@@ -310,7 +310,7 @@ public class ProductJPanel extends javax.swing.JPanel {
 
             product.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -351,7 +351,7 @@ public class ProductJPanel extends javax.swing.JPanel {
             bp.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
             bp.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

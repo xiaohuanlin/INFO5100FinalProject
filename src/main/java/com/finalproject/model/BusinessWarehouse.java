@@ -11,7 +11,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 /**
@@ -23,9 +27,6 @@ public class BusinessWarehouse extends ORMObject {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false)
-    private Integer availableQuantity;
 
     @Column(nullable = false)
     private Integer totalQuantity;
@@ -44,11 +45,15 @@ public class BusinessWarehouse extends ORMObject {
     }
 
     public Integer getAvailableQuantity() {
-        return availableQuantity;
-    }
-
-    public void setAvailableQuantity(Integer availableQuantity) {
-        this.availableQuantity = availableQuantity;
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<BusinessWarehouseEntry> criteria = builder.createQuery(BusinessWarehouseEntry.class);
+        Root<BusinessWarehouseEntry> root = criteria.from(BusinessWarehouseEntry.class);
+        criteria.select(root);
+        criteria.where(
+            builder.equal(root.get(BusinessWarehouseEntry_.BUSINESS_WAREHOUSE), this)
+        );
+        List<BusinessWarehouseEntry> list = entityManager.createQuery(criteria).getResultList();
+        return totalQuantity - list.stream().map(entry -> entry.getQuantity()).mapToInt(i -> i).sum();
     }
 
     public Integer getTotalQuantity() {
@@ -97,6 +102,6 @@ public class BusinessWarehouse extends ORMObject {
 
     @Override
     public String toString() {
-        return id + "(" + location + ":" + availableQuantity + ")";
+        return id + "(" + location + ":" + getAvailableQuantity() + ")";
     }
 }

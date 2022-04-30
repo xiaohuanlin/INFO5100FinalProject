@@ -10,45 +10,29 @@ import javax.swing.event.ChangeListener;
  *
  * @author Administrator
  */
-public class MarketingManagerJPanel extends javax.swing.JPanel {
+public class CustomerJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
 
     /**
      * Creates new form operationsPanel
      */
-    public MarketingManagerJPanel(MainJFrame jFrame) {
+    public CustomerJPanel(MainJFrame jFrame) {
         initComponents();
 
         this.jFrame = jFrame;
-        ProductJPanel productJPanel = new ProductJPanel(jFrame);
         OrderJPanel orderJPanel = new OrderJPanel(jFrame);
-        PurchaseOrderJPanel purchaseOrderJPanel = new PurchaseOrderJPanel(jFrame);
 
-        jTabbedPane.addTab("Product", productJPanel);
-        productJPanel.displayProduct();
-        productJPanel.displayProductList();
         jTabbedPane.addTab("Order", orderJPanel);
         orderJPanel.displayOrder();
         orderJPanel.displayOrderList();
-        jTabbedPane.addTab("PurchaseOrder", purchaseOrderJPanel);
-        purchaseOrderJPanel.displayOrder();
-        purchaseOrderJPanel.displayOrderList();
 
         jTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 int index = jTabbedPane.getSelectedIndex();
                 switch (index) {
                     case 0:
-                        productJPanel.displayProduct();
-                        productJPanel.displayProductList();
-                        break;
-                    case 1:
                         orderJPanel.displayOrder();
                         orderJPanel.displayOrderList();
-                        break;
-                    case 2:
-                        purchaseOrderJPanel.displayOrder();
-                        purchaseOrderJPanel.displayOrderList();
                         break;
                     default:
                         throw new AssertionError();

@@ -48,7 +48,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             vehiclejComboBox.removeAllItems();
             enterprisejComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findProducts("")) {
+		    for (BusinessProduct product: BusinessProduct.find(BusinessProduct.class)) {
 				productjComboBox.addItem(product);
 		    }
 		    for (BusinessVehicle o: BusinessVehicle.findAvailableVehicle()) {
@@ -360,7 +360,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
 
             order.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -403,7 +403,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             bo.setToLocation(toLocationjTextField.getText());
             bo.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

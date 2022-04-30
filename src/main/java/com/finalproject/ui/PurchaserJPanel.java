@@ -22,11 +22,15 @@ public class PurchaserJPanel extends javax.swing.JPanel {
         this.jFrame = jFrame;
         PurchasingProductJPanel productJPanel = new PurchasingProductJPanel(jFrame);
         PurchasingRecordJPanel orderJPanel = new PurchasingRecordJPanel(jFrame);
+        PurchaseSuppilerOrderJPanel suppilerOrderJPanel = new PurchaseSuppilerOrderJPanel(jFrame);
 
         jTabbedPane.addTab("Product", productJPanel);
+        jTabbedPane.addTab("PurchaseOrder", suppilerOrderJPanel);
         jTabbedPane.addTab("Order", orderJPanel);
         productJPanel.displayProduct();
         productJPanel.displayProductList();
+        suppilerOrderJPanel.displayOrder();
+        suppilerOrderJPanel.displayOrderList();
         orderJPanel.displayOrder();
         orderJPanel.displayOrderList();
 
@@ -39,6 +43,10 @@ public class PurchaserJPanel extends javax.swing.JPanel {
                         productJPanel.displayProductList();
                         break;
                     case 1:
+                        suppilerOrderJPanel.displayOrder();
+                        suppilerOrderJPanel.displayOrderList();
+                        break;
+                    case 2:
                         orderJPanel.displayOrder();
                         orderJPanel.displayOrderList();
                         break;

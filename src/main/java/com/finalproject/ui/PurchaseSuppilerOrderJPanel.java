@@ -4,8 +4,6 @@
  */
 package com.finalproject.ui;
 
-import com.finalproject.model.BusinessOrder;
-import com.finalproject.model.BusinessOrderStatusType;
 import com.finalproject.model.BusinessProduct;
 import com.finalproject.model.BusinessPurchaseOrder;
 import com.finalproject.model.BusinessPurchaseOrderStatusType;
@@ -18,13 +16,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Administrator
  */
-public class PurchaseOrderJPanel extends javax.swing.JPanel {
+public class PurchaseSuppilerOrderJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
     BusinessPurchaseOrder order;
     /**
      * Creates new form orderJPanel
      */
-    public PurchaseOrderJPanel(MainJFrame jFrame) {
+    public PurchaseSuppilerOrderJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
 
@@ -34,8 +32,6 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.CREATE)) {
             purchaseOrderCreatejButton.setEnabled(false);
-            totalAmountjTextField.setEnabled(false);
-            quantityjTextField.setEnabled(false);
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.VIEW)) {
             purchaseOrderViewjButton.setEnabled(false);
@@ -81,7 +77,7 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
         model.setRowCount(0);
         
-        for (BusinessPurchaseOrder current: BusinessPurchaseOrder.find("Supplier", "Digital Platform")) {
+        for (BusinessPurchaseOrder current: BusinessPurchaseOrder.find("Supplier", "Supplier")) {
             Object[] row = new Object[7];
             row[0] = current.getId();
             row[1] = current.getProduct();
@@ -224,8 +220,6 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
 
         quantityjLabel.setText("quantity");
 
-        totalAmountjTextField.setEnabled(false);
-
         quantityInspectorjLabel.setText("quality inspector");
 
         qijComboBox.setEnabled(false);
@@ -338,8 +332,7 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
             order.setUpdateDate(updateDatePicker.getDateTimeStrict());
             order.setOrderStatusType((BusinessPurchaseOrderStatusType)statusjComboBox.getSelectedItem());
             order.setQuantity(Integer.parseInt(quantityjTextField.getText()));
-            order.setTotalAmount(order.getQuantity() * order.getProduct().getSellPrice());
-            order.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
+            order.setTotalAmount((int)(Double.parseDouble(totalAmountjTextField.getText()) * 100));
             order.setUser(jFrame.getUser());
             order.setDescription(descjTextField.getText());
 
@@ -382,19 +375,10 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
             bo.setUpdateDate(updateDatePicker.getDateTimeStrict());
             bo.setOrderStatusType((BusinessPurchaseOrderStatusType)statusjComboBox.getSelectedItem());
             bo.setQuantity(Integer.parseInt(quantityjTextField.getText()));
-            bo.setTotalAmount(bo.getQuantity() * bo.getProduct().getSellPrice());
-            bo.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
+            bo.setTotalAmount((int)(Double.parseDouble(totalAmountjTextField.getText()) * 100));
             bo.setDescription(descjTextField.getText());
             bo.setUser(jFrame.getUser());
             bo.save();
-
-            BusinessOrder b = new BusinessOrder();
-            b.setProduct((BusinessProduct)productjComboBox.getSelectedItem());
-            b.setOrderStatusType(BusinessOrderStatusType.CREATE);
-            b.setQuantity(Integer.parseInt(quantityjTextField.getText()));
-            b.setTotalAmount(bo.getQuantity() * bo.getProduct().getSellPrice());
-            b.setCustomerName("Digital Platform");
-            b.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;

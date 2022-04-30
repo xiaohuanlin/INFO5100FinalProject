@@ -320,7 +320,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
 
             order.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -361,7 +361,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
             bo.setCustomerName((String)customerjComboBox.getSelectedItem());
             bo.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

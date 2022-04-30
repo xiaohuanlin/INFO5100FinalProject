@@ -941,7 +941,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             pm.setRoles(afterRoles);
             pm.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");
@@ -1023,7 +1023,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             permission.setRoles(afterRoles);
             permission.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -1114,7 +1114,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             role.setUsers(afterUsers);
             role.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -1166,7 +1166,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             r.setUsers(afterUsers);
             r.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");
@@ -1286,7 +1286,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             user.setRoles(afterRoles);
             user.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -1328,7 +1328,7 @@ public class AdminJPanel extends javax.swing.JPanel {
             u.setRoles(afterRoles);
             u.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

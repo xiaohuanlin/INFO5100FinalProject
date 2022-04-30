@@ -9,6 +9,7 @@ import com.finalproject.model.BusinessOrderStatusType;
 import com.finalproject.model.BusinessProduct;
 import com.finalproject.model.Email;
 import com.finalproject.model.PermissionType;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,6 +39,9 @@ public class OrderJPanel extends javax.swing.JPanel {
         }
         if (!jFrame.getUser().hasPermission(className, PermissionType.DELETE)) {
             orderDeletejButton.setEnabled(false);
+        }
+        if (!jFrame.getUser().hasPermission("Order.status", PermissionType.EDIT)) {
+            statusjComboBox.setEnabled(false);
         }
     }
 
@@ -117,6 +121,7 @@ public class OrderJPanel extends javax.swing.JPanel {
         quantityjTextField = new javax.swing.JTextField();
         customerjLabel = new javax.swing.JLabel();
         customerjTextField = new javax.swing.JTextField();
+        shipjButton = new javax.swing.JButton();
 
         orderModifyjButton.setText("Modify");
         orderModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
@@ -221,6 +226,13 @@ public class OrderJPanel extends javax.swing.JPanel {
         customerjLabel.setText("Customer");
         customerjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
+        shipjButton.setText("Ship");
+        shipjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shipjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,7 +266,9 @@ public class OrderJPanel extends javax.swing.JPanel {
                         .addGap(150, 150, 150)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(257, 257, 257)
+                        .addGap(158, 158, 158)
+                        .addComponent(shipjButton)
+                        .addGap(26, 26, 26)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(421, Short.MAX_VALUE))
         );
@@ -292,8 +306,13 @@ public class OrderJPanel extends javax.swing.JPanel {
                 .addGap(51, 51, 51)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(shipjButton)
+                        .addGap(40, 40, 40))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -321,7 +340,7 @@ public class OrderJPanel extends javax.swing.JPanel {
 
             order.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -364,7 +383,7 @@ public class OrderJPanel extends javax.swing.JPanel {
 
             Email.send(jFrame.getUser(), "New order", jFrame.getUser().getUsername() + " is adding a new order as a " + jFrame.getRole().getName());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");
@@ -389,6 +408,25 @@ public class OrderJPanel extends javax.swing.JPanel {
         displayOrder();
     }//GEN-LAST:event_orderViewjButtonActionPerformed
 
+    private void shipjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shipjButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = orderjTable.getSelectedRow();
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to ship");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) orderjTable.getModel();
+        int id = (Integer) model.getValueAt(selectedIndex, 0);
+        order = BusinessOrder.findById(BusinessOrder.class, id);
+        if (order.getOrderStatusType() != BusinessOrderStatusType.CREATE) {
+            JOptionPane.showMessageDialog(this, "Only ship the order of CREATE status");
+            return;
+        }
+
+        JFrame frame = new ShippmentJFrame(this.jFrame, order);
+        frame.setVisible(true);
+    }//GEN-LAST:event_shipjButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonjPanel2;
@@ -407,6 +445,7 @@ public class OrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel productjLabel;
     private javax.swing.JLabel quantityjLabel;
     private javax.swing.JTextField quantityjTextField;
+    private javax.swing.JButton shipjButton;
     private javax.swing.JComboBox<BusinessOrderStatusType> statusjComboBox;
     private javax.swing.JLabel totalAmountjLabel;
     private javax.swing.JTextField totalAmountjTextField;

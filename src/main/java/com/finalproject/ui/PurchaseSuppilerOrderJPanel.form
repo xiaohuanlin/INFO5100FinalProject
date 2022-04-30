@@ -29,25 +29,36 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="passwordjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="locationjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="availableQuantityjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="totalQuantityjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="userRolesjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="totalAmountjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="quantityjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="totalQuantityjTextField" min="-2" pref="106" max="-2" attributes="0"/>
                                   <Component id="updateDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="createDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="productjComboBox" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="qijComboBox" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="availableQuantityjTextField" alignment="0" pref="106" max="32767" attributes="0"/>
-                                      <Component id="locationjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="descjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="quantityjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="totalAmountjTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="statusjComboBox" alignment="0" pref="166" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="58" max="32767" attributes="0"/>
+                      <EmptySpace pref="84" max="32767" attributes="0"/>
                       <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="descjLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityInspectorjLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -56,12 +67,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="locationjLabel" alignment="3" max="32767" attributes="0"/>
-                          <Component id="locationjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="productjLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="productjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -75,29 +86,54 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="availableQuantityjLabel" alignment="3" max="32767" attributes="0"/>
-                          <Component id="availableQuantityjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="userRolesjLabel" alignment="3" max="32767" attributes="0"/>
+                          <Component id="statusjComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="totalQuantityjLabel" alignment="3" max="32767" attributes="0"/>
-                          <Component id="totalQuantityjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalAmountjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalAmountjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="quantityjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="quantityInspectorjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="qijComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="descjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="descjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="jScrollPane11" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JComboBox" name="productjComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;com.finalproject.model.BusinessProduct&gt;"/>
+      </AuxValues>
+    </Component>
     <Container class="javax.swing.JPanel" name="buttonjPanel2">
 
       <Layout>
@@ -106,10 +142,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="warehouseModifyjButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="warehousejButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="warehouseCreatejButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="warehouseDeletejButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="purchaseOrderModifyjButton" alignment="2" max="32767" attributes="0"/>
+                      <Component id="purchaseOrderViewjButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="purchaseOrderCreatejButton" alignment="0" max="32767" attributes="0"/>
+                      <Component id="purchaseOrderDeletejButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -119,49 +155,49 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="warehouseModifyjButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="purchaseOrderModifyjButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="warehouseDeletejButton" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="purchaseOrderDeletejButton" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="warehouseCreatejButton" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="purchaseOrderCreatejButton" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="warehousejButton" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="purchaseOrderViewjButton" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="warehouseModifyjButton">
+        <Component class="javax.swing.JButton" name="purchaseOrderModifyjButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="modify"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="warehouseModifyjButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseOrderModifyjButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="warehouseDeletejButton">
+        <Component class="javax.swing.JButton" name="purchaseOrderDeletejButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="delete"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="warehouseDeletejButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseOrderDeletejButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="warehouseCreatejButton">
+        <Component class="javax.swing.JButton" name="purchaseOrderCreatejButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="create"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="warehouseCreatejButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseOrderCreatejButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="warehousejButton">
+        <Component class="javax.swing.JButton" name="purchaseOrderViewjButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="view"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="warehousejButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseOrderViewjButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -181,9 +217,24 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JComboBox" name="statusjComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;BusinessPurchaseOrderStatusType&gt;"/>
+      </AuxValues>
+    </Component>
     <Component class="javax.swing.JLabel" name="passwordjLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="create_date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="userRolesjLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="status"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane11">
@@ -193,20 +244,26 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="productjTable">
+        <Component class="javax.swing.JTable" name="orderjTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="id" type="java.lang.Object"/>
-                <Column editable="false" title="location" type="java.lang.String"/>
+                <Column editable="false" title="product" type="java.lang.Object"/>
                 <Column editable="false" title="create_date" type="java.lang.Object"/>
                 <Column editable="false" title="update_date" type="java.lang.Object"/>
-                <Column editable="false" title="available quantity" type="java.lang.Integer"/>
-                <Column editable="false" title="total quantity" type="java.lang.Integer"/>
+                <Column editable="false" title="status" type="java.lang.Object"/>
+                <Column editable="false" title="total amount" type="java.lang.Double"/>
+                <Column editable="false" title="quantity" type="java.lang.Integer"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -246,29 +303,47 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="locationjLabel">
+    <Component class="javax.swing.JLabel" name="productjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="location"/>
+        <Property name="text" type="java.lang.String" value="product"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="locationjTextField">
-    </Component>
-    <Component class="javax.swing.JLabel" name="availableQuantityjLabel">
+    <Component class="javax.swing.JLabel" name="totalAmountjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="available quantity"/>
+        <Property name="text" type="java.lang.String" value="total amount"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="availableQuantityjTextField">
+    <Component class="javax.swing.JLabel" name="quantityjLabel">
       <Properties>
+        <Property name="text" type="java.lang.String" value="quantity"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="totalAmountjTextField">
+    </Component>
+    <Component class="javax.swing.JTextField" name="quantityjTextField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="quantityInspectorjLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="quality inspector"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="qijComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;User&gt;"/>
+      </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="totalQuantityjLabel">
+    <Component class="javax.swing.JLabel" name="descjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="total quantity"/>
+        <Property name="text" type="java.lang.String" value="description"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="totalQuantityjTextField">
+    <Component class="javax.swing.JTextField" name="descjTextField">
     </Component>
   </SubComponents>
 </Form>

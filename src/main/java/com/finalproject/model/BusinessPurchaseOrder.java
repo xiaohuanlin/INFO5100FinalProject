@@ -53,6 +53,9 @@ public class BusinessPurchaseOrder extends ORMObject {
     @Column
     private String description;
 
+    @ManyToOne
+    private Enterprise enterprise;
+
     public Integer getId() {
         return id;
     }
@@ -85,6 +88,14 @@ public class BusinessPurchaseOrder extends ORMObject {
             throw new Exception("TotalAmount less than 0");
         }
         this.totalAmount = totalAmount;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     public User getUser() {
@@ -136,6 +147,16 @@ public class BusinessPurchaseOrder extends ORMObject {
     @PreUpdate
     protected void onUpdate() {
         updateDate = LocalDateTime.now();
+    }
+
+    public static List<BusinessPurchaseOrder> find(String productEnterprise, String enterprise) {
+        List<BusinessPurchaseOrder> res = BusinessPurchaseOrder.find(BusinessPurchaseOrder.class);
+        return res.stream().filter( x -> {
+            if (!enterprise.equals("") && !x.getEnterprise().getName().equals(enterprise)) {
+                return false;
+            }
+            return x.getProduct().getEnterprise().getName().equals(productEnterprise);
+        }).toList();
     }
 
     public static List<BusinessPurchaseOrder> findByDate(LocalDateTime start, LocalDateTime end) {

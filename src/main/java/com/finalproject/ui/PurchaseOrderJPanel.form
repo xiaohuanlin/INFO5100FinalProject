@@ -319,12 +319,15 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="totalAmountjTextField">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="quantityjTextField">
     </Component>
     <Component class="javax.swing.JLabel" name="quantityInspectorjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="quantity inspector"/>
+        <Property name="text" type="java.lang.String" value="quality inspector"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="qijComboBox">
