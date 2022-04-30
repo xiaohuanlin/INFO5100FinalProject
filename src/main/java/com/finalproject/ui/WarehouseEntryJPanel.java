@@ -288,7 +288,7 @@ public class WarehouseEntryJPanel extends javax.swing.JPanel {
 
             entry.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -327,7 +327,7 @@ public class WarehouseEntryJPanel extends javax.swing.JPanel {
             bo.setQuantity(Integer.parseInt(quantityjTextField.getText()));
             bo.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

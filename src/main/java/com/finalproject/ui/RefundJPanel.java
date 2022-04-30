@@ -44,7 +44,7 @@ public class RefundJPanel extends javax.swing.JPanel {
         if (refund == null) {
             orderjComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessOrder order: BusinessOrder.find(BusinessOrder.class)) {
+		    for (BusinessOrder order: BusinessOrder.find("Digital Platform")) {
 				orderjComboBox.addItem(order);
 		    }
             for (BusinessRefundOrderStatusType ts: BusinessRefundOrderStatusType.values()) {
@@ -289,7 +289,7 @@ public class RefundJPanel extends javax.swing.JPanel {
 
             refund.flush();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Modify error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Modify error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Modify done");
@@ -328,7 +328,7 @@ public class RefundJPanel extends javax.swing.JPanel {
             bf.setAmount((int)(Double.parseDouble(amountjTextField.getText()) * 100));
             bf.save();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
+            JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
         }
         JOptionPane.showMessageDialog(this, "Save done");

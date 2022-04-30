@@ -63,7 +63,7 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
         if (ticket == null) {
             orderjComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessOrder order: BusinessOrder.find(BusinessOrder.class)) {
+		    for (BusinessOrder order: BusinessOrder.find("Digital Platform")) {
 				orderjComboBox.addItem(order);
 		    }
             for (TicketStatusType ts: TicketStatusType.values()) {
