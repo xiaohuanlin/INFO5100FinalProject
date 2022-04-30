@@ -48,7 +48,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             vehiclejComboBox.removeAllItems();
             enterprisejComboBox.removeAllItems();
             statusjComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findAvailableProduct("Transportation")) {
+		    for (BusinessProduct product: BusinessProduct.findProducts("")) {
 				productjComboBox.addItem(product);
 		    }
 		    for (BusinessVehicle o: BusinessVehicle.findAvailableVehicle()) {
@@ -62,6 +62,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             }
 		    createDatePicker.clear();
 		    updateDatePicker.clear();
+            feejTextField.setText("");
             fromLocationjTextField.setText("");
             toLocationjTextField.setText("");
         } else {
@@ -72,6 +73,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
             createDatePicker.setDateTimeStrict(order.getCreateDate());
             updateDatePicker.setDateTimeStrict(order.getUpdateDate());
             statusjComboBox.setSelectedItem(order.getOrderStatusType());
+            feejTextField.setText(String.valueOf(order.getFee() / 100.0));
             fromLocationjTextField.setText(order.getFromLocation());
             toLocationjTextField.setText(order.getToLocation());
         }
@@ -223,7 +225,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
         productjLabel.setText("Product");
         productjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        feejLabel.setText("Fee");
+        feejLabel.setText("Deliver Fee");
         feejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         fromLocationjLabel.setText("From Location");

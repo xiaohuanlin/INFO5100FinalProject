@@ -44,7 +44,7 @@ public class WarehouseEntryJPanel extends javax.swing.JPanel {
         if (entry == null) {
             productjComboBox.removeAllItems();
             warehousejComboBox.removeAllItems();
-		    for (BusinessProduct product: BusinessProduct.findAvailableProduct("Inventory")) {
+		    for (BusinessProduct product: BusinessProduct.find(BusinessProduct.class)) {
 				productjComboBox.addItem(product);
 		    }
             for (BusinessWarehouse ts: BusinessWarehouse.find(BusinessWarehouse.class)) {

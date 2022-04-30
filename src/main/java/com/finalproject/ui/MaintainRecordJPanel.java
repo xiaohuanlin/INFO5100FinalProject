@@ -42,7 +42,7 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
     public final void displayRecord() {
         if (record == null) {
             vehiclejComboBox.removeAllItems();
-		    for (BusinessVehicle v: BusinessVehicle.findAvailableVehicle()) {
+		    for (BusinessVehicle v: BusinessVehicle.find(BusinessVehicle.class)) {
 				vehiclejComboBox.addItem(v);
 		    }
 		    createDatePicker.clear();

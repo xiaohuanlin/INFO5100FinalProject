@@ -149,9 +149,11 @@ public class BusinessProduct extends ORMObject {
         Root<BusinessProduct> root = criteria.from(BusinessProduct.class);
         Join<Enterprise, BusinessProduct> rootJoin = root.join(BusinessProduct_.ENTERPRISE);
         criteria.select(root);
-        criteria.where(
-            builder.equal(rootJoin.get(Enterprise_.NAME), organizationName)
-        );
+        if (!organizationName.equals("")) {
+            criteria.where(
+                builder.equal(rootJoin.get(Enterprise_.NAME), organizationName)
+            );
+        }
         return entityManager.createQuery(criteria).getResultList();
     }
 

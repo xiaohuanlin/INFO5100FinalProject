@@ -10,13 +10,13 @@ import javax.swing.event.ChangeListener;
  *
  * @author Administrator
  */
-public class BuyerJPanel extends javax.swing.JPanel {
+public class PurchaserJPanel extends javax.swing.JPanel {
     MainJFrame jFrame;
 
     /**
      * Creates new form operationsPanel
      */
-    public BuyerJPanel(MainJFrame jFrame) {
+    public PurchaserJPanel(MainJFrame jFrame) {
         initComponents();
 
         this.jFrame = jFrame;

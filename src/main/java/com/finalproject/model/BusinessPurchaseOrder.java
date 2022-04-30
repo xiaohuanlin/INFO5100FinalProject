@@ -50,6 +50,9 @@ public class BusinessPurchaseOrder extends ORMObject {
     @Column(nullable = false)
     private LocalDateTime updateDate;
 
+    @Column
+    private String description;
+
     public Integer getId() {
         return id;
     }
@@ -90,6 +93,14 @@ public class BusinessPurchaseOrder extends ORMObject {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BusinessPurchaseOrderStatusType getOrderStatusType() {

@@ -44,8 +44,8 @@
                                       <Component id="quantityjTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="totalAmountjTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="statusjComboBox" alignment="0" pref="166" max="32767" attributes="0"/>
-                                      <Component id="customerjTextField" alignment="1" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="customerjComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -93,11 +93,11 @@
                           <Component id="quantityjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="customerjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="customerjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="customerjLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="customerjComboBox" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -324,7 +324,19 @@
         <Property name="text" type="java.lang.String" value="customer"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="customerjTextField">
+    <Component class="javax.swing.JComboBox" name="customerjComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Digital Platform"/>
+            <StringItem index="1" value="FishMarket"/>
+            <StringItem index="2" value="FarmerMarket"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

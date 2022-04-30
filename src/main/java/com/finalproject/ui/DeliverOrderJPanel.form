@@ -343,7 +343,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="feejLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fee"/>
+        <Property name="text" type="java.lang.String" value="Deliver Fee"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Chalkboard SE" size="14" style="0"/>
         </Property>

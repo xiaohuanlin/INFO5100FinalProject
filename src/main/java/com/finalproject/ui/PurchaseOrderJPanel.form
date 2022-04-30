@@ -20,10 +20,6 @@
               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="quantityInspectorjLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Component id="jScrollPane11" min="-2" pref="579" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -43,18 +39,26 @@
                                   <Component id="updateDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="createDatePicker" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="productjComboBox" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="qijComboBox" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="descjTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="quantityjTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="totalAmountjTextField" alignment="0" max="32767" attributes="0"/>
                                       <Component id="statusjComboBox" alignment="0" pref="166" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="qijComboBox" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace pref="84" max="32767" attributes="0"/>
                       <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="descjLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantityInspectorjLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -100,16 +104,21 @@
                           <Component id="quantityInspectorjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="qijComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="descjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="descjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jScrollPane11" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -328,6 +337,13 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;User&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="descjLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="description"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="descjTextField">
     </Component>
   </SubComponents>
 </Form>

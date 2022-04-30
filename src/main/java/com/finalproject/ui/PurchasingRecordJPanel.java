@@ -54,7 +54,6 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
 		    updateDatePicker.clear();
             totalAmountjTextField.setText("");
             quantityjTextField.setText("");
-            customerjTextField.setText("");
         } else {
             order.refresh();
             productjComboBox.setSelectedItem(order.getProduct());
@@ -63,7 +62,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
             statusjComboBox.setSelectedItem(order.getOrderStatusType());
             totalAmountjTextField.setText(String.valueOf(order.getTotalAmount() / 100.0));
             quantityjTextField.setText(String.valueOf(order.getQuantity()));
-            customerjTextField.setText(order.getCustomerName());
+            customerjComboBox.setSelectedItem(order.getCustomerName());
         }
     }
     
@@ -115,7 +114,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
         totalAmountjTextField = new javax.swing.JTextField();
         quantityjTextField = new javax.swing.JTextField();
         customerjLabel = new javax.swing.JLabel();
-        customerjTextField = new javax.swing.JTextField();
+        customerjComboBox = new javax.swing.JComboBox<>();
 
         orderModifyjButton.setText("modify");
         orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +216,8 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
 
         customerjLabel.setText("customer");
 
+        customerjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digital Platform", "FishMarket", "FarmerMarket" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -246,8 +247,8 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(quantityjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(totalAmountjTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE)
-                                        .addComponent(customerjTextField)))))
+                                        .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
+                                    .addComponent(customerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
@@ -282,10 +283,10 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
                             .addComponent(quantityjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(quantityjLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(customerjLabel)
-                            .addComponent(customerjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15))
+                            .addComponent(customerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +316,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
             order.setOrderStatusType((BusinessOrderStatusType)statusjComboBox.getSelectedItem());
             order.setQuantity(Integer.parseInt(quantityjTextField.getText()));
             order.setTotalAmount(order.getQuantity() * order.getProduct().getSellPrice());
-            order.setCustomerName(customerjTextField.getText());
+            order.setCustomerName((String)customerjComboBox.getSelectedItem());
 
             order.flush();
         } catch (Exception e) {
@@ -357,7 +358,7 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
             bo.setOrderStatusType((BusinessOrderStatusType)statusjComboBox.getSelectedItem());
             bo.setQuantity(Integer.parseInt(quantityjTextField.getText()));
             bo.setTotalAmount(bo.getQuantity() * bo.getProduct().getSellPrice());
-            bo.setCustomerName(customerjTextField.getText());
+            bo.setCustomerName((String)customerjComboBox.getSelectedItem());
             bo.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
@@ -389,8 +390,8 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonjPanel2;
     private com.github.lgooddatepicker.components.DateTimePicker createDatePicker;
+    private javax.swing.JComboBox<String> customerjComboBox;
     private javax.swing.JLabel customerjLabel;
-    private javax.swing.JTextField customerjTextField;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JButton orderCreatejButton;
     private javax.swing.JButton orderDeletejButton;
