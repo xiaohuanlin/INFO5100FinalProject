@@ -157,6 +157,6 @@ public class BusinessProduct extends ORMObject {
 
     @Override
     public String toString() {
-        return id + "(" + productStatusType + ")";
+        return name + "(" + productStatusType + ")";
     }
 }

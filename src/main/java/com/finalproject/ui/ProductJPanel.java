@@ -304,6 +304,7 @@ public class ProductJPanel extends javax.swing.JPanel {
             product.setName(namejTextField.getText());
             product.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
             product.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            product.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
 
             product.flush();
         } catch (Exception e) {
@@ -345,6 +346,7 @@ public class ProductJPanel extends javax.swing.JPanel {
             bp.setName(namejTextField.getText());
             bp.setPurchasePrice((int)(Double.parseDouble(purchasePricejTextField.getText()) * 100));
             bp.setSellPrice((int)(Double.parseDouble(sellPricejTextField.getText()) * 100));
+            bp.setEnterprise(jFrame.getRole().getOrganization().getEnterprise());
             bp.save();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.toString());
