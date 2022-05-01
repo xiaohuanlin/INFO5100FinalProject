@@ -23,32 +23,32 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane11" min="-2" pref="579" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="endDatejLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="endDateTimePicker" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="startDatejLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Component id="startDateTimePicker" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                      <Component id="searchjButton" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="endDatejLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="endDateTimePicker" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="startDatejLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="startDateTimePicker" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <Component id="searchjButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jScrollPane11" min="-2" pref="579" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
@@ -61,16 +61,16 @@
                           <Component id="endDatejLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="endDateTimePicker" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="searchjButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jScrollPane11" min="-2" pref="328" max="-2" attributes="0"/>
-              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,10 +87,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
-                <Column editable="false" title="source type" type="java.lang.Object"/>
-                <Column editable="false" title="source id" type="java.lang.Object"/>
-                <Column editable="false" title="create_date" type="java.lang.Object"/>
-                <Column editable="false" title="amount" type="java.lang.Double"/>
+                <Column editable="true" title="Source Type" type="java.lang.Object"/>
+                <Column editable="true" title="Source ID" type="java.lang.Object"/>
+                <Column editable="true" title="Create Date" type="java.lang.Object"/>
+                <Column editable="true" title="Amount" type="java.lang.Double"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -126,12 +126,18 @@
     </Container>
     <Component class="javax.swing.JLabel" name="startDatejLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="start date"/>
+        <Property name="text" type="java.lang.String" value="Start Date"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="endDatejLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="end date"/>
+        <Property name="text" type="java.lang.String" value="End Date"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="startDateTimePicker">
@@ -141,6 +147,9 @@
     <Component class="javax.swing.JButton" name="searchjButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Search"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchjButtonActionPerformed"/>

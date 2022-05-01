@@ -95,31 +95,27 @@ public class StatementJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "source type", "source id", "create_date", "amount"
+                "Source Type", "Source ID", "Create Date", "Amount"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
         });
         jScrollPane11.setViewportView(statementjTable);
 
-        startDatejLabel.setText("start date");
+        startDatejLabel.setText("Start Date");
+        startDatejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        endDatejLabel.setText("end date");
+        endDatejLabel.setText("End Date");
+        endDatejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         searchjButton.setText("Search");
+        searchjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         searchjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchjButtonActionPerformed(evt);
@@ -132,21 +128,22 @@ public class StatementJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(endDatejLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(endDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(startDatejLabel)
-                                .addGap(66, 66, 66)
-                                .addComponent(startDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(63, 63, 63)
-                        .addComponent(searchjButton)))
-                .addContainerGap(102, Short.MAX_VALUE))
+                        .addComponent(endDatejLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(endDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(startDatejLabel)
+                        .addGap(66, 66, 66)
+                        .addComponent(startDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(62, 62, 62)
+                .addComponent(searchjButton)
+                .addContainerGap(91, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,13 +158,13 @@ public class StatementJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(endDatejLabel)
                             .addComponent(endDateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28))
+                        .addGap(54, 54, 54))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(searchjButton)
-                        .addGap(53, 53, 53)))
+                        .addGap(79, 79, 79)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
