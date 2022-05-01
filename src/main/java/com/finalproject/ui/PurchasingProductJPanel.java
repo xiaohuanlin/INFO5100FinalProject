@@ -117,6 +117,10 @@ public class PurchasingProductJPanel extends javax.swing.JPanel {
         sellPricejLabel = new javax.swing.JLabel();
         sellPricejTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         productModifyjButton.setText("modify");
         productModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,10 +176,12 @@ public class PurchasingProductJPanel extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
         passwordjLabel1.setText("update_date");
 
+        updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
         passwordjLabel.setText("create_date");

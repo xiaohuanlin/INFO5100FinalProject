@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="e7" green="ed" red="f2" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -129,6 +134,11 @@
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="buttonjPanel2">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e7" green="ed" red="f2" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -214,7 +224,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="passwordjLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update_date"/>
+        <Property name="text" type="java.lang.String" value="Update Date"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Chalkboard SE" size="14" style="0"/>
         </Property>
@@ -237,7 +247,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="passwordjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Create_date"/>
+        <Property name="text" type="java.lang.String" value="Create Date"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Chalkboard SE" size="14" style="0"/>
         </Property>
@@ -316,6 +326,7 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>

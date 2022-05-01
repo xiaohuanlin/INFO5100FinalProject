@@ -75,6 +75,8 @@ public class DataJPanel extends javax.swing.JPanel {
         leftjPanel = new javax.swing.JPanel();
         rightjPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
         jLabel1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel1.setText("Data");
 

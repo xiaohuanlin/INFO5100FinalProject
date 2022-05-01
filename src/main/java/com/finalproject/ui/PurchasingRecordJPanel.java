@@ -116,6 +116,10 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
         customerjLabel = new javax.swing.JLabel();
         customerjComboBox = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         orderModifyjButton.setText("modify");
         orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

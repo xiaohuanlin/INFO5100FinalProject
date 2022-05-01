@@ -98,6 +98,10 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
         descriptionjLabel = new javax.swing.JLabel();
         descriptionjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         MMModifyjButton.setText("Modify");
         MMModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         MMModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -157,11 +161,13 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
                     .addComponent(MMDeletejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
+        createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
         passwordjLabel1.setText("Update_date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
+        updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
         passwordjLabel.setText("Create_date");

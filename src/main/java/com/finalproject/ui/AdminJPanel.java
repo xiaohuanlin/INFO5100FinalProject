@@ -337,13 +337,19 @@ public class AdminJPanel extends javax.swing.JPanel {
         userNamejLabel = new javax.swing.JLabel();
         passwordjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
         jTabbedPane.setBackground(new java.awt.Color(242, 237, 231));
+
+        rolejPanel.setBackground(new java.awt.Color(242, 237, 231));
 
         roleNamejTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roleNamejTextFieldActionPerformed(evt);
             }
         });
+
+        buttonjPanel1.setBackground(new java.awt.Color(242, 237, 231));
 
         roleModifyjButton.setText("Modify");
         roleModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -410,6 +416,12 @@ public class AdminJPanel extends javax.swing.JPanel {
 
         jScrollPane5.setViewportView(currentPMjList);
 
+        organizationjComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationjComboBoxActionPerformed(evt);
+            }
+        });
+
         pmToRightjButton.setText(">>");
         pmToRightjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -469,7 +481,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                     .addComponent(organizationjLabel)
                     .addComponent(permissionsjLabel)
                     .addComponent(usersjLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(rolejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(rolejPanelLayout.createSequentialGroup()
                         .addGroup(rolejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -497,7 +509,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rolejPanelLayout.createSequentialGroup()
-                .addContainerGap(501, Short.MAX_VALUE)
+                .addContainerGap(283, Short.MAX_VALUE)
                 .addGroup(rolejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rolejPanelLayout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,6 +564,8 @@ public class AdminJPanel extends javax.swing.JPanel {
 
         jTabbedPane.addTab("Role", rolejPanel);
 
+        permissionjPanel.setBackground(new java.awt.Color(242, 237, 231));
+
         namejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         namejLabel.setText("Name");
 
@@ -594,6 +608,8 @@ public class AdminJPanel extends javax.swing.JPanel {
             }
         ));
         jScrollPane3.setViewportView(pmjTable);
+
+        buttonjPanel.setBackground(new java.awt.Color(242, 237, 231));
 
         pmModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         pmModifyjButton.setText("Modify");
@@ -677,7 +693,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                     .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(namejTextField)
                         .addComponent(permissionTypejComboBox, 0, 493, Short.MAX_VALUE)))
-                .addGap(0, 269, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, permissionjPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(permissionjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,7 +884,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                     .addGroup(userjPanelLayout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(550, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
         userjPanelLayout.setVerticalGroup(
             userjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1382,6 +1398,10 @@ public class AdminJPanel extends javax.swing.JPanel {
             ((DefaultListModel<Role>)otherRolesjList.getModel()).addElement(r);
         }
     }//GEN-LAST:event_toRolesLeftjButtonActionPerformed
+
+    private void organizationjComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationjComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationjComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

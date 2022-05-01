@@ -132,6 +132,10 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
         enterprisejLabel = new javax.swing.JLabel();
         enterprisejComboBox = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
+        buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
         deliverOrderModifyjButton.setText("Modify");
         deliverOrderModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
         deliverOrderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -191,11 +195,13 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
+        createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
         passwordjLabel1.setText("Update-date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
+        updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
         passwordjLabel.setText("Create_date");
