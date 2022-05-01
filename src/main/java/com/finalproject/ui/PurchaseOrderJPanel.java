@@ -272,7 +272,7 @@ public class PurchaseOrderJPanel extends javax.swing.JPanel {
                             .addComponent(quantityInspectorjLabel))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addGap(144, 144, 144)
                 .addComponent(purchaseOrderModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(purchaseOrderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
