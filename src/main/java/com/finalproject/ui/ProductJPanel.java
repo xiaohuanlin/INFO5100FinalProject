@@ -182,12 +182,12 @@ public class ProductJPanel extends javax.swing.JPanel {
 
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("Update_date");
+        passwordjLabel1.setText("Update Date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("Create_date");
+        passwordjLabel.setText("Create Date");
         passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         userRolesjLabel.setText("Status");
@@ -198,7 +198,7 @@ public class ProductJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Product", "Create_date", "Update_date", "Status", "Purchase Price", "Sell Price"
+                "ID", "Product", "Create Date", "Update Date", "Status", "Purchase Price", "Sell Price"
             }
         ) {
             Class[] types = new Class [] {

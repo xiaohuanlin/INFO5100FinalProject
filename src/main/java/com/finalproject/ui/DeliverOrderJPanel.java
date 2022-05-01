@@ -198,13 +198,13 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
         createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("Update-date");
+        passwordjLabel1.setText("Update Date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("Create_date");
+        passwordjLabel.setText("Create Date");
         passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         userRolesjLabel.setText("Status");
@@ -215,7 +215,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Vehicle", "From Enterprise", "Create_date", "Update_date", "Status", "Fee"
+                "ID", "Vehicle", "From Enterprise", "Create Date", "Update Date", "Status", "Fee"
             }
         ) {
             Class[] types = new Class [] {
@@ -231,7 +231,7 @@ public class DeliverOrderJPanel extends javax.swing.JPanel {
         productjLabel.setText("Product");
         productjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        feejLabel.setText("Deliver Fee");
+        feejLabel.setText("Delivery Fee");
         feejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         fromLocationjLabel.setText("From Location");

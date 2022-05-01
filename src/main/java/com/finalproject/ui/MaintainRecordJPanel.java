@@ -164,13 +164,13 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
         createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("Update_date");
+        passwordjLabel1.setText("Update Date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("Create_date");
+        passwordjLabel.setText("Create Date");
         passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         orderjTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,7 +178,7 @@ public class MaintainRecordJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Vehicle", "Create_date", "Update_date", "Description"
+                "ID", "Vehicle", "Create Date", "Update Date", "Description"
             }
         ) {
             Class[] types = new Class [] {
