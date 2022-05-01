@@ -5,6 +5,7 @@
 package com.finalproject.ui;
 
 import com.finalproject.model.BusinessOrder;
+import com.finalproject.model.BusinessOrderStatusType;
 import com.finalproject.model.BusinessRefundOrder;
 import com.finalproject.model.BusinessRefundOrderStatusType;
 import com.finalproject.model.PermissionType;
@@ -323,6 +324,11 @@ public class RefundJPanel extends javax.swing.JPanel {
 
     private void refundCreatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundCreatejButtonActionPerformed
         // TODO add your handling code here:
+        if (((BusinessOrder)orderjComboBox.getSelectedItem()).getOrderStatusType() == BusinessOrderStatusType.REFUND) {
+            JOptionPane.showMessageDialog(this, "This order has been refunded");
+            return;
+        }
+
         BusinessRefundOrder bf = new BusinessRefundOrder();
         try {
             bf.setOrder((BusinessOrder)orderjComboBox.getSelectedItem());
@@ -331,6 +337,10 @@ public class RefundJPanel extends javax.swing.JPanel {
             bf.setBusinessRefundOrderStatusType((BusinessRefundOrderStatusType)statusjComboBox.getSelectedItem());
             bf.setAmount((int)(Double.parseDouble(amountjTextField.getText()) * 100));
             bf.save();
+
+            BusinessOrder o = bf.getOrder();
+            o.setOrderStatusType(BusinessOrderStatusType.REFUND);
+            o.flush();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Save error: " + e.getMessage());
             return;
