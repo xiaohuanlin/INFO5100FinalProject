@@ -187,6 +187,9 @@
     </Container>
     <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="createDatePicker">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e7" green="ed" red="f2" type="rgb"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
@@ -200,6 +203,9 @@
     </Component>
     <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="updateDatePicker">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e7" green="ed" red="f2" type="rgb"/>
+        </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>

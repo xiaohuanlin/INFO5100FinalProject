@@ -212,11 +212,13 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
         orderjLabel.setText("Order");
         orderjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
+        createDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         createDatePicker.setEnabled(false);
 
         passwordjLabel1.setText("Update_date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
+        updateDatePicker.setBackground(new java.awt.Color(242, 237, 231));
         updateDatePicker.setEnabled(false);
 
         descriptionjLabel.setText("Description");
@@ -296,11 +298,11 @@ public class CustomerServiceManagerJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 604, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

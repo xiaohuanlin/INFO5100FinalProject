@@ -187,12 +187,12 @@ public class OrderJPanel extends javax.swing.JPanel {
 
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("Update_date");
+        passwordjLabel1.setText("Update Date");
         passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("Create_date");
+        passwordjLabel.setText("Create Date");
         passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         userRolesjLabel.setText("Status");
@@ -214,6 +214,7 @@ public class OrderJPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
+        orderjTable.setEnabled(false);
         jScrollPane11.setViewportView(orderjTable);
 
         productjLabel.setText("Product");

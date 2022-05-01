@@ -337,6 +337,8 @@ public class AdminJPanel extends javax.swing.JPanel {
         userNamejLabel = new javax.swing.JLabel();
         passwordjTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(242, 237, 231));
+
         jTabbedPane.setBackground(new java.awt.Color(242, 237, 231));
 
         rolejPanel.setBackground(new java.awt.Color(242, 237, 231));
