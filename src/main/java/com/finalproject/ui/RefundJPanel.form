@@ -64,8 +64,8 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="refundCreatejButton" min="-2" pref="79" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="refundViewjButton" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+              <Component id="refundViewjButton" min="-2" pref="90" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
