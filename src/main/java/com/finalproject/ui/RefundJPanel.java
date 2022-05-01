@@ -92,10 +92,6 @@ public class RefundJPanel extends javax.swing.JPanel {
 
         orderjComboBox = new javax.swing.JComboBox<>();
         buttonjPanel2 = new javax.swing.JPanel();
-        refundModifyjButton = new javax.swing.JButton();
-        refundDeletejButton = new javax.swing.JButton();
-        refundCreatejButton = new javax.swing.JButton();
-        refundViewjButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -107,82 +103,45 @@ public class RefundJPanel extends javax.swing.JPanel {
         orderjLabel = new javax.swing.JLabel();
         amountjLabel = new javax.swing.JLabel();
         amountjTextField = new javax.swing.JTextField();
+        refundModifyjButton = new javax.swing.JButton();
+        refundDeletejButton = new javax.swing.JButton();
+        refundCreatejButton = new javax.swing.JButton();
+        refundViewjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(242, 237, 231));
 
         buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
 
-        refundModifyjButton.setText("modify");
-        refundModifyjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refundModifyjButtonActionPerformed(evt);
-            }
-        });
-
-        refundDeletejButton.setText("delete");
-        refundDeletejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refundDeletejButtonActionPerformed(evt);
-            }
-        });
-
-        refundCreatejButton.setText("create");
-        refundCreatejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refundCreatejButtonActionPerformed(evt);
-            }
-        });
-
-        refundViewjButton.setText("view");
-        refundViewjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refundViewjButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
         buttonjPanel2.setLayout(buttonjPanel2Layout);
         buttonjPanel2Layout.setHorizontalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(refundModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refundViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refundCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(refundDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 85, Short.MAX_VALUE)
         );
         buttonjPanel2Layout.setVerticalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(refundModifyjButton)
-                .addGap(18, 18, 18)
-                .addComponent(refundDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(refundCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(refundViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("update_date");
+        passwordjLabel1.setText("Update Date");
+        passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("create_date");
+        passwordjLabel.setText("Create Date");
+        passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        userRolesjLabel.setText("status");
+        userRolesjLabel.setText("Status");
+        userRolesjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         refundjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "order", "create_date", "update_date", "status", "amount"
+                "ID", "Order", "Create Date", "Update Date", "Status", "Amount"
             }
         ) {
             Class[] types = new Class [] {
@@ -200,11 +159,46 @@ public class RefundJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        refundjTable.setBackground(new java.awt.Color(242, 237, 231));
         jScrollPane11.setViewportView(refundjTable);
 
-        orderjLabel.setText("order");
+        orderjLabel.setText("Order");
+        orderjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        amountjLabel.setText("amount");
+        amountjLabel.setText("Amount");
+        amountjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        refundModifyjButton.setText("Modify");
+        refundModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        refundModifyjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundModifyjButtonActionPerformed(evt);
+            }
+        });
+
+        refundDeletejButton.setText("Delete");
+        refundDeletejButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        refundDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundDeletejButtonActionPerformed(evt);
+            }
+        });
+
+        refundCreatejButton.setText("Create");
+        refundCreatejButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        refundCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundCreatejButtonActionPerformed(evt);
+            }
+        });
+
+        refundViewjButton.setText("View");
+        refundViewjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        refundViewjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refundViewjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -233,9 +227,19 @@ public class RefundJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(amountjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 106, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(refundModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(refundDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(refundCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(refundViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +272,13 @@ public class RefundJPanel extends javax.swing.JPanel {
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refundModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refundDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refundCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refundViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
     }// </editor-fold>//GEN-END:initComponents
 

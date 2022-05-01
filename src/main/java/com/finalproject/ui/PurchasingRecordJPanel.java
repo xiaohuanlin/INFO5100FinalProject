@@ -96,10 +96,6 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
 
         productjComboBox = new javax.swing.JComboBox<>();
         buttonjPanel2 = new javax.swing.JPanel();
-        orderModifyjButton = new javax.swing.JButton();
-        orderDeletejButton = new javax.swing.JButton();
-        orderCreatejButton = new javax.swing.JButton();
-        orderViewjButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -115,82 +111,45 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
         quantityjTextField = new javax.swing.JTextField();
         customerjLabel = new javax.swing.JLabel();
         customerjComboBox = new javax.swing.JComboBox<>();
+        orderModifyjButton = new javax.swing.JButton();
+        orderDeletejButton = new javax.swing.JButton();
+        orderCreatejButton = new javax.swing.JButton();
+        orderViewjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(242, 237, 231));
 
         buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
 
-        orderModifyjButton.setText("modify");
-        orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderModifyjButtonActionPerformed(evt);
-            }
-        });
-
-        orderDeletejButton.setText("delete");
-        orderDeletejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderDeletejButtonActionPerformed(evt);
-            }
-        });
-
-        orderCreatejButton.setText("create");
-        orderCreatejButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderCreatejButtonActionPerformed(evt);
-            }
-        });
-
-        orderViewjButton.setText("view");
-        orderViewjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                orderViewjButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
         buttonjPanel2.setLayout(buttonjPanel2Layout);
         buttonjPanel2Layout.setHorizontalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(orderModifyjButton, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderViewjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderCreatejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(orderDeletejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 85, Short.MAX_VALUE)
         );
         buttonjPanel2Layout.setVerticalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(orderModifyjButton)
-                .addGap(18, 18, 18)
-                .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(orderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
         createDatePicker.setEnabled(false);
 
-        passwordjLabel1.setText("update_date");
+        passwordjLabel1.setText("Update Date");
+        passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         updateDatePicker.setEnabled(false);
 
-        passwordjLabel.setText("create_date");
+        passwordjLabel.setText("Create Date");
+        passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        userRolesjLabel.setText("status");
+        userRolesjLabel.setText("Status");
+        userRolesjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         orderjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "product", "create_date", "update_date", "status", "total amount", "quantity", "customer"
+                "ID", "Product", "Create Date", "Update Date", "Status", "Total Amount", "Quantity", "Customer"
             }
         ) {
             Class[] types = new Class [] {
@@ -208,19 +167,56 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        orderjTable.setBackground(new java.awt.Color(242, 237, 231));
         jScrollPane11.setViewportView(orderjTable);
 
-        productjLabel.setText("product");
+        productjLabel.setText("Product");
+        productjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        totalAmountjLabel.setText("total amount");
+        totalAmountjLabel.setText("Total Amount");
+        totalAmountjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        quantityjLabel.setText("quantity");
+        quantityjLabel.setText("Quantity");
+        quantityjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         totalAmountjTextField.setEnabled(false);
 
-        customerjLabel.setText("customer");
+        customerjLabel.setText("Customer");
+        customerjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         customerjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Digital Platform", "FishMarket", "FarmerMarket" }));
+
+        orderModifyjButton.setText("Modify");
+        orderModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        orderModifyjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderModifyjButtonActionPerformed(evt);
+            }
+        });
+
+        orderDeletejButton.setText("Delete");
+        orderDeletejButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        orderDeletejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderDeletejButtonActionPerformed(evt);
+            }
+        });
+
+        orderCreatejButton.setText("Create");
+        orderCreatejButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        orderCreatejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderCreatejButtonActionPerformed(evt);
+            }
+        });
+
+        orderViewjButton.setText("View");
+        orderViewjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        orderViewjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderViewjButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -253,9 +249,19 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
                                         .addComponent(totalAmountjTextField, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(statusjComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
                                     .addComponent(customerjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(88, 88, 88))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(orderModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(orderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(204, 204, 204))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,7 +302,14 @@ public class PurchasingRecordJPanel extends javax.swing.JPanel {
                         .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(orderModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
     }// </editor-fold>//GEN-END:initComponents
 

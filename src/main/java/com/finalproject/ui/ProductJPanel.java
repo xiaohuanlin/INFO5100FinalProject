@@ -98,10 +98,6 @@ public class ProductJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonjPanel2 = new javax.swing.JPanel();
-        productModifyjButton = new javax.swing.JButton();
-        productDeletejButton = new javax.swing.JButton();
-        productCreatejButton = new javax.swing.JButton();
-        productViewjButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -116,10 +112,66 @@ public class ProductJPanel extends javax.swing.JPanel {
         purchasePricejTextField = new javax.swing.JTextField();
         sellPricejLabel = new javax.swing.JLabel();
         sellPricejTextField = new javax.swing.JTextField();
+        productModifyjButton = new javax.swing.JButton();
+        productDeletejButton = new javax.swing.JButton();
+        productCreatejButton = new javax.swing.JButton();
+        productViewjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(242, 237, 231));
 
         buttonjPanel2.setBackground(new java.awt.Color(242, 237, 231));
+
+        javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
+        buttonjPanel2.setLayout(buttonjPanel2Layout);
+        buttonjPanel2Layout.setHorizontalGroup(
+            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+        buttonjPanel2Layout.setVerticalGroup(
+            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 115, Short.MAX_VALUE)
+        );
+
+        createDatePicker.setEnabled(false);
+
+        passwordjLabel1.setText("Update Date");
+        passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        updateDatePicker.setEnabled(false);
+
+        passwordjLabel.setText("Create Date");
+        passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        userRolesjLabel.setText("Status");
+        userRolesjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        productjTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Product", "Create Date", "Update Date", "Status", "Purchase Price", "Sell Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(productjTable);
+
+        namejLabel.setText("Name");
+        namejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        purchasePricejLabel.setText("Purchase Price");
+        purchasePricejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+
+        sellPricejLabel.setText("Sell Price");
+        sellPricejLabel.setDoubleBuffered(true);
+        sellPricejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
         productModifyjButton.setText("Modify");
         productModifyjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
@@ -153,74 +205,6 @@ public class ProductJPanel extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
-        buttonjPanel2.setLayout(buttonjPanel2Layout);
-        buttonjPanel2Layout.setHorizontalGroup(
-            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(productModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(productDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(productCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(productViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-        buttonjPanel2Layout.setVerticalGroup(
-            buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(buttonjPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(productViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-
-        createDatePicker.setEnabled(false);
-
-        passwordjLabel1.setText("Update_date");
-        passwordjLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
-        updateDatePicker.setEnabled(false);
-
-        passwordjLabel.setText("Create_date");
-        passwordjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
-        userRolesjLabel.setText("Status");
-        userRolesjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
-        productjTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Product", "Create_date", "Update_date", "Status", "Purchase Price", "Sell Price"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane11.setViewportView(productjTable);
-
-        namejLabel.setText("Name");
-        namejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
-        purchasePricejLabel.setText("Purchase Price");
-        purchasePricejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
-        sellPricejLabel.setText("Sell Price");
-        sellPricejLabel.setDoubleBuffered(true);
-        sellPricejLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -252,7 +236,16 @@ public class ProductJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(productModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(productDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(productCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(productViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -284,7 +277,13 @@ public class ProductJPanel extends javax.swing.JPanel {
                     .addComponent(sellPricejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(productModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(productViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
         );

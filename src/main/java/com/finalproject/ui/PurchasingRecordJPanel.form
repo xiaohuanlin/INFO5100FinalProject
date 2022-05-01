@@ -54,11 +54,22 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
                       <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                   </Group>
               </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="orderModifyjButton" min="-2" pref="89" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="orderDeletejButton" min="-2" pref="91" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="orderCreatejButton" min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="orderViewjButton" min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -111,7 +122,16 @@
                   </Group>
               </Group>
               <Component id="jScrollPane11" min="-2" pref="110" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="orderDeletejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="orderCreatejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="orderViewjButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="orderModifyjButton" min="-2" pref="27" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,68 +157,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="orderModifyjButton" alignment="2" max="32767" attributes="0"/>
-                      <Component id="orderViewjButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="orderCreatejButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="orderDeletejButton" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="85" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="orderModifyjButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="orderDeletejButton" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="orderCreatejButton" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="orderViewjButton" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace pref="46" max="32767" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="240" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JButton" name="orderModifyjButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="modify"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderModifyjButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="orderDeletejButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="delete"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderDeletejButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="orderCreatejButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="create"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderCreatejButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="orderViewjButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="view"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderViewjButtonActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
     </Container>
     <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="createDatePicker">
       <Properties>
@@ -207,7 +174,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="passwordjLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="update_date"/>
+        <Property name="text" type="java.lang.String" value="Update Date"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="com.github.lgooddatepicker.components.DateTimePicker" name="updateDatePicker">
@@ -227,12 +197,18 @@
     </Component>
     <Component class="javax.swing.JLabel" name="passwordjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="create_date"/>
+        <Property name="text" type="java.lang.String" value="Create Date"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="userRolesjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="status"/>
+        <Property name="text" type="java.lang.String" value="Status"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane11">
@@ -246,15 +222,18 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="8" rowCount="0">
-                <Column editable="false" title="id" type="java.lang.Object"/>
-                <Column editable="false" title="product" type="java.lang.Object"/>
-                <Column editable="false" title="create_date" type="java.lang.Object"/>
-                <Column editable="false" title="update_date" type="java.lang.Object"/>
-                <Column editable="false" title="status" type="java.lang.Object"/>
-                <Column editable="false" title="total amount" type="java.lang.Double"/>
-                <Column editable="false" title="quantity" type="java.lang.Integer"/>
-                <Column editable="false" title="customer" type="java.lang.String"/>
+                <Column editable="false" title="ID" type="java.lang.Object"/>
+                <Column editable="false" title="Product" type="java.lang.Object"/>
+                <Column editable="false" title="Create Date" type="java.lang.Object"/>
+                <Column editable="false" title="Update Date" type="java.lang.Object"/>
+                <Column editable="false" title="Status" type="java.lang.Object"/>
+                <Column editable="false" title="Total Amount" type="java.lang.Double"/>
+                <Column editable="false" title="Quantity" type="java.lang.Integer"/>
+                <Column editable="false" title="Customer" type="java.lang.String"/>
               </Table>
+            </Property>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e7" green="ed" red="f2" type="rgb"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
@@ -309,17 +288,26 @@
     </Container>
     <Component class="javax.swing.JLabel" name="productjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="product"/>
+        <Property name="text" type="java.lang.String" value="Product"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="totalAmountjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="total amount"/>
+        <Property name="text" type="java.lang.String" value="Total Amount"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="quantityjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="quantity"/>
+        <Property name="text" type="java.lang.String" value="Quantity"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="totalAmountjTextField">
@@ -331,7 +319,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="customerjLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="customer"/>
+        <Property name="text" type="java.lang.String" value="Customer"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="customerjComboBox">
@@ -347,6 +338,50 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="orderModifyjButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modify"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderModifyjButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="orderDeletejButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderDeletejButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="orderCreatejButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Create"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderCreatejButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="orderViewjButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Chalkboard SE" size="14" style="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderViewjButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

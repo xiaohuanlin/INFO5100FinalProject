@@ -105,17 +105,14 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="283" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="332" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="buttonjPanel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace pref="299" max="32767" attributes="0"/>
+                      <Component id="buttonjPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="355" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="278" max="-2" attributes="0"/>
+                      <Component id="jScrollPane6" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -202,44 +199,53 @@
                           <Component id="roleCreatejButton" min="-2" pref="92" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="roleViewjButton" min="-2" pref="92" max="-2" attributes="0"/>
-                          <EmptySpace pref="17" max="32767" attributes="0"/>
+                          <EmptySpace pref="122" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="roleModifyjButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="roleDeletejButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="roleCreatejButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="roleViewjButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="roleModifyjButton">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Modify"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleModifyjButtonActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JButton" name="roleDeletejButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Delete"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleDeletejButtonActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="roleModifyjButton">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Modify"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleModifyjButtonActionPerformed"/>
+                  </Events>
+                </Component>
                 <Component class="javax.swing.JButton" name="roleCreatejButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Create"/>
                   </Properties>
                   <Events>
@@ -248,7 +254,10 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="roleViewjButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Diew"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="View"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roleViewjButtonActionPerformed"/>
@@ -470,92 +479,89 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="namejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="permissionTypejLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="rolesjLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="permissionTypejLabel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jScrollPane1" min="-2" pref="272" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="toRightjButton" min="-2" max="-2" attributes="0"/>
-                                  <Component id="toLeftjButton" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="namejLabel" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rolesjLabel" min="-2" pref="63" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="272" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="namejTextField" max="32767" attributes="0"/>
-                              <Component id="permissionTypejComboBox" pref="493" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="permissionTypejComboBox" min="-2" pref="493" max="-2" attributes="0"/>
+                                          <Component id="namejTextField" min="-2" pref="493" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane1" min="-2" pref="272" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="toRightjButton" min="-2" max="-2" attributes="0"/>
+                                          <Component id="toLeftjButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" min="-2" pref="272" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="51" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="294" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="392" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="buttonjPanel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="336" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="buttonjPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="namejLabel" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="namejTextField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="namejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="namejLabel" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="permissionTypejLabel" alignment="3" pref="53" max="32767" attributes="0"/>
+                          <Component id="permissionTypejComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="permissionTypejLabel" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="rolesjLabel" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="640" max="-2" attributes="0"/>
+                                      <Component id="toRightjButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace pref="71" max="32767" attributes="0"/>
+                                      <Component id="toLeftjButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                                              <Component id="toLeftjButton" min="-2" max="-2" attributes="0"/>
-                                          </Group>
                                           <Component id="jScrollPane1" min="-2" pref="152" max="-2" attributes="0"/>
                                           <Component id="jScrollPane2" min="-2" pref="152" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" pref="110" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Component id="buttonjPanel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="jScrollPane3" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="buttonjPanel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="permissionTypejComboBox" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="toRightjButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="rolesjLabel" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -698,28 +704,27 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pmModifyjButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="pmModifyjButton" min="-2" pref="73" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="pmDeletejButton" min="-2" pref="87" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pmDeletejButton" min="-2" pref="99" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pmCreatejButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="pmCreatejButton" min="-2" pref="78" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="pmViewjButton" min="-2" pref="88" max="-2" attributes="0"/>
-                          <EmptySpace pref="94" max="32767" attributes="0"/>
+                          <EmptySpace pref="324" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="pmModifyjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="pmModifyjButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="pmDeletejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="pmCreatejButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="pmViewjButton" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="24" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -734,6 +739,17 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pmModifyjButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="pmViewjButton">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Chalkboard SE" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="View"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pmViewjButtonActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="pmDeletejButton">
@@ -756,17 +772,6 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pmCreatejButtonActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="pmViewjButton">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Chalkboard SE" size="14" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="View"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pmViewjButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -802,7 +807,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -816,17 +821,13 @@
                                       <Component id="passwordjTextField" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane11" min="-2" pref="539" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                                   <Component id="jScrollPane9" min="-2" pref="159" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="toRolesLeftjButton" max="32767" attributes="0"/>
-                                      <Component id="toRolesRightjButton" max="32767" attributes="0"/>
+                                      <Component id="toRolesLeftjButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="toRolesRightjButton" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                   <Component id="jScrollPane10" min="-2" pref="160" max="-2" attributes="0"/>
@@ -834,11 +835,14 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="261" max="-2" attributes="0"/>
-                              <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jScrollPane11" min="-2" pref="539" max="-2" attributes="0"/>
+                                  <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="332" max="32767" attributes="0"/>
+                      <EmptySpace pref="437" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

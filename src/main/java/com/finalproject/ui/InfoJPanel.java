@@ -30,6 +30,20 @@ public class InfoJPanel extends javax.swing.JPanel {
         Image smallImage = image.getScaledInstance(width, height, Image.SCALE_FAST);
         ImageIcon smallIcon = new ImageIcon(smallImage);
         cartjLabel.setIcon(smallIcon);
+        
+        ImageIcon i1 = new ImageIcon("src/main/resources/image/Global.png");
+        int width1 = 50, height1 = 50;
+        Image image1 = i1.getImage();
+        Image smallImage1 = image1.getScaledInstance(width1, height1, Image.SCALE_FAST);
+        ImageIcon smallIcon1 = new ImageIcon(smallImage1);
+        globaljLabel.setIcon(smallIcon1);
+        
+        ImageIcon i2 = new ImageIcon("src/main/resources/image/Earth.png");
+        int width2 = 50, height2 = 50;
+        Image image2 = i2.getImage();
+        Image smallImage2 = image2.getScaledInstance(width2, height2, Image.SCALE_FAST);
+        ImageIcon smallIcon2 = new ImageIcon(smallImage2);
+        earthjLabel.setIcon(smallIcon2);
     }
 
     public void displayUser() {
@@ -80,6 +94,8 @@ public class InfoJPanel extends javax.swing.JPanel {
         enterprisejTextField = new javax.swing.JTextField();
         logoutjButton = new javax.swing.JButton();
         cartjLabel = new javax.swing.JLabel();
+        globaljLabel = new javax.swing.JLabel();
+        earthjLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(104, 173, 226));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -117,11 +133,6 @@ public class InfoJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(cartjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(logoutjButton)
-                .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,6 +145,19 @@ public class InfoJPanel extends javax.swing.JPanel {
                     .addComponent(organizationjLabel)
                     .addComponent(enterprisejLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(earthjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(globaljLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cartjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logoutjButton)))
+                .addGap(14, 14, 14))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,14 +175,19 @@ public class InfoJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(organizationjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(enterprisejLabel)
-                .addGap(18, 18, 18)
-                .addComponent(enterprisejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(cartjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutjButton))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(enterprisejLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(enterprisejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(cartjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(logoutjButton))
+                        .addGap(18, 18, 18)
+                        .addComponent(earthjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(globaljLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -174,8 +203,10 @@ public class InfoJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cartjLabel;
+    private javax.swing.JLabel earthjLabel;
     private javax.swing.JLabel enterprisejLabel;
     private javax.swing.JTextField enterprisejTextField;
+    private javax.swing.JLabel globaljLabel;
     private javax.swing.JButton logoutjButton;
     private javax.swing.JLabel organizationjLabel;
     private javax.swing.JTextField organizationjTextField;
