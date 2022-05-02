@@ -26,22 +26,22 @@ james@gmail.com TransportationManager
 derek@gmail.com TransportationManager
 derek@gmail.com MarketingManager
 
-Procedure：
-1.  
+Procedure：  
+1.    
 MarketingManager-Purchase Order
 Purchaser-Order
 Purchaser-PurchaseOrder
 Purchaser-Order
-QualityManager-Purchase Order
+QualityManager-Purchase Order  
 2.
 Customer-Order/Email
 MarketingManager-Order
 InventoryManager-Warehouse Entry
-TransportationManager-Deliver Order
+TransportationManager-Deliver Order  
 3.
-CustomerService
+CustomerService  
 4.
-Refund
+Refund  
 5.
 
 
