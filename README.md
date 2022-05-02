@@ -27,8 +27,7 @@ derek@gmail.com TransportationManager
 derek@gmail.com MarketingManager
 
 Procedure：  
-1.    
-MarketingManager-Purchase Order
+1.MarketingManager-Purchase Order
 Purchaser-Order
 Purchaser-PurchaseOrder
 Purchaser-Order
