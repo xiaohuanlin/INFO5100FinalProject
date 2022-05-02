@@ -54,11 +54,7 @@
               <EmptySpace min="-2" pref="185" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane11" min="-2" pref="579" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="shipjButton" min="-2" pref="92" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="386" max="32767" attributes="0"/>
           </Group>
@@ -104,16 +100,8 @@
               </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="jScrollPane11" min="-2" pref="110" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="shipjButton" min="-2" pref="31" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="buttonjPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -142,6 +130,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="shipjButton" min="-2" pref="92" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="orderModifyjButton" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="orderDeletejButton" min="-2" pref="92" max="-2" attributes="0"/>
@@ -162,6 +152,7 @@
                       <Component id="orderDeletejButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="orderCreatejButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                       <Component id="orderViewjButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="shipjButton" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
@@ -211,6 +202,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orderViewjButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="shipjButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ship"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Chalkboard SE" size="14" style="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shipjButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -371,14 +373,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="customerjTextField">
-    </Component>
-    <Component class="javax.swing.JButton" name="shipjButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ship"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="shipjButtonActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

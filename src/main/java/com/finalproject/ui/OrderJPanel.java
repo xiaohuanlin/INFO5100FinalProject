@@ -112,6 +112,7 @@ public class OrderJPanel extends javax.swing.JPanel {
         orderDeletejButton = new javax.swing.JButton();
         orderCreatejButton = new javax.swing.JButton();
         orderViewjButton = new javax.swing.JButton();
+        shipjButton = new javax.swing.JButton();
         createDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         passwordjLabel1 = new javax.swing.JLabel();
         updateDatePicker = new com.github.lgooddatepicker.components.DateTimePicker();
@@ -127,7 +128,6 @@ public class OrderJPanel extends javax.swing.JPanel {
         quantityjTextField = new javax.swing.JTextField();
         customerjLabel = new javax.swing.JLabel();
         customerjTextField = new javax.swing.JTextField();
-        shipjButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(242, 237, 231));
 
@@ -165,12 +165,22 @@ public class OrderJPanel extends javax.swing.JPanel {
             }
         });
 
+        shipjButton.setText("Ship");
+        shipjButton.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
+        shipjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shipjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonjPanel2Layout = new javax.swing.GroupLayout(buttonjPanel2);
         buttonjPanel2.setLayout(buttonjPanel2Layout);
         buttonjPanel2Layout.setHorizontalGroup(
             buttonjPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonjPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(shipjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +198,8 @@ public class OrderJPanel extends javax.swing.JPanel {
                     .addComponent(orderModifyjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(orderDeletejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(orderCreatejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(orderViewjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shipjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -237,13 +248,6 @@ public class OrderJPanel extends javax.swing.JPanel {
         customerjLabel.setText("Customer");
         customerjLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
 
-        shipjButton.setText("Ship");
-        shipjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shipjButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,10 +279,7 @@ public class OrderJPanel extends javax.swing.JPanel {
                 .addGap(185, 185, 185)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(shipjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(386, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -314,13 +315,8 @@ public class OrderJPanel extends javax.swing.JPanel {
                     .addComponent(customerjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(shipjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonjPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
