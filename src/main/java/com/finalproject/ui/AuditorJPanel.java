@@ -24,11 +24,14 @@ public class AuditorJPanel extends javax.swing.JPanel {
         OrderJPanel orderJPanel = new OrderJPanel(jFrame);
         RefundJPanel refundJPanel = new RefundJPanel(jFrame);
         StatementJPanel statementJPanel = new StatementJPanel(jFrame);
+        DataJPanel dataJPanel = new DataJPanel();
 
         jTabbedPane.addTab("Product", productJPanel);
         jTabbedPane.addTab("Order", orderJPanel);
         jTabbedPane.addTab("RefundOrder", refundJPanel);
         jTabbedPane.addTab("Statement", statementJPanel);
+        jTabbedPane.addTab("Data", dataJPanel);
+
         productJPanel.displayProduct();
         productJPanel.displayProductList();
         orderJPanel.displayOrder();
@@ -55,6 +58,10 @@ public class AuditorJPanel extends javax.swing.JPanel {
                         break;
                     case 3:
                         statementJPanel.displayStatementList();
+                        break;
+                    case 4:
+                        dataJPanel.displayMonthlyOrderData();
+                        dataJPanel.displayOrderStatusData();
                         break;
                     default:
                         throw new AssertionError();

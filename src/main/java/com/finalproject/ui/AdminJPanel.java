@@ -34,8 +34,6 @@ public class AdminJPanel extends javax.swing.JPanel {
     public AdminJPanel(MainJFrame jFrame) {
         initComponents();
         this.jFrame = jFrame;
-        DataJPanel dataJPanel = new DataJPanel();
-        jTabbedPane.add("Data", dataJPanel);
         jTabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
                 int index = jTabbedPane.getSelectedIndex();
@@ -59,10 +57,6 @@ public class AdminJPanel extends javax.swing.JPanel {
                         currentjList.setModel(new DefaultListModel<>());
                         displayPermission();
                         displayPermissionList();
-                        break;
-                    case 3:
-                        dataJPanel.displayMonthlyOrderData();
-                        dataJPanel.displayOrderStatusData();
                         break;
                     default:
                         throw new AssertionError();
